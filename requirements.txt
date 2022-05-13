@@ -1,2 +1,1 @@
 PySimpleGUI==4.59.0
-jupyter==1.0.0

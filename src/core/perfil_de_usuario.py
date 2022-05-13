@@ -37,7 +37,7 @@ def editar_usuario(nick, perfiles):
             break
         elif event == "Listo":
             perfiles.update({nick: [values['edad'], values['género']]})
-            sg.Popup(f"datos del jugador \n, nombre {nick} : \n edad y género {perfiles[nick]}", no_titlebar=True)
+            #sg.Popup(f"datos del jugador \n, nombre {nick} : \n edad y género {perfiles[nick]}", no_titlebar=True)
             break
   
 def nuevo_usuario(nick, perfiles):
@@ -56,7 +56,7 @@ def nuevo_usuario(nick, perfiles):
             break
         elif event == "Guardar":
             perfiles.update({nick: [values['edad'], values['género']]})
-            sg.Popup(f"datos del jugador \n, nombre {nick} : \n edad y género {perfiles[nick]}", no_titlebar=True)
+            #sg.Popup(f"datos del jugador \n, nombre {nick} : \n edad y género {perfiles[nick]}", no_titlebar=True)
             usuario_registrado(nick, perfiles)
             break    
 
@@ -67,7 +67,7 @@ def usuario():
     while True:
         nick = sg.PopupGetText("ingrese su nick", button_color="purple", text_color="black", no_titlebar=True)
         break
-    sg.Popup('ingresaste el nick: ', nick, button_color="purple", text_color="black", no_titlebar=True)
+    #sg.Popup('ingresaste el nick: ', nick, button_color="purple", text_color="black", no_titlebar=True)
 
     if nick in perfiles.keys(): 
         sg.popup(f"{nick} es un usuario registrado", no_titlebar=True)  

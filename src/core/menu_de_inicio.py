@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
 import perfil_de_usuario as perfil
-import ventana_de_configuracion as config
+import configuracion as config
 
 nombres = ["elija el usuario", "pao", "leo", "valen"]
 dificultad = ["elija la dificultad", "fácil", "normal", "difícil"]
@@ -40,7 +40,7 @@ def ventana_de_inicio(nombres, dificultad):
         if (event == sg.WIN_CLOSE_ATTEMPTED_EVENT or event == "Salir") and sg.popup_yes_no("¿Realmente desea salir?") == "Yes":
             break
         elif event == "Configuración":
-            config.preparar_configuración()
+            config.main()
         elif event == "Puntajes":
             sg.Text("ventana de puntajes")
         elif event == "Perfil":
@@ -49,6 +49,7 @@ def ventana_de_inicio(nombres, dificultad):
 #---------------------------------------------------------------------------------
 
 ventana_de_inicio(nombres, dificultad)
+
 
 
 
