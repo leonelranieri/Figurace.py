@@ -11,11 +11,11 @@ def preparar_menu(nombres, dificultad):
     """
     frame_layout =[
                   [sg.T('---Menú---')],
-                  [sg.Button("Jugar")],
-                  [sg.Button("Configuración")], 
-                  [sg.Button("Puntajes")],
-                  [sg.Button("Perfil")],
-                  [sg.Button("Salir")],
+                  [sg.Button("Jugar", key=("-JUGAR-"))],
+                  [sg.Button("Configuración", key=("-CONFIGURACION-"))], 
+                  [sg.Button("Puntajes", key=("-PUNTAJES-"))],
+                  [sg.Button("Perfil", key=("-PERFIL-"))],
+                  [sg.Button("Salir", key=("-SALIR-"))],
                   [sg.Combo(nombres, default_value=nombres, s=(13,1)), sg.Combo(dificultad, default_value=dificultad, s=(15,1))]
                ]
 
@@ -37,13 +37,15 @@ def ventana_de_inicio(nombres, dificultad):
 
     while True:
         event, values = preparar_menu(nombres, dificultad).read()
-        if (event == sg.WIN_CLOSE_ATTEMPTED_EVENT or event == "Salir") and sg.popup_yes_no("¿Realmente desea salir?") == "Yes":
+        if (event == sg.WIN_CLOSE_ATTEMPTED_EVENT or event == "-SALIR-") and sg.popup_yes_no("¿Realmente desea salir?", no_titlebar=True) == "Yes":
             break
-        elif event == "Configuración":
+        elif event == "-JUGAR-":
+            sg.Text("ventana de juego")
+        elif event == "-CONFIGURACION-":
             config.main()
-        elif event == "Puntajes":
+        elif event == "-PUNTAJES-":
             sg.Text("ventana de puntajes")
-        elif event == "Perfil":
+        elif event == "-PERFIL-":
             perfil.usuario()
     preparar_menu(nombres, dificultad).close()
 #---------------------------------------------------------------------------------
