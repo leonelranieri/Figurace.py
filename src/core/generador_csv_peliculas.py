@@ -2,7 +2,7 @@ import csv
 import os
 from collections import Counter
 import random
-import pandas as pd
+
 
 # Descartar las películas que no tienen “overview”.
 # ● Descartar las películas cuyo idioma original tenga más de 2 caracteres.
@@ -53,6 +53,8 @@ with open(os.path.join(os.getcwd(),'mymoviedb.csv'), "r",encoding="utf8") as log
              refined_data_list.append({'Genre': linea[7], 'Original_Language': linea[6],'Release_Date': linea[0],'Vote_Average': linea[5],'Overview': generar_cadena(cadena),'Title': linea[1]})
      
      #Inserto los datos en el csv usando panda y saco el index creado por defecto
-     field_names =['Genre','Original_Language','Release_Date','Vote_Average','Overview','Title']
-     df = pd.DataFrame(refined_data_list,columns=field_names)
-     df.to_csv('peliculas_figurace.csv', index=False)
+     with open('peliculas_figurace.csv','w',encoding="utf8",newline='') as log_resultante:
+         field_names =['Genre','Original_Language','Release_Date','Vote_Average','Overview','Title']
+         writer = csv.DictWriter(log_resultante, fieldnames=field_names)
+         writer.writeheader()
+         writer.writerows(refined_data_list)
