@@ -5,8 +5,7 @@ import jugadores
 
 def preparar_menu(nombres, dificultad):
     """
-    función que crea y retorna una ventana menú para el juego 
-
+    Función que crea y retorna una ventana menú para el juego 
     """
     sg.theme('BrightColors')
 
@@ -27,28 +26,31 @@ def preparar_menu(nombres, dificultad):
     
     return menu
 
-def ventana_de_inicio(perfiles, dificultad):    
+def ventana_de_inicio(perfiles, nivel):    
+    """ 
+    Inicia la ventana del juego.
+    
+    Asigna eventos y valores leídos desde la ventana menú. 
+    Permite salir del menú o acceder a otras ventanas. Muestra 
+    una lista de usuarios y la ultima dificultad elegida  
     """
-    asigna eventos y valores leídos desde la ventana menú, 
 
-    permite salir del menú o acceder a otras ventanas.  
-
-    """
     while True:
         nicks = list(perfiles.keys())
         nombres = ["elija el usuario"] + nicks
-
-        dificultad = "{elija dificultad} \n" + dificultad["dificultad"]
-    
+            
+        dificultad = {"elija la dificultad"}, nivel["dificultad"]        
         menu = preparar_menu(nombres, dificultad)
         
         event, values = menu.read()
         if (event == sg.WIN_CLOSE_ATTEMPTED_EVENT or event == "-SALIR-") and sg.popup_yes_no("¿Realmente desea salir?", no_titlebar=True) == "Yes":
+            
             break
         elif event == "-JUGAR-":
             sg.Text("ventana de juego")
         elif event == "-CONFIGURACION-":
             config.main()
+            nivel = config.carga_config()
         elif event == "-PUNTAJES-":
             sg.Text("ventana de puntajes")
         elif event == "-PERFIL-":            
@@ -59,7 +61,6 @@ def ventana_de_inicio(perfiles, dificultad):
     
 perfiles = jugadores.apertura_de_archivo()
 dificultad = config.carga_config()
-#dificultad = ["elija la dificultad", "fácil", "normal", "difícil"]
 
 ventana_de_inicio(perfiles, dificultad)
 
