@@ -36,11 +36,12 @@ def ventana_de_inicio(perfiles, nivel):
     """
 
     while True:
-        nicks = list(perfiles.keys())
+        #nicks = list(perfiles.keys())
+        nicks = [((i + 1), n) for i, n in enumerate(sorted(perfiles.keys()))]
         nombres = ["elija el usuario"] + nicks
 
         #opc = list(nivel.keys())
-        opc = list(config.CHOICES)    
+        opc = list(config.DEFAULT_CONFIG.keys())    
         dificultad = ["elija la dificultad"] + opc     
         menu = preparar_menu(nombres, dificultad)
         
