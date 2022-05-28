@@ -39,7 +39,8 @@ def ventana_de_inicio(perfiles, nivel):
         nicks = list(perfiles.keys())
         nombres = ["elija el usuario"] + nicks
 
-        opc = list(nivel.keys())    
+        #opc = list(nivel.keys())
+        opc = list(config.CHOICES)    
         dificultad = ["elija la dificultad"] + opc     
         menu = preparar_menu(nombres, dificultad)
         
