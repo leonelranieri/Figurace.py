@@ -58,11 +58,15 @@ def ventana_de_inicio(perfiles, nivel):
 
     menu.close()
 #--------------------------------------------------------------------------------
-    
-perfiles = jugadores.apertura_de_archivo()
-dificultad = config.carga_config()
 
-ventana_de_inicio(perfiles, dificultad)
+    
+def ventana_principal():
+    perfiles = jugadores.apertura_de_archivo()
+    dificultad = config.carga_config()
+
+    ventana_de_inicio(perfiles, dificultad)
+
+ventana_principal()
 
 
 
