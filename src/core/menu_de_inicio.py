@@ -18,7 +18,7 @@ def preparar_menu(nombres, dificultad):
                         [sg.Button("Salir", key=("-SALIR-"))],
                         [sg.Combo(nombres, default_value=nombres, s=(13,1)), 
                             sg.Combo(dificultad, default_value=dificultad, s=(13,1))]
-                   ]
+]
 
     layout = [[sg.Frame("FIGURACE", frame_layout, font="Any 12", title_color="DarkBlue")]]
 
@@ -38,8 +38,9 @@ def ventana_de_inicio(perfiles, nivel):
     while True:
         nicks = list(perfiles.keys())
         nombres = ["elija el usuario"] + nicks
-            
-        dificultad = {"elija la dificultad"}, nivel["dificultad"]        
+
+        opc = list(nivel.keys())    
+        dificultad = ["elija la dificultad"] + opc     
         menu = preparar_menu(nombres, dificultad)
         
         event, values = menu.read()
