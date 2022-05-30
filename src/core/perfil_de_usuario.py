@@ -1,4 +1,4 @@
-from types import NoneType
+from socket import timeout
 import PySimpleGUI as sg    
 import string
 import jugadores
