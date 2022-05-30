@@ -81,7 +81,6 @@ def ventana_principal():
 
     ventana_de_inicio(perfiles, dificultad)
 
-ventana_principal()
 
 
 

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-from socket import timeout
->>>>>>> 675287980442ce0b0ae4f78ca6a0fd39b8e1c81c
 import PySimpleGUI as sg    
 import string
 import jugadores
@@ -43,10 +39,10 @@ def usuario_registrado(nick, perfiles):
             [sg.Button('Editar', key=("-EDITAR-")), sg.Button('Salir', key=("-SALIR-"))]
          ]
 
-        perfil_de_usuario = sg.Window('Perfil de usuario registrado', layout, 
+        window = sg.Window('Perfil de usuario registrado', layout, 
             margins=(150,150), finalize=True)      
         
-        event, values = perfil_de_usuario.read()
+        event, values = window.read()
         
         if event == "-SALIR-" or event == sg.WIN_CLOSED:
             break
@@ -54,7 +50,7 @@ def usuario_registrado(nick, perfiles):
             editar_usuario(nick, perfiles)
             break       
     
-    perfil_de_usuario.close()
+    window.close()
 
 def editar_usuario(nick, perfiles):
     """
@@ -72,10 +68,10 @@ def editar_usuario(nick, perfiles):
              [sg.Button('listo', key=('-LISTO-')), sg.Button('salir', key=('-SALIR-'))]
             ]
     
-    perfil_de_edición_de_usuario = sg.Window('Perfil de edición de usuario', layout, finalize=True)                
+    window = sg.Window('Perfil de edición de usuario', layout, finalize=True)                
 
     while True:
-        event, values = perfil_de_edición_de_usuario.read()
+        event, values = window.read()
         
         edad = values['-EDAD-']
         genero = values['-GENERO-']
@@ -111,7 +107,7 @@ def editar_usuario(nick, perfiles):
                 jugadores.carga_de_datos(perfiles)
                 break
 
-    perfil_de_edición_de_usuario.close()
+    window.close()
     #return perfil_de_edición_de_usuario
 
 
@@ -130,8 +126,8 @@ def nuevo_usuario(nick, perfiles):
             [sg.Button('guardar', key=('-GUARDAR-')), sg.Button('salir', key=('-SALIR-'))]
          ]
     
-        perfil_de_usuario = sg.Window('Perfil de usuario nuevo', layout, finalize=True)        
-        event, values = perfil_de_usuario.read()
+        window = sg.Window('Perfil de usuario nuevo', layout, finalize=True)        
+        event, values = window.read()
 
         edad = values['-EDAD-']
         genero = values['-GENERO-']
@@ -164,7 +160,7 @@ def nuevo_usuario(nick, perfiles):
                 #perfiles.update({nick: [edad, genero]})
                 jugadores.carga_de_datos(perfiles)
                 break 
-    perfil_de_usuario.close()
+    window.close()
 #-------------------------------------------------------------------------------------------------
 
 def usuario(perfiles):
