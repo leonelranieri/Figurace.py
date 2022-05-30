@@ -20,13 +20,15 @@ def cargar_tabla():
 
 def guardar_tabla(valores):
     """
-        guarda la lista con los puntajes y crea la tabla en primer instancia
+        crea una tabla con los headers.
+        guarda la lista con los puntajes ordenada por mayor puntuacion.
     """
     with open(archivo_tabla, "w") as salida:
         writer = csv.writer(salida,delimiter=",")
         writer.writerow(["puntaje", "usuario", "dificultad"])
         if valores:
-            valores.sort(key=lambda elem : int(elem[0]))
+            valores.sort(key=lambda elem :
+                            int(elem[0]), reverse=True)
             writer.writerows(valores)
 
 def agregar_alatabla(puntos, usuario, dificultad):
@@ -36,37 +38,53 @@ def agregar_alatabla(puntos, usuario, dificultad):
     """
     liston = cargar_tabla()
     liston.append([puntos, usuario, dificultad])
-    actualizo = list(filter(lambda elem: elem[2] == dificultad, liston))
+    actualizo = list(filter(lambda elem:
+                                elem[2] == dificultad, liston))
     if len(actualizo) > 20:
-        liston.sort(key=lambda elem: (elem[2] == dificultad, int(elem[0])))
+        liston.sort(key=lambda elem: 
+                        (elem[2] != dificultad, int(elem[0])),
+                            reverse=True)
         liston.pop()
     guardar_tabla(liston)
 
 
 def mostrar_tabla():
+    """
+        crea una tabla vacia hasta que se elija en que dificultad se quieren ver los puntos
+        y luego se muestran los susodichos
+        al menos eso entendi del enunciado
+    """
     cabezal = ("puntaje", "usuario", "dificultad")
     data = []
     layout = [
             [sg.Table(values=data, headings=cabezal,
                 justification="right",
                 num_rows=20,
-                key="-TABLA-"
+                key="-TABLA-",
                 )],
-            [sg.Button("Ok"), sg.Button("facil"), sg.Button("normal"), sg.Button("dificil")]
+            [sg.Button("Salir"), sg.Button("facil"),
+                sg.Button("normal"), sg.Button("dificil")]
     ]
 
-    window = sg.Window("tabla", layout, font="Any 18", margins=(100, 50))
+    window = sg.Window("tabla", layout,
+                        font="Any 18", margins=(100, 50))
 
     while True:
         event, values = window.read()
 
-        if event in (sg.WIN_CLOSED, "Ok"):
+        if event in (sg.WIN_CLOSED, "Salir"):
             break
         elif event == "facil":
-            window["-TABLA-"].update(list(filter(lambda elem: elem[2] == "facil", cargar_tabla())))
+            window["-TABLA-"].update(list(filter(lambda elem: 
+                                elem[2] == "facil", cargar_tabla())
+                            ))
         elif event == "normal":
-            window["-TABLA-"].update(list(filter(lambda elem: elem[2] == "normal", cargar_tabla())))
+            window["-TABLA-"].update(list(filter(lambda elem: 
+                                elem[2] == "normal", cargar_tabla())
+                            ))
         elif event == "dificil":
-            window["-TABLA-"].update(list(filter(lambda elem: elem[2] == "dificil", cargar_tabla())))
+            window["-TABLA-"].update(list(filter(lambda elem: 
+                                elem[2] == "dificil", cargar_tabla())
+                            ))
 
     window.close()

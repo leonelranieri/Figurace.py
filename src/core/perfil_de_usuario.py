@@ -1,4 +1,3 @@
-from types import NoneType
 import PySimpleGUI as sg    
 import string
 import jugadores
