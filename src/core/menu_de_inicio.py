@@ -74,7 +74,6 @@ def ventana_de_inicio(perfiles, nivel):
                 img_folder = os.path.join("src", "core", "images")
                 img = os.path.join(os.getcwd(),img_folder, img_name) 
                 sg.popup("CHAU, ¡NOS VEMOS!", image=img, no_titlebar=True) 
-                ventana.close()
             finally:
                 ventana.close()
                 window = preparar_menu(nombres, dificultad)
