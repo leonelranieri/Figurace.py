@@ -1,3 +1,4 @@
+from socket import timeout
 import PySimpleGUI as sg
 import perfil_de_usuario as perfil
 import configuracion as config
@@ -37,16 +38,16 @@ def ventana_de_inicio(perfiles, nivel):
     una lista de usuarios y la ultima dificultad elegida  
     """
 
-    while True:
-        #nicks = list(perfiles.keys())
-        nicks = [((i + 1), n) for i, n in enumerate(sorted(perfiles.keys()))]
-        nombres = ["elija el usuario"] + nicks
+    #nicks = list(perfiles.keys())
+    nicks = [((i + 1), n) for i, n in enumerate(sorted(perfiles.keys()))]
+    nombres = ["elija el usuario"] + nicks
 
-        opc = list(nivel.keys())
-        #opc = list(config.DEFAULT_CONFIG.keys())    
-        dificultad = ["elija la dificultad"] + opc     
-        window = preparar_menu(nombres, dificultad)
-        
+    opc = list(nivel.keys())
+    #opc = list(config.DEFAULT_CONFIG.keys())    
+    dificultad = ["elija la dificultad"] + opc     
+    window = preparar_menu(nombres, dificultad)
+    
+    while True:        
         event, values = window.read()
 
         if (event == sg.WIN_CLOSE_ATTEMPTED_EVENT or event == "-SALIR-") and sg.popup_yes_no("¿Realmente desea salir?", no_titlebar=True) == "Yes":
@@ -69,6 +70,7 @@ def ventana_de_inicio(perfiles, nivel):
                 img_folder = os.path.join("src", "core", "images")
                 img = os.path.join(os.getcwd(),img_folder, img_name) 
                 sg.popup("CHAU, ¡NOS VEMOS!", image=img, no_titlebar=True)
+    
 
     window.close()
 #--------------------------------------------------------------------------------
@@ -79,7 +81,7 @@ def ventana_principal():
 
     ventana_de_inicio(perfiles, dificultad)
 
-#ventana_principal()
+ventana_principal()
 
 
 

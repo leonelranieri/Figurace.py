@@ -3,7 +3,6 @@ import os
 from collections import Counter
 import random
 
-
 # Descartar las películas que no tienen “overview”.
 # ● Descartar las películas cuyo idioma original tenga más de 2 caracteres.
 # ● Tomar las 100 palabras más comunes de todos los overviews combinados.
@@ -19,7 +18,10 @@ import random
 # ● El archivo resultante deberá tener las siguientes columnas (en este orden específico):
 # “Genre”, “Original_Language”, “Release_Date”, “Vote_Average”, “Overview” y “Title”
 
-with open(os.path.join(os.getcwd(),'mymoviedb.csv'), "r",encoding="utf8") as logs_peliculas:
+carpeta = os.path.join("folder_csv")
+ruta = os.path.join(os.getcwd(),carpeta)
+
+with open(os.path.join(ruta,'mymoviedb.csv'), "r",encoding="utf8") as logs_peliculas:
      lector = csv.reader(logs_peliculas, delimiter=",")
      header, datos = next(lector), list(lector)
     
@@ -49,11 +51,11 @@ with open(os.path.join(os.getcwd(),'mymoviedb.csv'), "r",encoding="utf8") as log
      for linea in datos:
          idioma = len(linea[6])
          cadena = linea[2].strip(",").split() #Lista de palabras de la cadena actual del overview
-         if idioma == 2:
+         if idioma == 2 and len(linea[2]) > 0:
              refined_data_list.append({'Genre': linea[7], 'Original_Language': linea[6],'Release_Date': linea[0],'Vote_Average': linea[5],'Overview': generar_cadena(cadena),'Title': linea[1]})
      
      #Inserto los datos en el csv usando panda y saco el index creado por defecto
-     with open('peliculas_figurace.csv','w',encoding="utf8",newline='') as log_resultante:
+     with open(os.path.join(ruta,'peliculas_figurace.csv'),'w',encoding="utf8",newline='') as log_resultante:
          field_names =['Genre','Original_Language','Release_Date','Vote_Average','Overview','Title']
          writer = csv.DictWriter(log_resultante, fieldnames=field_names)
          writer.writeheader()
