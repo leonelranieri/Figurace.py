@@ -154,6 +154,7 @@ def nuevo_usuario(nick, perfiles):
                     raise ValueError           
             except ValueError:
                 sg.popup_error("has ingresado datos incorrectos, volve a ingresarlos")
+                del(perfiles[nick])
                 break
             else:
                 #perfiles.update({nick: [edad, genero]})

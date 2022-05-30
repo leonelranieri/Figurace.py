@@ -13,6 +13,15 @@ INTEGRANTES DEL PROYECTO:
 
 FORMAS DE EJECUTAR CADA APLICACIÓN: 
 
+archivos que generan los data set que se uilizan:
+lagos.py.ipynb
+artistas.ipynb
+peliculas.ipynb
+
+todos se ejecutan desde el jupyter notebook correspondiente
+
+el programa principal se corre ejecutando figurace.py con python
+
 ===========================================================
 
 SITIO DESDE DONDE SE OBTUVIERON LOS DATASET:
