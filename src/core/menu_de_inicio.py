@@ -1,3 +1,4 @@
+from socket import timeout
 import PySimpleGUI as sg
 import perfil_de_usuario as perfil
 import configuracion as config
@@ -79,7 +80,7 @@ def ventana_principal():
 
     ventana_de_inicio(perfiles, dificultad)
 
-#ventana_principal()
+ventana_principal()
 
 
 

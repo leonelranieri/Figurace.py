@@ -40,7 +40,8 @@ def usuario_registrado(nick, perfiles):
             [sg.Button('Editar', key=("-EDITAR-")), sg.Button('Salir', key=("-SALIR-"))]
          ]
 
-        perfil_de_usuario = sg.Window('Perfil de usuario registrado', layout, margins=(150,150), finalize=True)         
+        perfil_de_usuario = sg.Window('Perfil de usuario registrado', layout, 
+            margins=(150,150), finalize=True)      
         
         event, values = perfil_de_usuario.read()
         
@@ -126,7 +127,7 @@ def nuevo_usuario(nick, perfiles):
             [sg.Button('guardar', key=('-GUARDAR-')), sg.Button('salir', key=('-SALIR-'))]
          ]
     
-        perfil_de_usuario = sg.Window('Perfil del usuario nuevo', layout, finalize=True)        
+        perfil_de_usuario = sg.Window('Perfil de usuario nuevo', layout, finalize=True)        
         event, values = perfil_de_usuario.read()
 
         edad = values['-EDAD-']
@@ -166,11 +167,7 @@ def nuevo_usuario(nick, perfiles):
 def usuario(perfiles):
     while True:
         nick = sg.PopupGetText("ingrese su nick", button_color="purple", text_color="black", no_titlebar=True)
-        #while nick == "" or  nick == None:
         break
-            #sg.popup("ingrese un nick")
-            #nick = sg.PopupGetText("ingrese su nick", button_color="purple", text_color="black", no_titlebar=True)
-        #break
     if nick.strip(" ") == "" or nick == None:
         raise AttributeError
     else: 
