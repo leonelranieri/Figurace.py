@@ -1,3 +1,4 @@
+from types import NoneType
 import PySimpleGUI as sg    
 import string
 import jugadores
@@ -164,17 +165,20 @@ def nuevo_usuario(nick, perfiles):
 def usuario(perfiles):
     while True:
         nick = sg.PopupGetText("ingrese su nick", button_color="purple", text_color="black", no_titlebar=True)
-        while nick == "" or  nick == None:
-            sg.popup("ingrese un nick")
-            nick = sg.PopupGetText("ingrese su nick", button_color="purple", text_color="black", no_titlebar=True)
+        #while nick == "" or  nick == None:
         break
-    
-    if nick in perfiles.keys(): 
-        sg.popup(f"{nick} es un usuario registrado", no_titlebar=True)  
-        usuario_registrado(nick, perfiles)
-    else:
-        sg.popup(f"{nick} no es un usuario registrado, ingrese sus datos para jugar", no_titlebar=True)
-        nuevo_usuario(nick, perfiles)
+            #sg.popup("ingrese un nick")
+            #nick = sg.PopupGetText("ingrese su nick", button_color="purple", text_color="black", no_titlebar=True)
+        #break
+    if nick.strip(" ") == "" or nick == None:
+        raise AttributeError
+    else: 
+        if nick in perfiles.keys(): 
+            sg.popup(f"{nick} es un usuario registrado", no_titlebar=True)  
+            usuario_registrado(nick, perfiles)
+        else:
+            sg.popup(f"{nick} no es un usuario registrado, ingrese sus datos para jugar", no_titlebar=True)
+            nuevo_usuario(nick, perfiles)
 
     
 
