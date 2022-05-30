@@ -18,7 +18,7 @@ def preparar_menu(nombres, dificultad):
                         [sg.Button("Puntajes", key=("-PUNTAJES-"))],
                         [sg.Button("Perfil", key=("-PERFIL-"))],
                         [sg.Button("Salir", key=("-SALIR-"))],
-                        [sg.Combo(nombres, default_value=nombres, s=(13,1), key="-USERS-"), 
+                        [sg.Combo(nombres, default_value=nombres, s=(13,1)), 
                             sg.Combo(dificultad, default_value=dificultad, s=(13,1), key=("-DIFI-"))]
 ]
 
@@ -36,8 +36,8 @@ def ventana_de_inicio(perfiles, nivel):
     Permite salir del menú o acceder a otras ventanas. Muestra 
     una lista de usuarios y la ultima dificultad elegida  
     """
-
     def datos():
+        """ genera dos listas para mostrar los usuarios y la dificultad"""
         nicks = [((i + 1), n) for i, n in enumerate(sorted(perfiles.keys()))]
         nombres = ["elija el usuario"] + nicks
         opc = list(nivel.keys())
@@ -48,8 +48,7 @@ def ventana_de_inicio(perfiles, nivel):
     nombres, dificultad = datos()
     window = preparar_menu(nombres, dificultad)
     
-    while True:     
-        ventana = window  
+    while True:       
         event, values = window.read()
 
         if (event == sg.WIN_CLOSE_ATTEMPTED_EVENT or event == "-SALIR-") and sg.popup_yes_no("¿Realmente desea salir?", no_titlebar=True) == "Yes":
@@ -64,8 +63,9 @@ def ventana_de_inicio(perfiles, nivel):
             nivel = config.carga_config()
         elif event == "-PUNTAJES-":
             tabla_puntajes.mostrar_tabla()
-        elif event == "-PERFIL-":  
-            try:
+        elif event == "-PERFIL-": 
+            ventana = window
+            try: 
                 perfil.usuario(perfiles)
                 nombres, dificultad = datos()
                 window = preparar_menu(nombres, dificultad)
@@ -74,8 +74,10 @@ def ventana_de_inicio(perfiles, nivel):
                 img_folder = os.path.join("src", "core", "images")
                 img = os.path.join(os.getcwd(),img_folder, img_name) 
                 sg.popup("CHAU, ¡NOS VEMOS!", image=img, no_titlebar=True) 
+                ventana.close()
             finally:
                 ventana.close()
+                window = preparar_menu(nombres, dificultad)
 
     window.close()
 #--------------------------------------------------------------------------------
@@ -83,10 +85,9 @@ def ventana_de_inicio(perfiles, nivel):
 def ventana_principal():
     perfiles = jugadores.apertura_de_archivo()
     dificultad = config.carga_config()   
-
     ventana_de_inicio(perfiles, dificultad)
-
-ventana_principal()
+    
+#ventana_principal()
 
 
 

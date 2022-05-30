@@ -4,7 +4,14 @@ import os, sys
 carpeta = os.path.join(os.getcwd(), "src", "core")
 sys.path.insert(0, carpeta)
 
-import menu_de_inicio as menu
+win = "win32", "win64"
 
 if __name__ == "__main__":
-    menu.ventana_principal()
+      my_os = sys.platform
+      if my_os in win:
+            from src.core import menu_de_inicio as menu
+            menu.ventana_principal()
+      else:
+            import menu_de_inicio as menu
+            menu.ventana_principal()
+      
