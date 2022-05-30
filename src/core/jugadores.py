@@ -13,7 +13,7 @@ def apertura_de_archivo():
 
     datos_por_defecto = {"señor x": ["83", "m"]} 
 
-    jugadores = os.path.join(os.getcwd(), "src\core", "data", "jugadores.json")
+    jugadores = os.path.join(os.getcwd(), "src", "core", "data", "jugadores.json")
 
     try:
         with open(jugadores, "r", encoding="utf-8") as entrada:
@@ -28,7 +28,7 @@ def carga_de_datos(perfiles):
     Carga datos del diccionario a un archivo json. Cierra el archivo.  
     """
     usuarios = perfiles
-    jugadores = os.path.join(os.getcwd(), "src\core", "data", "jugadores.json")
+    jugadores = os.path.join(os.getcwd(), "src", "core", "data", "jugadores.json")
     with open(jugadores, "w", encoding="utf-8") as salida:
         json.dump(usuarios, salida)
     salida.close()
