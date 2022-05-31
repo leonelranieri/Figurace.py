@@ -89,12 +89,8 @@ def ventana_principal():
     perfiles = jugadores.apertura_de_archivo()
     dificultad = config.carga_config()   
     ventana_de_inicio(perfiles, dificultad)
-<<<<<<< HEAD
 
-=======
-    
 #ventana_principal()
->>>>>>> 20ff182d7bba95d0964c5f0110791ffb619e540d
 
 
 

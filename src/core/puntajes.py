@@ -1,7 +1,9 @@
 import csv, os
 import PySimpleGUI as sg
 
-archivo_tabla = os.path.join(os.getcwd(), "src", "core", "data", "tabla_puntajes.csv")
+archivo_tabla = os.path.join(
+                            os.getcwd(), "src", "core", "data",
+                                            "tabla_puntajes.csv")
 
 def cargar_tabla():
     """
@@ -36,18 +38,18 @@ def agregar_alatabla(puntos, usuario, dificultad):
         se le pasa el ultimo resultado del juego
         lo agrega a la tabla y luego limpia para que queden 20 en su dificultad
     """
-    liston = cargar_tabla()
-    liston.append([puntos, usuario, dificultad])
+    listabla = cargar_tabla()
+    listabla.append([puntos, usuario, dificultad])
     # Genero una lista con los puntajes de la dificultad, para luego confirmar que no pasen de 20
     actualizo = list(filter(lambda elem:
-                                elem[2] == dificultad, liston))
+                                elem[2] == dificultad, listabla))
     if len(actualizo) > 20:
         # Deja ultimo de la lista al elemento con menor puntaje de la dificultad entrante
-        liston.sort(key=lambda elem: 
+        listabla.sort(key=lambda elem: 
                         (elem[2] != dificultad, int(elem[0])),
                             reverse=True)
-        liston.pop()
-    guardar_tabla(liston)
+        listabla.pop()
+    guardar_tabla(listabla)
 
 
 def mostrar_tabla():

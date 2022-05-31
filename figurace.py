@@ -1,7 +1,7 @@
 import os, sys
 import PySimpleGUI as sg
 
-#esto es para añadir core al path y poder llamar al menu principal del juego
+# Esto es para añadir core al path y poder llamar al menu principal del juego
 carpeta = os.path.join(os.getcwd(), "src", "core")
 sys.path.insert(0, carpeta)
 
@@ -17,8 +17,8 @@ if __name__ == "__main__":
                   import menu_de_inicio as menu
                   menu.ventana_principal()
             elif my_os == 'darwin':
-                 #falta macOS
-                 pass
+                # Falta macOS
+                pass
       except ModuleNotFoundError or ImportError:
             sg.popup_error("Ups!, hay un problemita interno.")
             
