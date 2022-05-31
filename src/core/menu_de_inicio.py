@@ -18,7 +18,7 @@ def preparar_menu(nombres, dificultad):
                         [sg.Button("Puntajes", key=("-PUNTAJES-"))],
                         [sg.Button("Perfil", key=("-PERFIL-"))],
                         [sg.Button("Salir", key=("-SALIR-"))],
-                        [sg.Combo(nombres, default_value=nombres, s=(13,1)), 
+                        [sg.Combo(nombres, default_value=nombres, s=(13,1), key=("-USERS-")), 
                             sg.Combo(dificultad, default_value=dificultad, s=(13,1), key=("-DIFI-"))]
 ]
 
@@ -54,10 +54,14 @@ def ventana_de_inicio(perfiles, nivel):
         if (event == sg.WIN_CLOSE_ATTEMPTED_EVENT or event == "-SALIR-") and sg.popup_yes_no("¿Realmente desea salir?", no_titlebar=True) == "Yes":
             break
         elif event == "-JUGAR-":
-            if values["-DIFI-"][0] == "{" :
+            if values["-DIFI-"][0] == "{":
                 sg.popup("seleccione una dificultad")
             else:
                 sg.popup("la dificultad es : " +values["-DIFI-"])
+            if values["-USERS-"][0] == "{" :
+                sg.popup("seleccione un usuario")
+            else:
+                sg.popup("el usuario es : " + str(values["-USERS-"][1]))
         elif event == "-CONFIGURACION-":
             config.main()
             nivel = config.carga_config()
