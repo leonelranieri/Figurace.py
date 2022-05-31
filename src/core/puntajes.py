@@ -38,9 +38,11 @@ def agregar_alatabla(puntos, usuario, dificultad):
     """
     liston = cargar_tabla()
     liston.append([puntos, usuario, dificultad])
+    # Genero una lista con los puntajes de la dificultad, para luego confirmar que no pasen de 20
     actualizo = list(filter(lambda elem:
                                 elem[2] == dificultad, liston))
     if len(actualizo) > 20:
+        # Deja ultimo de la lista al elemento con menor puntaje de la dificultad entrante
         liston.sort(key=lambda elem: 
                         (elem[2] != dificultad, int(elem[0])),
                             reverse=True)
@@ -57,13 +59,17 @@ def mostrar_tabla():
     cabezal = ("puntaje", "usuario", "dificultad")
     data = []
     layout = [
-            [sg.Table(values=data, headings=cabezal,
-                justification="right",
-                num_rows=20,
-                key="-TABLA-",
-                )],
-            [sg.Button("Salir"), sg.Button("facil"),
-                sg.Button("normal"), sg.Button("dificil")]
+            [sg.Table(values=data,
+                    headings=cabezal,
+                    justification="right",
+                    num_rows=20,
+                    key="-TABLA-",
+                    )],
+            [sg.Button("Salir"),
+                sg.Button("facil"),
+                sg.Button("normal"),
+                sg.Button("dificil")
+            ]
     ]
 
     window = sg.Window("tabla", layout,

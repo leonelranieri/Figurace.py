@@ -5,11 +5,10 @@ from json import (load as jsonload, dump as jsondump)
 """
     pantalla de configuracion del juego
     usa el formato json para guardar y cargar los datos
-    
 """
 
 ARCHIVO_CONFIG = os.path.join(os.getcwd(), "src", "core", "data", "config.json")
-#represenacion visual del formato de configuracion
+# Represenacion visual del formato de configuracion
 DEFAULT_CONFIG = { 
                     "facil" : {
                                 "tiempo" : 30, 
@@ -33,7 +32,7 @@ DEFAULT_CONFIG = {
                                 "cara" : 3, 
                     }
 }
-#esto es para pivotear las keys
+# Esto es para pivotear las keys
 KEY_CONFIG = {
             "tiempo" : "-TIEMPO-",
             "rondas" : "-RONDAS-", 
@@ -79,20 +78,25 @@ def crear_ventana(configuracion):
         [sg.Text("Configuracion", font="Any 25", pad=((10, 0), 30))],
         [sg.Text("seleccionar dificultad"),
                 sg.Listbox(choices, size=(15, len(choices)),
-                key=("-DIFI-"), enable_events=True)
+                key=("-DIFI-"), 
+                enable_events=True)
         ],
-        [sg.Text("tiempo limite por ronda", pad=((10, 5), 20)), 
+        [sg.Text("tiempo limite por ronda", 
+                    pad=((10, 5), 20)), 
                     sg.OptionMenu(values=("10", "15", "20", "30"), 
-                    size=(5, 1), key="-TIEMPO-")
+                    size=(5, 1), 
+                    key="-TIEMPO-")
         ],
         [sg.Text("rondas por juego", pad=((10, 5), 20)), 
                     sg.OptionMenu(values=("5", "10", "20", "25"), 
-                    size=(5, 1), key=("-RONDAS-"))
+                    size=(5, 1), 
+                    key=("-RONDAS-"))
         ],
         [sg.Text("puntaje sumado por respuesta correcta", 
                     pad=((10, 5), 20)), 
                     sg.OptionMenu(values=("1", "2", "3"), 
-                    size=(3, 1), key=("-SUMA-"))
+                    size=(3, 1), 
+                    key=("-SUMA-"))
         ],
         [sg.Text("puntaje restado por respuesta incorrecta", 
                     pad=((10, 5), 20)), 
@@ -108,7 +112,7 @@ def crear_ventana(configuracion):
         [sg.Button("Save"), sg.Button("Cancel")]
     ]
 
-    # ni idea que es finalize, pero si no lo pongo explota todo
+    # Ni idea que es finalize, pero si no lo pongo explota todo
     window = sg.Window("Configuracion", layout, 
             font="Any 18", margins=(100, 50), finalize="TRUE")
 
@@ -133,7 +137,9 @@ def main():
                 sg.popup("falta elegir la dificultad a cambiar")
         if values["-DIFI-"]:
             for key in KEY_CONFIG:
-                window[KEY_CONFIG[key]].update(configuracion[values["-DIFI-"][0]][key])
+                window[KEY_CONFIG[key]].update(
+                            configuracion[values["-DIFI-"][0]][key]
+                        )
             window.refresh()
 
     window.close()
