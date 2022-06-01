@@ -17,10 +17,17 @@ if __name__ == "__main__":
                   import menu_de_inicio as menu
                   menu.ventana_principal()
             elif my_os == 'darwin':
+<<<<<<< HEAD
                 # Falta macOS
                 pass
       except ModuleNotFoundError or ImportError:
             sg.popup_error("Ups!, hay un problemita interno.")
+=======
+                 #falta macOS
+                 pass
+      except (ModuleNotFoundError, ImportError):
+            sg.popup_error("Ups!, hay un problemita técnico.")
+>>>>>>> 3ba6859fa95e7f2026e35d2582e6f8264c4985dc
             
       
       
