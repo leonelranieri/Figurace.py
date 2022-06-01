@@ -18,7 +18,7 @@ def main(dificultad, nombre_usuario):
     perfiles = jugadores.apertura_de_archivo()
     configuracion = config.carga_config()
 
-    # randomiza un dataset:
+    # Randomiza un dataset:
     categoria = random.choice(archivos_categorias)
     nombre_categoria = fp.get_nombre_categoria(categoria)
 
@@ -28,18 +28,18 @@ def main(dificultad, nombre_usuario):
     # ------------------------------------- [RUTAS] -------------------------------------
 
     # Ruta Archivo:
-    ruta_archivo = os.path.join(os.getcwd(), "src\core", "folder_csv", categoria)
+    ruta_archivo = os.path.join(os.getcwd(), "src", "core", "folder_csv", categoria)
     # Ruta Imagen:
     ruta_imagen = fp.get_ruta_imagen(categoria)
     print(ruta_imagen)
-    # carga de configuración:
+    # Carga de configuración:
     nivel_de_dificultad ={}
     nivel_de_dificultad = configuracion[dificultad['-DIFI-']]
     cant_caracteristicas = int(nivel_de_dificultad['cara'])
     sumar_puntos = nivel_de_dificultad['suma']
     restar_puntos = nivel_de_dificultad['resta']
 
-    # lectura de dataset:
+    # Lectura de dataset:
     archivo_cvs = open(ruta_archivo, "r", encoding="UTF-8")
     csvreader = csv.reader(archivo_cvs, delimiter=',')
     filas_de_dataset = []
@@ -47,14 +47,14 @@ def main(dificultad, nombre_usuario):
     for elem in csvreader:
         filas_de_dataset.append(elem)
 
-    # mostrar "caracteristica a adivinar", "opciones" etc: 
+    # Mostrar "caracteristica a adivinar", "opciones" etc: 
     caracteristica_a_adivinar = str(filas_de_dataset[0][5])
-    lista_seleccionada = random.choice(filas_de_dataset) # seleciona una fila del archivo csv
-    respuesta_correcta = (lista_seleccionada[5]) #seleciona el campo a adivinar de la lista (depende del csv puede cambiar)
-    opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta) #seleciona posibles respuestas del campo a adivinar del archivo csv y las mezcla con la respuesta correcta
+    lista_seleccionada = random.choice(filas_de_dataset) # Seleciona una fila del archivo csv
+    respuesta_correcta = (lista_seleccionada[5]) # Seleciona el campo a adivinar de la lista (depende del csv puede cambiar)
+    opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta) # Seleciona posibles respuestas del campo a adivinar del archivo csv y las mezcla con la respuesta correcta
 
     respuestas = '' 
-    total_respuestas = {} #guarda las respuestas del usuario y los correspondientes puntos de la ronda.
+    total_respuestas = {} # Guarda las respuestas del usuario y los correspondientes puntos de la ronda.
 
     # ------------------------------------- [VARIABLES PARA LAYOUT VENTANA PRINCIPAL] -------------------------------------
 
@@ -132,19 +132,13 @@ def main(dificultad, nombre_usuario):
 
             lista = random.choice(filas_de_dataset)
             respuesta_correcta = (lista[5])
-            #actualizo lista de opciones:
+            # Actualizo lista de opciones:
             opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta)
             
-            def acumular_puntos(diccionario):
-                total = 0
-                for elem in diccionario:
-                    total = total + diccionario[elem]
-                return total
-            
-            #Fin de ronda
+            # Fin de ronda
             if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
                 sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '
-                        + str(acumular_puntos(total_respuestas)),
+                        + str(fp.acumular_puntos(total_respuestas)),
                         custom_text = ('Volver a Jugar', 'Salir del Juego'))
                 print(type(total_respuestas[0]))
                 if event == 'Salir del Juego':
@@ -185,7 +179,7 @@ def main(dificultad, nombre_usuario):
 
             # Fin de Ronda
             if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
-                sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '+str(acumular_puntos(total_respuestas)),
+                sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '+str(fp.acumular_puntos(total_respuestas)),
                         custom_text = ('Volver a Jugar', 'Salir del Juego'))
                 print(type(total_respuestas[0]))
                 if event == 'Salir del Juego':
@@ -206,8 +200,8 @@ def main(dificultad, nombre_usuario):
         # -------------[ ABANDONAR JUEGO ]-------------
         if (event == '-ABANDONAR-') and sg.Popup('¿Desea Abandonar el Juego?', custom_text = ('Abandonar', 'Continuar Jugando')) == 'Abandonar':
             main_window.close()
-            from menu_de_inicio import ventana_de_inicio as menu_de_inicio #falta pasar parámetro.
-            menu_de_inicio(perfiles,configuracion)
+            from puntajes import agregar_alatabla
+            agregar_alatabla(fp.acumular_puntos(total_respuestas), nombre_usuario, dificultad)
 
     main_window.close()
 

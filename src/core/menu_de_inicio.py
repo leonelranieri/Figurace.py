@@ -57,13 +57,10 @@ def ventana_de_inicio(perfiles, nivel):
         elif event == "-JUGAR-":
             if values["-DIFI-"][0] == "{" or values["-DIFI-"][0] == "e":
                 sg.popup("seleccione una dificultad")
-            else:
-                sg.popup("la dificultad es : " + values["-DIFI-"])
-            if values["-USERS-"][0] == "{" or values["-USERS-"] == "elija el usuario":
+            elif values["-USERS-"][0] == "{" or values["-USERS-"] == "elija el usuario":
                 sg.popup("seleccione un usuario")
             else:
-                sg.popup("el usuario es : " + str(values["-USERS-"][1]))
-            pj.main(values, values["-USERS-"])
+                pj.main(values, values["-USERS-"])
         elif event == "-CONFIGURACION-":
             config.main()
             nivel = config.carga_config()

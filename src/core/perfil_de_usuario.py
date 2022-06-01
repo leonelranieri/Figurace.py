@@ -2,7 +2,7 @@ import PySimpleGUI as sg
 import string
 import jugadores
 
-#COMENTARIO
+# COMENTARIO
 """def tratamiento_de_excepciones(nick, edad, genero):
     digitos = string.digits
     cant = 0

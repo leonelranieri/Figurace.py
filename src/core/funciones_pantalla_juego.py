@@ -2,6 +2,12 @@ import os
 import random
 import PySimpleGUI as sg
 
+def acumular_puntos(diccionario):
+    total = 0
+    for elem in diccionario:
+        total = total + diccionario[elem]
+    return total
+
 def mostrar_caracteristicas(filas_de_dataset, lista_seleccionada, cant_caracteristicas):
     """ 
         Devuelve una cadena de String con las caracteristicas que debe mostrar en
@@ -45,7 +51,7 @@ def lista_opciones(filas_de_dataset, respuesta_correcta):
         lista_random = random.choice(filas_de_dataset)
         lista.append(lista_random[5])
 
-    lista[random.randrange(5)] = respuesta_correcta #pisa un valor de la lista con la respuesta correcta
+    lista[random.randrange(5)] = respuesta_correcta # Pisa un valor de la lista con la respuesta correcta
 
     return lista
 
@@ -61,17 +67,17 @@ def get_ruta_imagen(categoria):
 
     if categoria == "peliculas_figurace.csv" :
         try:
-            ruta_imagen = os.path.join(os.getcwd(), "src\core", "images", "categoria peliculas.png")
+            ruta_imagen = os.path.join(os.getcwd(), "src", "core", "images", "categoria peliculas.png")
         except FileNotFoundError:
             sg.Popup("Archivo 'categoria peliculas.png' no encontrado")
     elif categoria == "lagos_final.csv":
         try:
-            ruta_imagen = os.path.join(os.getcwd(), "src\core", "images", "categoria lagos.png")
+            ruta_imagen = os.path.join(os.getcwd(), "src", "core", "images", "categoria lagos.png")
         except FileNotFoundError:
             sg.Popup("Archivo 'categoria lagos.png' no encontrado")
     else:
         try:
-            ruta_imagen = os.path.join(os.getcwd(), "src\core", "images", "categoria spotify.png")
+            ruta_imagen = os.path.join(os.getcwd(), "src", "core", "images", "categoria spotify.png")
         except FileNotFoundError:
             sg.Popup("Archivo 'categoria spotify.png' no encontrado")
     return ruta_imagen
