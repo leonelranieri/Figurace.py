@@ -56,7 +56,4 @@ puntaje,usuario,dificultad
 8,firulais,facil
 7,firulais,facil
 6,firulais,facil
-4,"(2, 'juan')","{'-USERS-': (2, 'juan'), '-DIFI-': 'facil'}"
-1,"(2, 'juan')","{'-USERS-': (2, 'juan'), '-DIFI-': 'facil'}"
-1,"(2, 'juan')","{'-USERS-': (2, 'juan'), '-DIFI-': 'facil'}"
-1,"(1, 'corbatita')","{'-USERS-': (1, 'corbatita'), '-DIFI-': 'facil'}"
+1,pupi,facil

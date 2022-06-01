@@ -201,7 +201,7 @@ def main(dificultad, nombre_usuario):
         if (event == '-ABANDONAR-') and sg.Popup('¿Desea Abandonar el Juego?', custom_text = ('Abandonar', 'Continuar Jugando')) == 'Abandonar':
             main_window.close()
             from puntajes import agregar_alatabla
-            agregar_alatabla(fp.acumular_puntos(total_respuestas), nombre_usuario, dificultad)
+            agregar_alatabla(fp.acumular_puntos(total_respuestas), nombre_usuario[1], dificultad["-DIFI-"])
 
     main_window.close()
 
