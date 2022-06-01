@@ -3,6 +3,7 @@ import perfil_de_usuario as perfil
 import configuracion as config
 import jugadores
 import puntajes as tabla_puntajes
+import pantalla_de_juego as pj
 import os
 
 def preparar_menu(nombres, dificultad):
@@ -62,6 +63,7 @@ def ventana_de_inicio(perfiles, nivel):
                 sg.popup("seleccione un usuario")
             else:
                 sg.popup("el usuario es : " + str(values["-USERS-"][1]))
+            pj.main(values, values["-USERS-"])
         elif event == "-CONFIGURACION-":
             config.main()
             nivel = config.carga_config()
