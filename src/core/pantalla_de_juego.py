@@ -3,7 +3,7 @@ import csv
 import random
 
 import PySimpleGUI as sg
-
+from puntajes import agregar_alatabla
 import configuracion as config
 import funciones_pantalla_juego as fp
 import jugadores
@@ -180,7 +180,7 @@ def main(dificultad, nombre_usuario):
             # Fin de Ronda
             if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
                 sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '+str(fp.acumular_puntos(total_respuestas)),
-                        custom_text = ('Volver a Jugar', 'Salir del Juego'))
+                        custom_text = ('Volver a Jugar', 'Salir del Juego'), keep_on_top=True)
                 print(type(total_respuestas[0]))
                 if event == 'Salir del Juego':
                     break 
@@ -198,10 +198,12 @@ def main(dificultad, nombre_usuario):
             main_window['-INPUT5-'].update(lista_botones[4])
 
         # -------------[ ABANDONAR JUEGO ]-------------
-        if (event == '-ABANDONAR-') and sg.Popup('¿Desea Abandonar el Juego?', custom_text = ('Abandonar', 'Continuar Jugando')) == 'Abandonar':
+        if (event == '-ABANDONAR-') and sg.Popup('¿Desea Abandonar el Juego?', 
+                                    custom_text = ('Abandonar', 'Continuar Jugando'), 
+                                        keep_on_top=True) == 'Abandonar':
             main_window.close()
-            from puntajes import agregar_alatabla
-            agregar_alatabla(fp.acumular_puntos(total_respuestas), nombre_usuario[1], dificultad["-DIFI-"])
+            agregar_alatabla(fp.acumular_puntos(total_respuestas),
+                            nombre_usuario[1], dificultad["-DIFI-"])
 
     main_window.close()
 

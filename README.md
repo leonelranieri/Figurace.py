@@ -10,16 +10,18 @@ INTEGRANTES DEL PROYECTO:
 
 ===========================================================
 
-FORMAS DE EJECUTAR CADA APLICACIÓN: 
+FORMAS DE EJECUTAR CADA APLICACIÓN:
 
-archivos que generan los data set que se uilizan:
+1ro - instalar los requerimientos que se piden en requirements.txt
+2do - ejecutar los modulos para procesar datos (**)
+3ro - ejecutar "figurace.py" con python
+
+(**)archivos que generan los data set que se uilizan:
 lagos.py.ipynb
 artistas.ipynb
 peliculas.ipynb
 
 todos se ejecutan desde el jupyter notebook correspondiente
-
-el programa principal se corre ejecutando figurace.py con python 
 
 proyecto disponible en rama "Master"
 ===========================================================

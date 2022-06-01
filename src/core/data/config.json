@@ -1,1 +1,1 @@
-{"facil": {"tiempo": "10", "rondas": "5", "suma": "1", "resta": "1", "cara": "5"}, "normal": {"tiempo": "15", "rondas": "45", "suma": "2", "resta": "2", "cara": "4"}, "dificil": {"tiempo": "10", "rondas": "5", "suma": "1", "resta": "1", "cara": "3"}}
+{"facil": {"tiempo": "30", "rondas": "10", "suma": "3", "resta": "1", "cara": "5"}, "normal": {"tiempo": "15", "rondas": "45", "suma": "2", "resta": "2", "cara": "4"}, "dificil": {"tiempo": "10", "rondas": "5", "suma": "1", "resta": "1", "cara": "3"}}
