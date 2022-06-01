@@ -1,4 +1,3 @@
-
 =====================
 
 GRUPO 11 - FIGURACE -
@@ -20,8 +19,9 @@ peliculas.ipynb
 
 todos se ejecutan desde el jupyter notebook correspondiente
 
-el programa principal se corre ejecutando figurace.py con python
+el programa principal se corre ejecutando figurace.py con python 
 
+proyecto disponible en rama "Master"
 ===========================================================
 
 SITIO DESDE DONDE SE OBTUVIERON LOS DATASET:
