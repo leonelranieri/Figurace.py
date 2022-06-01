@@ -51,6 +51,21 @@ def agregar_alatabla(puntos, usuario, dificultad):
         listabla.pop()
     guardar_tabla(listabla)
 
+def cargar_data(dificultad):
+    """
+        separa los datos de la dificultad pasada y agrega el valor de posicion.
+        pasa los datos limpios para mostrar en pantalla.
+    """
+    datos_crudos = list(filter(lambda elem: elem[2] == dificultad, 
+                                            cargar_tabla()))
+    mostrante = []
+    for i, elem in enumerate(datos_crudos):
+        pivot = [i+1]
+        pivot.extend(elem)
+        mostrante.append(pivot)
+
+    return mostrante
+
 
 def mostrar_tabla():
     """
@@ -58,7 +73,7 @@ def mostrar_tabla():
         y luego se muestran los susodichos
         al menos eso entendi del enunciado
     """
-    cabezal = ("puntaje", "usuario", "dificultad")
+    cabezal = ("Pos.", "Puntaje", "Usuario", "Dificultad")
     data = []
     layout = [
             [sg.Table(values=data,
@@ -83,16 +98,10 @@ def mostrar_tabla():
         if event in (sg.WIN_CLOSED, "Salir"):
             break
         elif event == "facil":
-            window["-TABLA-"].update(list(filter(lambda elem: 
-                                elem[2] == "facil", cargar_tabla())
-                            ))
+            window["-TABLA-"].update(cargar_data("facil"))
         elif event == "normal":
-            window["-TABLA-"].update(list(filter(lambda elem: 
-                                elem[2] == "normal", cargar_tabla())
-                            ))
+            window["-TABLA-"].update(cargar_data("normal"))
         elif event == "dificil":
-            window["-TABLA-"].update(list(filter(lambda elem: 
-                                elem[2] == "dificil", cargar_tabla())
-                            ))
+            window["-TABLA-"].update(cargar_data("dificil"))
 
     window.close()
