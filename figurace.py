@@ -19,8 +19,8 @@ if __name__ == "__main__":
             elif my_os == 'darwin':
                  #falta macOS
                  pass
-      except ModuleNotFoundError or ImportError:
-            sg.popup_error("Ups!, hay un problemita interno.")
+      except (ModuleNotFoundError, ImportError):
+            sg.popup_error("Ups!, hay un problemita técnico.")
             
       
       
