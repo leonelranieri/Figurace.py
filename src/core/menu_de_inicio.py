@@ -54,11 +54,11 @@ def ventana_de_inicio(perfiles, nivel):
         if (event == sg.WIN_CLOSE_ATTEMPTED_EVENT or event == "-SALIR-") and sg.popup_yes_no("¿Realmente desea salir?", no_titlebar=True) == "Yes":
             break
         elif event == "-JUGAR-":
-            if values["-DIFI-"][0] == "{":
+            if values["-DIFI-"][0] == "{" or values["-DIFI-"][0] == "e":
                 sg.popup("seleccione una dificultad")
             else:
-                sg.popup("la dificultad es : " +values["-DIFI-"])
-            if values["-USERS-"][0] == "{" :
+                sg.popup("la dificultad es : " + values["-DIFI-"])
+            if values["-USERS-"][0] == "{" or values["-USERS-"] == "elija el usuario":
                 sg.popup("seleccione un usuario")
             else:
                 sg.popup("el usuario es : " + str(values["-USERS-"][1]))
