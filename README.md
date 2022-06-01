@@ -23,7 +23,7 @@ peliculas.ipynb
 
 todos se ejecutan desde el jupyter notebook correspondiente
 
-proyecto disponible en rama "Master"
+proyecto disponible en rama "main"
 ===========================================================
 
 SITIO DESDE DONDE SE OBTUVIERON LOS DATASET:
