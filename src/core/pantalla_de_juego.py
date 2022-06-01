@@ -31,7 +31,6 @@ def main(dificultad, nombre_usuario):
     ruta_archivo = os.path.join(os.getcwd(), "src", "core", "folder_csv", categoria)
     # Ruta Imagen:
     ruta_imagen = fp.get_ruta_imagen(categoria)
-    print(ruta_imagen)
     # Carga de configuración:
     nivel_de_dificultad ={}
     nivel_de_dificultad = configuracion[dificultad['-DIFI-']]
@@ -137,10 +136,12 @@ def main(dificultad, nombre_usuario):
             
             # Fin de ronda
             if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
+                agregar_alatabla(fp.acumular_puntos(total_respuestas),
+                                    nombre_usuario[1], dificultad["-DIFI-"])
                 sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '
                         + str(fp.acumular_puntos(total_respuestas)),
-                        custom_text = ('Volver a Jugar', 'Salir del Juego'))
-                print(type(total_respuestas[0]))
+                        custom_text = ('Volver a Jugar', 'Salir del Juego')
+                            , keep_on_top=True)
                 if event == 'Salir del Juego':
                     break 
                 break
@@ -179,9 +180,10 @@ def main(dificultad, nombre_usuario):
 
             # Fin de Ronda
             if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
+                agregar_alatabla(fp.acumular_puntos(total_respuestas),
+                                    nombre_usuario[1], dificultad["-DIFI-"])
                 sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '+str(fp.acumular_puntos(total_respuestas)),
                         custom_text = ('Volver a Jugar', 'Salir del Juego'), keep_on_top=True)
-                print(type(total_respuestas[0]))
                 if event == 'Salir del Juego':
                     break 
                 break

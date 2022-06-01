@@ -16,14 +16,13 @@ FORMAS DE EJECUTAR CADA APLICACIÓN:
 2do - ejecutar los modulos para procesar datos (**)
 3ro - ejecutar "figurace.py" con python
 
-(**)archivos que generan los data set que se uilizan:
+(**):archivos que generan los data set que se uilizan:
 lagos.py.ipynb
 artistas.ipynb
 peliculas.ipynb
 
 todos se ejecutan desde el jupyter notebook correspondiente
 
-proyecto disponible en rama "Master"
 ===========================================================
 
 SITIO DESDE DONDE SE OBTUVIERON LOS DATASET:

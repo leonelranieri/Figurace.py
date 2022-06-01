@@ -11,7 +11,7 @@ def cargar_tabla():
         sino, manda a crear el archivo con los cabezales
     """
     try:
-        with open(archivo_tabla, "r") as data_set:
+        with open(archivo_tabla, "r", encoding="utf-8") as data_set:
             reader = csv.reader(data_set,delimiter=",")
             reader.__next__()
             archivo = list(reader)
@@ -25,7 +25,7 @@ def guardar_tabla(valores):
         crea una tabla con los headers.
         guarda la lista con los puntajes ordenada por mayor puntuacion.
     """
-    with open(archivo_tabla, "w") as salida:
+    with open(archivo_tabla, "w", encoding="utf-8") as salida:
         writer = csv.writer(salida,delimiter=",")
         writer.writerow(["puntaje", "usuario", "dificultad"])
         if valores:
@@ -59,8 +59,8 @@ def cargar_data(dificultad):
     datos_crudos = list(filter(lambda elem: elem[2] == dificultad, 
                                             cargar_tabla()))
     mostrante = []
-    for i, elem in enumerate(datos_crudos):
-        pivot = [i+1]
+    for i, elem in enumerate(datos_crudos, start=1):
+        pivot = [i]
         pivot.extend(elem)
         mostrante.append(pivot)
 

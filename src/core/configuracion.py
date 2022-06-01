@@ -47,7 +47,7 @@ def carga_config():
         de lo contrario, pasa la configuracion default para que la guarden
     """
     try:
-        with open(ARCHIVO_CONFIG, "r") as entrada:
+        with open(ARCHIVO_CONFIG, "r", encoding="utf-8") as entrada:
             configuracion = jsonload(entrada)
     except FileNotFoundError:
         configuracion = DEFAULT_CONFIG
@@ -64,7 +64,7 @@ def guarda_config(configuracion, values):
         for key in KEY_CONFIG:
             configuracion[values["-DIFI-"][0]][key] = values[KEY_CONFIG[key]]
     
-    with open(ARCHIVO_CONFIG, "w") as salida:
+    with open(ARCHIVO_CONFIG, "w", encoding="utf-8") as salida:
         jsondump(configuracion, salida)
 
 def crear_ventana(configuracion):
