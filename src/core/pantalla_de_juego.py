@@ -123,9 +123,9 @@ def main(dificultad, nombre_usuario):
         # -------------[ PASAR ]-------------
 
         elif event == 'PASAR >':
-            total_respuestas[i] = int(restar_puntos)
+            total_respuestas[i] = int(restar_puntos) * -1
             i += 1 
-            linea = (f"PREGUNTA {i} : - {restar_puntos} puntos (Pasó)"+"\n")
+            linea = (f"PREGUNTA {i} : - {restar_puntos} puntos (Pasó)"+"\n") 
             respuestas = (f"{respuestas} {linea}""\n")
             main_window['-ANSWERS OUTPUT-'].update(respuestas)
 
@@ -168,7 +168,7 @@ def main(dificultad, nombre_usuario):
                 main_window['-ANSWERS OUTPUT-'].update(respuestas)
 
             else:
-                total_respuestas[i] = int(restar_puntos)
+                total_respuestas[i] = int(restar_puntos) * -1
                 i += 1
                 linea = (f"PREGUNTA {i}: INCORRECTO! respuesta correcta:"+"\n"+f"{respuesta_correcta} : -{restar_puntos} puntos"+"\n")
                 respuestas = (f"{respuestas} {linea}""\n")

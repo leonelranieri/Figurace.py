@@ -4,8 +4,11 @@ import PySimpleGUI as sg
 
 def acumular_puntos(diccionario):
     total = 0
-    for elem in diccionario:
-        total = total + diccionario[elem]
+    for elem in diccionario.values():
+        if elem > 0:
+            total = total + elem
+        else:
+            total = total + elem
     return total
 
 def mostrar_caracteristicas(filas_de_dataset, lista_seleccionada, cant_caracteristicas):
@@ -251,7 +254,7 @@ def crear_layout_dificultad(dificultad, nivel):
 
     dif_frame_layout = [
         [sg.Text('Dificultad: '+ dificultad.upper())],
-        [sg.Text('Cantidad de Rondas: '+ nivel['rondas'])],
+        [sg.Text('Cantidad de Rondas: '+ str(nivel['rondas']))],
         [sg.Text('Tiempo Restante: '+ timer, key = '-TIMER-')],
     ]
     return dif_frame_layout
@@ -275,7 +278,7 @@ def crear_layout_respuestas(nombre_usuario, respuestas):
         :returns: list
     """
     respuestas_frame_layout = [
-        [sg.Text('usuario: '+nombre_usuario.upper())],
+        [sg.Text('usuario: '+ nombre_usuario.upper())],
         [sg.Multiline(respuestas, size=(80,20), disabled = True, background_color = "#65778d",
         text_color = 'white', key = '-ANSWERS OUTPUT-' )],
         [sg.Button('ABANDONAR JUEGO', key = '-ABANDONAR-')]
