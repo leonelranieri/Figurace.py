@@ -17,7 +17,7 @@ def cargar_tabla():
             archivo = list(reader)
     except FileNotFoundError:
             guardar_tabla(None)
-    
+            archivo = []
     return archivo
 
 def guardar_tabla(valores):
@@ -25,13 +25,15 @@ def guardar_tabla(valores):
         crea una tabla con los headers.
         guarda la lista con los puntajes ordenada por mayor puntuacion.
     """
-    with open(archivo_tabla, "w", encoding="utf-8") as salida:
+    with open(archivo_tabla, "w", encoding="utf-8",newline='') as salida:
         writer = csv.writer(salida,delimiter=",")
         writer.writerow(["puntaje", "usuario", "dificultad"])
-        if valores:
-            valores.sort(key=lambda elem :
-                            int(elem[0]), reverse=True)
-            writer.writerows(valores)
+        if valores: 
+             valores.sort(key=lambda elem :
+                            int(elem[0]), reverse=True)           
+             for elem in valores:
+                 if elem:
+                     writer.writerow(elem)
 
 def agregar_alatabla(puntos, usuario, dificultad):
     """
