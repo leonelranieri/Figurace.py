@@ -251,7 +251,7 @@ def crear_layout_dificultad(dificultad, nivel):
 
     dif_frame_layout = [
         [sg.Text('Dificultad: '+ dificultad.upper())],
-        [sg.Text('Cantidad de Rondas: '+ nivel['rondas'])],
+        [sg.Text('Cantidad de Rondas: '+ str(nivel['rondas']))],
         [sg.Text('Tiempo Restante: '+ timer, key = '-TIMER-')],
     ]
     return dif_frame_layout

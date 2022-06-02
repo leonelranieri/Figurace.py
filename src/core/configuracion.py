@@ -101,12 +101,14 @@ def crear_ventana(configuracion):
         [sg.Text("puntaje restado por respuesta incorrecta", 
                     pad=((10, 5), 20)), 
                     sg.OptionMenu(values=("1", "2", "3"), 
-                    size=(3, 1), key=("-RESTA-"))
+                    size=(3, 1),
+                    key=("-RESTA-"))
         ],
         [sg.Text("cantidad de caracteristicas a mostrar", 
                     pad=((10, 5), 20)), 
                     sg.OptionMenu(values=("3", "4", "5"), 
-                    size=(3, 1), key=("-CARACT-"))
+                    size=(3, 1),
+                    key=("-CARACT-"))
         ],
         [sg.Text(size=(5, 1))],
         [sg.Button("Save"), sg.Button("Cancel")]

@@ -17,7 +17,7 @@ def cargar_tabla():
             archivo = list(reader)
     except FileNotFoundError:
             guardar_tabla(None)
-    
+
     return archivo
 
 def guardar_tabla(valores):
@@ -56,7 +56,7 @@ def cargar_data(dificultad):
         separa los datos de la dificultad pasada y agrega el valor de posicion.
         pasa los datos limpios para mostrar en pantalla.
     """
-    datos_crudos = list(filter(lambda elem: elem[2] == dificultad, 
+    datos_crudos = list(filter(lambda elem: elem[2] == dificultad,
                                             cargar_tabla()))
     mostrante = []
     for i, elem in enumerate(datos_crudos, start=1):
