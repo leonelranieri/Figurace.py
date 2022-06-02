@@ -5,9 +5,6 @@ import PySimpleGUI as sg
 def acumular_puntos(diccionario):
     total = 0
     for elem in diccionario.values():
-        if elem > 0:
-            total = total + elem
-        else:
             total = total + elem
     return total
 
