@@ -4,7 +4,6 @@ import configuracion as config
 import jugadores
 import puntajes as tabla_puntajes
 import pantalla_de_juego as pj
-import os
 
 def preparar_menu(nombres, dificultad):
     """
@@ -48,7 +47,8 @@ def ventana_de_inicio(perfiles, nivel):
 
     nombres, dificultad = datos()
     window = preparar_menu(nombres, dificultad)
-    
+
+
     while True:       
         event, values = window.read()
 
@@ -67,17 +67,13 @@ def ventana_de_inicio(perfiles, nivel):
         elif event == "-PUNTAJES-":
             tabla_puntajes.mostrar_tabla()
         elif event == "-PERFIL-": 
-            ventana = window
-            try: 
-                perfil.usuario(perfiles)
+            hubo_registro, perfiles = perfil.usuario(perfiles)
+            if hubo_registro:
+                nombres = datos()
+                window["-USERS-"].update(nombres)
+                ventana = window
                 nombres, dificultad = datos()
                 window = preparar_menu(nombres, dificultad)
-            except AttributeError:
-                img_name = "manito.png"
-                img_folder = os.path.join("src", "core", "images")
-                img = os.path.join(os.getcwd(),img_folder, img_name) 
-                sg.popup("CHAU, ¡NOS VEMOS!", image=img, no_titlebar=True) 
-            finally:
                 ventana.close()
                 window = preparar_menu(nombres, dificultad)
 
@@ -89,7 +85,7 @@ def ventana_principal():
     dificultad = config.carga_config()   
     ventana_de_inicio(perfiles, dificultad)
 
-#ventana_principal()
+ventana_principal()
 
 
 
