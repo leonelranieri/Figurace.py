@@ -22,7 +22,7 @@ def preparar_menu(nombres, dificultad):
                             sg.Combo(dificultad, default_value=dificultad, s=(13,1), key=("-DIFI-"))]
 ]
 
-    layout = [[sg.Frame("FIGURACE", frame_layout, font="Any 12", title_color="DarkBlue")]]
+    layout = [[sg.Frame("FIGURACE", frame_layout, font="Any 25", title_color="DarkBlue")]]
 
     window = sg.Window("MENÚ - FIGURACE -", layout, enable_close_attempted_event=True, margins=(100, 100))
     
@@ -85,7 +85,7 @@ def ventana_principal():
     dificultad = config.carga_config()   
     ventana_de_inicio(perfiles, dificultad)
 
-ventana_principal()
+#ventana_principal()
 
 
 

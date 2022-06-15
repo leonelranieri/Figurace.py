@@ -1,5 +1,6 @@
 import csv, os
 import PySimpleGUI as sg
+from promedios_con_pandas import ordenar_datos as ordenar
 
 archivo_tabla = os.path.join(
                             os.getcwd(), "src", "core", "data",
@@ -68,13 +69,14 @@ def cargar_data(dificultad):
 
     return mostrante
 
-
 def mostrar_tabla():
     """
         crea una tabla vacia hasta que se elija en que dificultad se quieren ver los puntos
         y luego se muestran los susodichos
         al menos eso entendi del enunciado
     """
+    """
+    ---------------ORIGINAL-----------------
     cabezal = ("Pos.", "Puntaje", "Usuario", "Dificultad")
     data = []
     layout = [
@@ -84,6 +86,19 @@ def mostrar_tabla():
                     num_rows=20,
                     key="-TABLA-",
                     )],
+            [sg.Button("Salir"),
+                sg.Button("facil"),
+                sg.Button("normal"),
+                sg.Button("dificil")
+            ]
+    ]"""
+
+    cabezal_puntaje = ("Pos", "Puntaje", "Usuario")
+    cabezal_promedio = ("Pos", "Promedio", "Usuario")
+    data = []
+    layout = [
+            [sg.Table(values=data,headings=cabezal_puntaje,key="-TABLA-PUNTAJE-"), sg.Table(values=data,
+                    headings=cabezal_promedio, key="-TABLA-PROMEDIO-")],
             [sg.Button("Salir"),
                 sg.Button("facil"),
                 sg.Button("normal"),
@@ -100,10 +115,13 @@ def mostrar_tabla():
         if event in (sg.WIN_CLOSED, "Salir"):
             break
         elif event == "facil":
-            window["-TABLA-"].update(cargar_data("facil"))
+            window["-TABLA-PUNTAJE-"].update(cargar_data("facil"))
+            window["-TABLA-PROMEDIO-"].update(ordenar('facil'))
         elif event == "normal":
-            window["-TABLA-"].update(cargar_data("normal"))
+            window["-TABLA-PUNTAJE-"].update(cargar_data("normal"))
+            window["-TABLA-PROMEDIO-"].update(ordenar('normal'))
         elif event == "dificil":
-            window["-TABLA-"].update(cargar_data("dificil"))
+            window["-TABLA-PUNTAJE-"].update(cargar_data("dificil"))
+            window["-TABLA-PROMEDIO-"].update(ordenar('dificil'))
 
     window.close()

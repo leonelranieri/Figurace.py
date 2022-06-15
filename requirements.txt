@@ -1,2 +1,4 @@
 PySimpleGUI==4.59.0
 jupyter==1.0.0
+pandas==1.4.2
+matplotlib==3.5.2
