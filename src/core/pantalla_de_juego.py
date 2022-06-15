@@ -204,8 +204,8 @@ def main(dificultad, nombre_usuario):
                                     custom_text = ('Abandonar', 'Continuar Jugando'), 
                                         keep_on_top=True) == 'Abandonar':
             main_window.close()
-            agregar_alatabla(fp.acumular_puntos(total_respuestas),
-                            nombre_usuario[1], dificultad["-DIFI-"])
+            #agregar_alatabla(fp.acumular_puntos(total_respuestas),
+            #                nombre_usuario[1], dificultad["-DIFI-"])
 
     main_window.close()
 

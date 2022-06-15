@@ -97,8 +97,6 @@ def ordenar_datos(dificultad='facil'):
         elem = indice + elem
         datos_ordenados.append(elem)
         datos_ordenados = sorted(datos_ordenados, key=lambda x:x[1], reverse=True)
-
-    print(datos_ordenados)    
     
     if len(datos_ordenados) > 20:
         datos_ordenados = datos_ordenados[0:19]
