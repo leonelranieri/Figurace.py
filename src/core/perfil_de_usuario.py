@@ -295,7 +295,6 @@ def usuario(perfiles):
             if nick in perfiles.keys(): 
                 sg.popup(f"{nick} es un usuario registrado", no_titlebar=True)  
                 usuario_registrado(nick, perfiles, generos)
-                hubo_registro = True
             else:
                 sg.popup(f"{nick} no es un usuario registrado, ingrese sus datos para jugar", no_titlebar=True)
                 nuevo_usuario(nick, perfiles, generos)
