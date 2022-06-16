@@ -4,8 +4,8 @@ import PySimpleGUI as sg
 
 def acumular_puntos(diccionario):
     total = 0
-    for elem in diccionario:
-        total = total + diccionario[elem]
+    for elem in diccionario.values():
+            total = total + elem
     return total
 
 def mostrar_caracteristicas(filas_de_dataset, lista_seleccionada, cant_caracteristicas):
@@ -275,7 +275,7 @@ def crear_layout_respuestas(nombre_usuario, respuestas):
         :returns: list
     """
     respuestas_frame_layout = [
-        [sg.Text('usuario: '+nombre_usuario.upper())],
+        [sg.Text('usuario: '+ nombre_usuario.upper())],
         [sg.Multiline(respuestas, size=(80,20), disabled = True, background_color = "#65778d",
         text_color = 'white', key = '-ANSWERS OUTPUT-' )],
         [sg.Button('ABANDONAR JUEGO', key = '-ABANDONAR-')]
