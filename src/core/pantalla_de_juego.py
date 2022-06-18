@@ -11,8 +11,8 @@ import jugadores
 def main(dificultad, nombre_usuario): 
     archivos_categorias = [
         "peliculas_figurace.csv",
-        "lagos_final.csv",
-        "artistas.csv"
+        "lagos_pandas.csv",
+        "artistas_pandas.csv"
     ]
 
     perfiles = jugadores.apertura_de_archivo()

@@ -70,7 +70,7 @@ def get_ruta_imagen(categoria):
             ruta_imagen = os.path.join(os.getcwd(), "src", "core", "images", "categoria peliculas.png")
         except FileNotFoundError:
             sg.Popup("Archivo 'categoria peliculas.png' no encontrado")
-    elif categoria == "lagos_final.csv":
+    elif categoria == "lagos_pandas.csv":
         try:
             ruta_imagen = os.path.join(os.getcwd(), "src", "core", "images", "categoria lagos.png")
         except FileNotFoundError:
@@ -94,7 +94,7 @@ def get_nombre_categoria (categoria):
     """
     if categoria == "peliculas_figurace.csv" :
         nombre_categoria = "Películas"   
-    elif categoria == "lagos_final.csv":
+    elif categoria == "lagos_pandas.csv":
         nombre_categoria = "Lagos" 
     else: nombre_categoria = "spotify" 
 
