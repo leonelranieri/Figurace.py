@@ -2,11 +2,15 @@ import os
 import random
 import PySimpleGUI as sg
 
-def acumular_puntos(diccionario):
+def acumular_puntos(diccionario, ayuda, dificultad):
     total = 0
+    if dificultad == "normal":
+        ayuda = ayuda + 1
+    elif dificultad == "dificil":
+        ayuda = ayuda + 2
     for elem in diccionario.values():
             total = total + elem
-    return total
+    return total - ayuda
 
 def mostrar_caracteristicas(filas_de_dataset, lista_seleccionada, cant_caracteristicas):
     """ 
@@ -320,7 +324,7 @@ def crear_layout_opciones(opciones, filas_dataset, lista_seleccionada, caracteri
         [sg.Button(boton3, key='-INPUT3-')],
         [sg.Button(boton4, key='-INPUT4-')],
         [sg.Button(boton5, key='-INPUT5-')],
-        [sg.Button('OK'), sg.Button('PASAR >')]
+        [sg.Button('OK'), sg.Button('PASAR >'), sg.Button('AYUDA', key="-AYUDA-")]#agrego ayuda
     ]
     return opciones_frame_layout
 
