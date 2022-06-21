@@ -68,7 +68,6 @@ def main(dificultad, nombre_usuario, con_ayuda):
                 lista_seleccionada,caracteristica_a_adivinar, cant_caracteristicas)
 # ------------------------------------- [PANTALLA PRINCIPAL] -------------------------------------
     main_window = fp.crear_pantalla(frame_categoria,frame_dificultad,frame_respuestas,frame_opciones)
-    #main_window = fp.crear_pantalla(frame_categoria,frame_dificultad,frame_respuestas,frame_opciones1)
 # ------------------------------------- [EVENT LOOP] -------------------------------------
     color_original = '#ff9fd6'
     respuesta_seleccionada = ''
@@ -138,11 +137,12 @@ def main(dificultad, nombre_usuario, con_ayuda):
             opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta)
             ayudas = opciones.copy()
             # Fin de ronda
+            #print(con_ayuda)
             if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
-                agregar_alatabla(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"]),
+                agregar_alatabla(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda),
                                     nombre_usuario[1], dificultad["-DIFI-"])
                 sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '
-                        + str(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"])),
+                        + str(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda)),
                         custom_text = ('Volver a Jugar', 'Salir del Juego')
                             , keep_on_top=True)
                 if event == 'Salir del Juego':
@@ -245,9 +245,9 @@ def main(dificultad, nombre_usuario, con_ayuda):
 
             # Fin de Ronda
             if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
-                agregar_alatabla(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"]),#agrego ayuda
+                agregar_alatabla(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda),#agrego ayuda
                                     nombre_usuario[1], dificultad["-DIFI-"])
-                sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '+str(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"])),
+                sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '+str(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda)),
                         custom_text = ('Volver a Jugar', 'Salir del Juego'), keep_on_top=True)
                 if event == 'Salir del Juego':
                     break 
