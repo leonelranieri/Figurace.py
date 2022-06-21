@@ -1,12 +1,17 @@
 import os
 import random
 import PySimpleGUI as sg
+import pandas as pd
 
-def acumular_puntos(diccionario):
+def acumular_puntos(diccionario, ayuda, dificultad):
     total = 0
+    if dificultad == "normal":
+        ayuda = ayuda + 1
+    elif dificultad == "dificil":
+        ayuda = ayuda + 2
     for elem in diccionario.values():
             total = total + elem
-    return total
+    return total - ayuda
 
 def mostrar_caracteristicas(filas_de_dataset, lista_seleccionada, cant_caracteristicas):
     """ 
@@ -70,7 +75,7 @@ def get_ruta_imagen(categoria):
             ruta_imagen = os.path.join(os.getcwd(), "src", "core", "images", "categoria peliculas.png")
         except FileNotFoundError:
             sg.Popup("Archivo 'categoria peliculas.png' no encontrado")
-    elif categoria == "lagos_final.csv":
+    elif categoria == "lagos_pandas.csv":
         try:
             ruta_imagen = os.path.join(os.getcwd(), "src", "core", "images", "categoria lagos.png")
         except FileNotFoundError:
@@ -94,7 +99,7 @@ def get_nombre_categoria (categoria):
     """
     if categoria == "peliculas_figurace.csv" :
         nombre_categoria = "Películas"   
-    elif categoria == "lagos_final.csv":
+    elif categoria == "lagos_pandas.csv":
         nombre_categoria = "Lagos" 
     else: nombre_categoria = "spotify" 
 
@@ -320,7 +325,7 @@ def crear_layout_opciones(opciones, filas_dataset, lista_seleccionada, caracteri
         [sg.Button(boton3, key='-INPUT3-')],
         [sg.Button(boton4, key='-INPUT4-')],
         [sg.Button(boton5, key='-INPUT5-')],
-        [sg.Button('OK'), sg.Button('PASAR >')]
+        [sg.Button('OK'), sg.Button('PASAR >'), sg.Button('AYUDA', key="-AYUDA-")]#agrego ayuda
     ]
     return opciones_frame_layout
 
@@ -360,6 +365,14 @@ def crear_pantalla(pantalla_categoria, pantalla_dificultad, pantalla_respuestas,
         sg.Frame('', pantalla_opciones, font='Any 12', title_color='white', size=(350,400))
         ]
     ]
+
+    def generar_datos_partida(partida_actual):
+        """Genera el log de la partidas actuales y proximas para el analisis de los datos"""
+        field_names = ['timestamp','id','evento','user','texto_ingresado','respuesta','puntaje','nivel']
+        df_partida = pd.DataFrame(partida_actual,columns=field_names)
+        df_partida.to_csv(os.path.join(os.getcwd(),"folder_csv",'log_de_partidas'),index=False,mode="a",
+        header=False,encoding='utf-8')
+
 
     window = sg.Window("Pantalla de Juego", layout, margins=(90,60))
     return window

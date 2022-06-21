@@ -11,8 +11,8 @@ import jugadores
 def main(dificultad, nombre_usuario): 
     archivos_categorias = [
         "peliculas_figurace.csv",
-        "lagos_final.csv",
-        "artistas.csv"
+        "lagos_pandas.csv",
+        "artistas_pandas.csv"
     ]
 
     perfiles = jugadores.apertura_de_archivo()
@@ -40,7 +40,7 @@ def main(dificultad, nombre_usuario):
 
     # Lectura de dataset:
     archivo_cvs = open(ruta_archivo, "r", encoding="UTF-8")
-    csvreader = csv.reader(archivo_cvs, delimiter=',')
+    csvreader = list(csv.reader(archivo_cvs, delimiter=','))
     filas_de_dataset = []
 
     for elem in csvreader:
@@ -51,6 +51,7 @@ def main(dificultad, nombre_usuario):
     lista_seleccionada = random.choice(filas_de_dataset) # Seleciona una fila del archivo csv
     respuesta_correcta = (lista_seleccionada[5]) # Seleciona el campo a adivinar de la lista (depende del csv puede cambiar)
     opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta) # Seleciona posibles respuestas del campo a adivinar del archivo csv y las mezcla con la respuesta correcta
+    ayudas = opciones.copy()
 
     respuestas = '' 
     total_respuestas = {} # Guarda las respuestas del usuario y los correspondientes puntos de la ronda.
@@ -71,6 +72,7 @@ def main(dificultad, nombre_usuario):
     color_original = '#ff9fd6'
     respuesta_seleccionada = ''
     i = 0
+    ayuda = 0
 
     while True:
         event,value = main_window.read()
@@ -133,13 +135,13 @@ def main(dificultad, nombre_usuario):
             respuesta_correcta = (lista[5])
             # Actualizo lista de opciones:
             opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta)
-            
+            ayudas = opciones.copy()
             # Fin de ronda
             if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
-                agregar_alatabla(fp.acumular_puntos(total_respuestas),
+                agregar_alatabla(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"]),
                                     nombre_usuario[1], dificultad["-DIFI-"])
                 sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '
-                        + str(fp.acumular_puntos(total_respuestas)),
+                        + str(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"])),
                         custom_text = ('Volver a Jugar', 'Salir del Juego')
                             , keep_on_top=True)
                 if event == 'Salir del Juego':
@@ -156,7 +158,62 @@ def main(dificultad, nombre_usuario):
             main_window['-INPUT3-'].update(lista_botones[2])
             main_window['-INPUT4-'].update(lista_botones[3])
             main_window['-INPUT5-'].update(lista_botones[4])
+            main_window['-AYUDA-'].update(lista_botones)
+            ayudas = lista_botones.copy()
+        
+        # -------------[ AYUDA ]------------
+        if event == "-AYUDA-":  #agrego ayuda
+            layout = [
+                [sg.Button("Seguir", key="-SEGUIR-")], 
+                [sg.Button("Salir", key="-SALIR-")]
+            ]
+            ventana = sg.Window("ventana de ayuda", layout, margins=(20,10))
             
+            if not ayuda:
+                sg.Popup("SOLO PUEDE SOLICITAR DOS AYUDAS POR PARTIDA."
+                " RECUERDE QUE SE LE DESCONTARA 1 PUNTO POR CADA AYUDA y SI LA DIFICULTAD" 
+                "ELEJIDA ES 'NORMAL' SE LE DESCUENTA 1 PUNTO MÁS Y SI ES 'DÍFICIL' 2 PUNTOS MÁS") 
+            if ayuda == 0:   
+                while True:
+                    event, values = ventana.read()
+                    if event == "-SALIR-" or event == sg.WIN_CLOSED:
+                        break
+                    elif event == "-SEGUIR-":
+                        try:
+                            opcion = random.randrange(5)
+                            if respuesta_correcta in ayudas:
+                                indice_correcta = ayudas.index(respuesta_correcta)
+                                ayudas.pop(indice_correcta)
+                                if ayuda < 2:
+                                    try:
+                                        sg.PopupQuickMessage("SE MOSTRARA UNA DE LAS" 
+                                            "OPCIONES INCORRECTAS", ayudas[opcion])
+                                        ayuda = ayuda + 1
+                                    except IndexError:
+                                        pass
+                                else:
+                                    sg.PopupQuickMessage("SE QUEDO SIN AYUDAS")
+                        except ValueError:     
+                            pass   
+                    break
+                ventana.close()
+            else:
+                try:
+                    opcion = random.randrange(5)
+                    if respuesta_correcta in ayudas:
+                        indice_correcta = ayudas.index(respuesta_correcta)
+                        ayudas.pop(indice_correcta)
+                        if ayuda < 2:
+                            try:
+                                sg.PopupQuickMessage("SE MOSTRARA UNA DE LAS" 
+                                    " OPCIONES INCORRECTAS", ayudas[opcion])
+                                ayuda = ayuda + 1
+                            except IndexError:
+                                pass
+                        else:
+                            sg.PopupQuickMessage("SE QUEDO SIN AYUDAS")
+                except ValueError:     
+                    pass
         # -------------[ OK ]-------------
 
         elif event == 'OK':
@@ -177,12 +234,13 @@ def main(dificultad, nombre_usuario):
             lista = random.choice(filas_de_dataset)
             respuesta_correcta = (lista[5])
             opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta)
+            ayudas = opciones.copy()
 
             # Fin de Ronda
             if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
-                agregar_alatabla(fp.acumular_puntos(total_respuestas),
+                agregar_alatabla(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"]),#agrego ayuda
                                     nombre_usuario[1], dificultad["-DIFI-"])
-                sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '+str(fp.acumular_puntos(total_respuestas)),
+                sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '+str(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"])),
                         custom_text = ('Volver a Jugar', 'Salir del Juego'), keep_on_top=True)
                 if event == 'Salir del Juego':
                     break 
@@ -198,6 +256,7 @@ def main(dificultad, nombre_usuario):
             main_window['-INPUT3-'].update(lista_botones[2])
             main_window['-INPUT4-'].update(lista_botones[3])
             main_window['-INPUT5-'].update(lista_botones[4])
+            ayudas = lista_botones.copy()
 
         # -------------[ ABANDONAR JUEGO ]-------------
         if (event == '-ABANDONAR-') and sg.Popup('¿Desea Abandonar el Juego?', 
@@ -206,7 +265,6 @@ def main(dificultad, nombre_usuario):
             main_window.close()
             #agregar_alatabla(fp.acumular_puntos(total_respuestas),
             #                nombre_usuario[1], dificultad["-DIFI-"])
-
     main_window.close()
 
 #---------------------------------------------------------

@@ -51,7 +51,7 @@ def ventana_de_inicio(perfiles, nivel):
 
     while True:       
         event, values = window.read()
-
+        
         if (event == sg.WIN_CLOSE_ATTEMPTED_EVENT or event == "-SALIR-") and sg.popup_yes_no("¿Realmente desea salir?", no_titlebar=True, keep_on_top=True) == "Yes":
             break
         elif event == "-JUGAR-":
@@ -69,13 +69,8 @@ def ventana_de_inicio(perfiles, nivel):
         elif event == "-PERFIL-": 
             hubo_registro, perfiles = perfil.usuario(perfiles)
             if hubo_registro:
-                nombres = datos()
-                window["-USERS-"].update(nombres)
-                ventana = window
                 nombres, dificultad = datos()
-                window = preparar_menu(nombres, dificultad)
-                ventana.close()
-                window = preparar_menu(nombres, dificultad)
+                window["-USERS-"].update(value=nombres, values=nombres)
 
     window.close()
 #--------------------------------------------------------------------------------
