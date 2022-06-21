@@ -1,0 +1,11 @@
+timestamp,id,evento,usuarie,estado,texto ingresado,respuesta,nivel
+1654492780,33ff0802-e53f-11ec-8fea-0242ac120002,inicio_partida,sofi,-,-,-,normal
+1654632898,bd7f4ee8-e53f-11ec-8fea-0242ac120002,intento,sofi,error,Cristiano Ronaldo,Lionel Messi,normal
+1654632999,6c1bae73-a8d8-4ded-97db-636d59af0ee2,intento,sofi,ok,Lionel Messi,Lionel Messi,normal
+1654732392,03aea3f6-890c-4194-9613-9c76981083ec,intento,sofi,error,Kylian Mbappé,Alisson,normal
+1654742291,a1d62ee7-4f35-48a9-9b3e-4fa2f04a6645,intento,sofi,timeout,-,Alisson,normal
+1654482693,5fb49e99-53a9-48b1-b103-ecbeae12f581,fin,sofi,finalizada,-,-,normal
+1654482693,5fb49e99-53a9-48b1-b103-ecbeae12f581,fin,sofi,abandonada,-,-,dificil
+1654482693,5fb49e99-53a9-48b1-b103-ecbeae12f581,fin,leo,error,-,-,facil
+,5fb49e99-53a9-48b1-b103-ecbeae12f581,fin,señor x,timeout,-,-,normal
+1654742291,a1d62ee7-4f35-48a9-9b3e-4fa2f04a6645,intento,señor x,timeout,-,Alisson,normal
