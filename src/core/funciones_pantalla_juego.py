@@ -329,6 +329,46 @@ def crear_layout_opciones(opciones, filas_dataset, lista_seleccionada, caracteri
     ]
     return opciones_frame_layout
 
+def crear_layout_opciones_sin_ayuda(opciones, filas_dataset, lista_seleccionada, caracteristica_a_adivinar, cant_caracteristicas):
+    """
+        crea el frame donde frame donde aparecerán las caracteristicas que servirán como pista para el usuario
+        y las opciones disponibes en los botones.
+
+        :param filas_de_dataset: Listas de cada lista (Fila) del Dataset
+        :type filas_de_dataset: List
+
+        :param lista_seleccionada: Listas Elegida del Dataset
+        :type filas_de_dataset: List
+
+        :param caracteristica_a_adivinar: string a adivinar por el usuario
+        :type caracteristica_a_adivinar: string
+
+        :param cant_caracteristicas: Cantidad de carateristicas a mostrar.
+        :type cant_caracteristicas: int
+
+        :returns: List
+    """
+    botones = asignar_valores_botones(opciones)
+    
+    boton1 = botones[0]
+    boton2 = botones[1]
+    boton3 = botones[2]
+    boton4 = botones[3]
+    boton5 = botones[4]
+
+    opciones_frame_layout = [
+        [sg.Text('características: '.upper())], 
+        [sg.Text(mostrar_caracteristicas(filas_dataset, lista_seleccionada, cant_caracteristicas), 
+                key='-OPTIONS-')],
+        [sg.Text('Característica a Adivinar: '  + caracteristica_a_adivinar)],
+        [sg.Button(boton1, key='-INPUT1-')],
+        [sg.Button(boton2, key='-INPUT2-')],
+        [sg.Button(boton3, key='-INPUT3-')],
+        [sg.Button(boton4, key='-INPUT4-')],
+        [sg.Button(boton5, key='-INPUT5-')],
+        [sg.Button('OK'), sg.Button('PASAR >')]#agrego ayuda
+        ]
+    return opciones_frame_layout
 # ------------------------------------- [VENTANA PRINCIPAL DEL JUEGO] -------------------------------------
 
 def crear_pantalla(pantalla_categoria, pantalla_dificultad, pantalla_respuestas, pantalla_opciones):

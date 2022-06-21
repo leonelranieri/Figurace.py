@@ -8,7 +8,7 @@ import configuracion as config
 import funciones_pantalla_juego as fp
 import jugadores
 
-def main(dificultad, nombre_usuario): 
+def main(dificultad, nombre_usuario, con_ayuda): 
     archivos_categorias = [
         "peliculas_figurace.csv",
         "lagos_pandas.csv",
@@ -57,17 +57,18 @@ def main(dificultad, nombre_usuario):
     total_respuestas = {} # Guarda las respuestas del usuario y los correspondientes puntos de la ronda.
 
     # ------------------------------------- [VARIABLES PARA LAYOUT VENTANA PRINCIPAL] -------------------------------------
-
     frame_categoria = fp.crear_layout_categoria(nombre_categoria,ruta_imagen)
     frame_dificultad = fp.crear_layout_dificultad(dificultad['-DIFI-'],nivel_de_dificultad)
     frame_respuestas = fp.crear_layout_respuestas(nombre, respuestas)
-    frame_opciones = fp.crear_layout_opciones(opciones, filas_de_dataset,
-                     lista_seleccionada,caracteristica_a_adivinar, cant_caracteristicas)
-
-    # ------------------------------------- [PANTALLA PRINCIPAL] -------------------------------------
-
+    if con_ayuda:
+        frame_opciones = fp.crear_layout_opciones(opciones, filas_de_dataset,
+                lista_seleccionada,caracteristica_a_adivinar, cant_caracteristicas)
+    else:
+        frame_opciones = fp.crear_layout_opciones_sin_ayuda(opciones, filas_de_dataset,
+                lista_seleccionada,caracteristica_a_adivinar, cant_caracteristicas)
+# ------------------------------------- [PANTALLA PRINCIPAL] -------------------------------------
     main_window = fp.crear_pantalla(frame_categoria,frame_dificultad,frame_respuestas,frame_opciones)
-
+    #main_window = fp.crear_pantalla(frame_categoria,frame_dificultad,frame_respuestas,frame_opciones1)
 # ------------------------------------- [EVENT LOOP] -------------------------------------
     color_original = '#ff9fd6'
     respuesta_seleccionada = ''
@@ -158,22 +159,23 @@ def main(dificultad, nombre_usuario):
             main_window['-INPUT3-'].update(lista_botones[2])
             main_window['-INPUT4-'].update(lista_botones[3])
             main_window['-INPUT5-'].update(lista_botones[4])
-            main_window['-AYUDA-'].update(lista_botones)
+            #main_window['-AYUDA-'].update(lista_botones)
             ayudas = lista_botones.copy()
         
         # -------------[ AYUDA ]------------
         if event == "-AYUDA-":  #agrego ayuda
-            layout = [
+            layout = [   
                 [sg.Button("Seguir", key="-SEGUIR-")], 
                 [sg.Button("Salir", key="-SALIR-")]
             ]
-            ventana = sg.Window("ventana de ayuda", layout, margins=(20,10))
+            ventana = sg.Window("ventana de ayuda", layout, margins=(30,30))
             
             if not ayuda:
-                sg.Popup("SOLO PUEDE SOLICITAR DOS AYUDAS POR PARTIDA."
-                " RECUERDE QUE SE LE DESCONTARA 1 PUNTO POR CADA AYUDA y SI LA DIFICULTAD" 
-                "ELEJIDA ES 'NORMAL' SE LE DESCUENTA 1 PUNTO MÁS Y SI ES 'DÍFICIL' 2 PUNTOS MÁS") 
-            if ayuda == 0:   
+                sg.Popup("SOLO PUEDE SOLICITAR DOS AYUDAS POR PARTIDA.\n"
+                " RECUERDE QUE SE LE DESCONTARA 1 PUNTO POR CADA AYUDA.\n"
+                " SI LA DIFICULTAD ELEGIDA ES 'NORMAL' SE LE DESCUENTA\n" 
+                " 1 PUNTO MÁS Y SI ES 'DÍFICIL' 2 PUNTOS MÁS.") 
+            #if ayuda == 0:   
                 while True:
                     event, values = ventana.read()
                     if event == "-SALIR-" or event == sg.WIN_CLOSED:
@@ -186,9 +188,11 @@ def main(dificultad, nombre_usuario):
                                 ayudas.pop(indice_correcta)
                                 if ayuda < 2:
                                     try:
-                                        sg.PopupQuickMessage("SE MOSTRARA UNA DE LAS" 
-                                            "OPCIONES INCORRECTAS", ayudas[opcion])
-                                        ayuda = ayuda + 1
+                                        ayuda = ayuda + 1 
+                                        sg.PopupQuickMessage("SE MOSTRARA UNA DE LAS\n" 
+                                            " OPCIONES INCORRECTAS", ayudas[opcion],
+                                            "SE LE DESCONTARA", ayuda, "PUNTO.\n",
+                                            "MAS EL ADICIONAL POR DIFICULTAD.")
                                     except IndexError:
                                         pass
                                 else:
@@ -205,9 +209,12 @@ def main(dificultad, nombre_usuario):
                         ayudas.pop(indice_correcta)
                         if ayuda < 2:
                             try:
-                                sg.PopupQuickMessage("SE MOSTRARA UNA DE LAS" 
-                                    " OPCIONES INCORRECTAS", ayudas[opcion])
                                 ayuda = ayuda + 1
+                                sg.PopupQuickMessage("SE MOSTRARA UNA DE LAS\n" 
+                                    " OPCIONES INCORRECTAS", ayudas[opcion],
+                                    "SE LE DESCONTARÁN", ayuda, "PUNTOS.\n",
+                                    "MAS EL ADICIONAL POR DIFICULTAD.")
+                                #ayuda = ayuda + 1
                             except IndexError:
                                 pass
                         else:
@@ -268,3 +275,4 @@ def main(dificultad, nombre_usuario):
     main_window.close()
 
 #---------------------------------------------------------
+
