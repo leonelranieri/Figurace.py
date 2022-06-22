@@ -109,7 +109,7 @@ def crear_ventana(configuracion):
                     size=(3, 1), key=("-CARACT-"))
         ],
         [sg.Text(size=(5, 1))],
-        [sg.Button("Save"), sg.Button("Cancel")]
+        [sg.Button("Guardar"), sg.Button("Cancelar")]
     ]
 
     # Ni idea que es finalize, pero si no lo pongo explota todo
@@ -127,11 +127,12 @@ def main():
     while True:
         event, values = window.read()
 
-        if event in (sg.WIN_CLOSED, "Cancel"):
+        if event in (sg.WIN_CLOSED, "Cancelar"):
             break
-        if event == "Save":
+        if event == "Guardar":
             try:
                 guarda_config(configuracion, values)
+                sg.popup("configuracion guardada con exito")
                 window.close()
             except IndexError:
                 sg.popup("falta elegir la dificultad a cambiar")

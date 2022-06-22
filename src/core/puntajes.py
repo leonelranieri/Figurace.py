@@ -1,6 +1,7 @@
 import os
 import PySimpleGUI as sg
 from promedios_con_pandas import ordenar_datos as ordenar
+import pandas as pd
 
 archivo_tabla = os.path.join(
                             os.getcwd(), "src", "core", "data",
@@ -12,29 +13,23 @@ def cargar_tabla():
         sino, manda a crear el archivo con los cabezales
     """
     try:
-        with open(archivo_tabla, "r", encoding="utf-8") as data_set:
-            reader = csv.reader(data_set,delimiter=",")
-            reader.__next__()
-            archivo = list(reader)
+        data_frame = pd.read_csv(archivo_tabla, encoding='utf-8')
     except FileNotFoundError:
-            guardar_tabla(None)
-            archivo = []
-    return archivo
+        guardar_tabla(None)
+        data_frame = pd.DataFrame(columns=("puntaje", "usuario", "dificultad"))
+
+    return data_frame
 
 def guardar_tabla(valores):
     """
         crea una tabla con los headers.
         guarda la lista con los puntajes ordenada por mayor puntuacion.
     """
-    with open(archivo_tabla, "w", encoding="utf-8",newline='') as salida:
-        writer = csv.writer(salida,delimiter=",")
-        writer.writerow(["puntaje", "usuario", "dificultad"])
-        if valores: 
-             valores.sort(key=lambda elem :
-                            int(elem[0]), reverse=True)           
-             for elem in valores:
-                 if elem:
-                     writer.writerow(elem)
+    if valores:
+        valores.to_csv(archivo_tabla, index=False)
+    else:
+        data_frame = pd.DataFrame(columns=("puntaje", "usuario", "dificultad"))
+        data_frame.to_csv(archivo_tabla, index=False)
 
 def agregar_alatabla(puntos, usuario, dificultad):
     """
@@ -42,16 +37,9 @@ def agregar_alatabla(puntos, usuario, dificultad):
         lo agrega a la tabla y luego limpia para que queden 20 en su dificultad
     """
     listabla = cargar_tabla()
-    listabla.append([puntos, usuario, dificultad])
-    # Genero una lista con los puntajes de la dificultad, para luego confirmar que no pasen de 20
-    actualizo = list(filter(lambda elem:
-                                elem[2] == dificultad, listabla))
-    if len(actualizo) > 20:
-        # Deja ultimo de la lista al elemento con menor puntaje de la dificultad entrante
-        listabla.sort(key=lambda elem: 
-                        (elem[2] != dificultad, int(elem[0])),
-                            reverse=True)
-        listabla.pop()
+    nueva_data = pd.DataFrame([puntos, usuario, dificultad], columns=("puntaje", "usuario", "dificultad"))
+    listabla.append(nueva_data)
+    listabla.sort_values(by=["dificultad", "puntaje"], ascending=False)
     guardar_tabla(listabla)
 
 def cargar_data(dificultad):
@@ -59,14 +47,15 @@ def cargar_data(dificultad):
         separa los datos de la dificultad pasada y agrega el valor de posicion.
         pasa los datos limpios para mostrar en pantalla.
     """
-    datos_crudos = list(filter(lambda elem: elem[2] == dificultad, 
-                                            cargar_tabla()))
+    df = cargar_tabla()
+    datos_crudos = df.loc[df["dificultad"] == dificultad, ["puntaje", "usuario"]].head(20)
+    datos_crudos = datos_crudos.values.tolist()
     mostrante = []
     for i, elem in enumerate(datos_crudos, start=1):
         pivot = [i]
         pivot.extend(elem)
         mostrante.append(pivot)
-
+    
     return mostrante
 
 def mostrar_tabla():
@@ -75,23 +64,6 @@ def mostrar_tabla():
         y luego se muestran los susodichos
         al menos eso entendi del enunciado
     """
-    """
-    ---------------ORIGINAL-----------------
-    cabezal = ("Pos.", "Puntaje", "Usuario", "Dificultad")
-    data = []
-    layout = [
-            [sg.Table(values=data,
-                    headings=cabezal,
-                    justification="right",
-                    num_rows=20,
-                    key="-TABLA-",
-                    )],
-            [sg.Button("Salir"),
-                sg.Button("facil"),
-                sg.Button("normal"),
-                sg.Button("dificil")
-            ]
-    ]"""
 
     cabezal_puntaje = ("Pos", "Puntaje", "Usuario")
     cabezal_promedio = ("Pos", "Promedio", "Usuario")
