@@ -32,21 +32,16 @@ def generar_cadena(cadena):
      return data
 
 ubicacion = os.path.join("folder_csv")
-carpeta_actual = os.path.join("src")
-carpeta_sig = os.path.join("core")
-ruta_act = os.path.join(os.getcwd(),carpeta_actual,carpeta_sig) 
-ruta_final = os.path.join(ruta_act,ubicacion)
+ruta_final = os.path.join(os.getcwd(),ubicacion) 
 
 with open(os.path.join(ruta_final,'mymoviedb.csv'), "r",encoding="utf8") as logs_peliculas:
      lector = csv.reader(logs_peliculas, delimiter=",")
      header, datos = next(lector), list(lector)
     
      #Lista de las 100 palabras mas comunes en el overview combinados de todas las peliculas    
-     word_list = []
      for linea in datos:
          cadena = linea[2].split()
-         for palabra in cadena:
-             word_list.append(palabra)
+         word_list = [palabra for palabra in cadena]
      
      word_list = list(dict(Counter(word_list).most_common(100)).keys()) 
                              
@@ -61,4 +56,4 @@ with open(os.path.join(ruta_final,'mymoviedb.csv'), "r",encoding="utf8") as logs
 #Inserto los datos en el csv usando panda y saco el index creado por defecto
 field_names =['Genre','Original_Language','Release_Date','Vote_Average','Overview','Title']
 df = pd.DataFrame(refined_data_list,columns=field_names)
-df.to_csv(os.path.join(os.getcwd(),ruta_final,'peliculas_figurace.csv'), index=False) 
+df.to_csv(os.path.join(os.getcwd(),ruta_final,'peliculas_figurace.csv'), index=None) 
