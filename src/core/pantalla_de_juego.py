@@ -2,6 +2,7 @@ import os
 import csv
 import random
 
+import time
 import PySimpleGUI as sg
 from puntajes import agregar_alatabla
 import configuracion as config
@@ -73,9 +74,14 @@ def main(dificultad, nombre_usuario, con_ayuda):
     respuesta_seleccionada = ''
     i = 0
     ayuda = 0
+    tiempo_inicial = time.time()
+    tiempo_por_ronda = nivel_de_dificultad['tiempo']
+    tiempo_transcurrido = int(time.time() - tiempo_inicial)
+    tiempo_restante = (int(nivel_de_dificultad['tiempo'])- tiempo_transcurrido)
+    tiempo_jugado = 0
 
     while True:
-        event,value = main_window.read()
+        event,value = main_window.read(timeout=100)
     
         if event == sg.WIN_CLOSED or event == "ABANDONAR EL JUEGO":
             break
@@ -161,7 +167,11 @@ def main(dificultad, nombre_usuario, con_ayuda):
             main_window['-INPUT5-'].update(lista_botones[4])
             #main_window['-AYUDA-'].update(lista_botones)
             ayudas = lista_botones.copy()
-        
+            #actualiza Temporizador
+            tiempo_jugado = tiempo_jugado + tiempo_transcurrido
+            tiempo_inicial = time.time()
+            main_window['-COUNTDOWN-'].update(F'Quedan: {fp.actualizar_temporizador(tiempo_por_ronda, tiempo_inicial)} segundos')
+
         # -------------[ AYUDA ]------------
         if event == "-AYUDA-":  #agrego ayuda
             layout = [   
@@ -264,6 +274,10 @@ def main(dificultad, nombre_usuario, con_ayuda):
             main_window['-INPUT4-'].update(lista_botones[3])
             main_window['-INPUT5-'].update(lista_botones[4])
             ayudas = lista_botones.copy()
+            #actualiza Temporizador
+            tiempo_jugado = tiempo_jugado + tiempo_transcurrido
+            tiempo_inicial = time.time()
+            main_window['-COUNTDOWN-'].update(F'Quedan: {fp.actualizar_temporizador(tiempo_por_ronda, tiempo_inicial)} segundos')
 
         # -------------[ ABANDONAR JUEGO ]-------------
         if (event == '-ABANDONAR-') and sg.Popup('¿Desea Abandonar el Juego?', 
@@ -272,6 +286,43 @@ def main(dificultad, nombre_usuario, con_ayuda):
             main_window.close()
             #agregar_alatabla(fp.acumular_puntos(total_respuestas),
             #                nombre_usuario[1], dificultad["-DIFI-"])
+         # --------------------------------------------[ TIEMPO AGOTADO ]--------------------------------------
+
+        if (tiempo_restante == 0) and len(total_respuestas) != int(nivel_de_dificultad['rondas']):
+            total_respuestas[i] = int(restar_puntos)
+            i += 1 
+            linea = (f"PREGUNTA {i} : - {restar_puntos} puntos (Pasó)"+"\n")
+            respuestas = (f"{respuestas} {linea}""\n")
+            main_window['-ANSWERS OUTPUT-'].update(respuestas)
+
+            lista = random.choice(filas_de_dataset)
+            respuesta_correcta = (lista[5])
+            # Actualizo lista de opciones:
+            opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta)
+
+            tiempo_inicial = time.time()
+            lista = random.choice(filas_de_dataset)
+            respuesta_correcta = (lista[5])
+            opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta)
+
+            main_window['-OPTIONS-'].update(fp.mostrar_caracteristicas(filas_de_dataset, lista, cant_caracteristicas))
+            
+            # Actualizo Botones:
+            lista_botones = fp.asignar_valores_botones(opciones)
+            # Actualizo ventana botones:  
+            main_window['-INPUT1-'].update(lista_botones[0]) 
+            main_window['-INPUT2-'].update(lista_botones[1])
+            main_window['-INPUT3-'].update(lista_botones[2])
+            main_window['-INPUT4-'].update(lista_botones[3])
+            main_window['-INPUT5-'].update(lista_botones[4])
+            #Actualizo el Countdown:
+            tiempo_jugado = tiempo_jugado + tiempo_transcurrido
+            main_window['-COUNTDOWN-'].update(F'Quedan: {fp.actualizar_temporizador(tiempo_por_ronda, tiempo_inicial)} segundos')
+    
+        # -----------------------------------------[ ACTUALIZAR TIEMPO ]----------------------------------------
+        tiempo_transcurrido = int(time.time() - tiempo_inicial)
+        tiempo_restante = (int(nivel_de_dificultad['tiempo'])- tiempo_transcurrido)
+        main_window['-COUNTDOWN-'].update(F'Quedan: {tiempo_restante} segundos')         
     main_window.close()
 
 #---------------------------------------------------------

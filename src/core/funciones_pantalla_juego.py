@@ -1,5 +1,6 @@
 import os
 import random
+import time
 import PySimpleGUI as sg
 import pandas as pd
 
@@ -256,14 +257,16 @@ def crear_layout_dificultad(dificultad, nivel):
        :returns: list
     """
     t = int(nivel['tiempo'])
+
+    """
     mins = t // 60
     secs = t % 60
     timer = '{:02d}:{:02d}'.format(mins, secs) # {:02d} sintaxis de formato para 00 minutos : 00 segundos
-
+    """ 
     dif_frame_layout = [
         [sg.Text('Dificultad: '+ dificultad.upper())],
         [sg.Text('Cantidad de Rondas: '+ str(nivel['rondas']))],
-        [sg.Text('Tiempo Restante: '+ timer, key = '-TIMER-')],
+        [sg.Text('', key = '-COUNTDOWN-')],
     ]
     return dif_frame_layout
 
@@ -287,7 +290,7 @@ def crear_layout_respuestas(nombre_usuario, respuestas):
     """
     respuestas_frame_layout = [
         [sg.Text('usuario: '+ nombre_usuario.upper())],
-        [sg.Multiline(respuestas, size=(80,20), disabled = True, background_color = "#65778d",
+        [sg.Multiline(respuestas, size=(80,18), disabled = True, background_color = "#65778d",
         text_color = 'white', key = '-ANSWERS OUTPUT-' )],
         [sg.Button('ABANDONAR JUEGO', key = '-ABANDONAR-')]
     ] 
@@ -402,13 +405,13 @@ def crear_pantalla(pantalla_categoria, pantalla_dificultad, pantalla_respuestas,
     layout = [
         # row 1:
         [
-        sg.Frame('', pantalla_categoria, font='Any 12', title_color='white', size=(350,150)), 
-        sg.Frame('', pantalla_dificultad, font='Any 12', title_color='white', size=(350,150))
+        sg.Frame('', pantalla_categoria, font='Any 12', title_color='white', size=(350,140)), 
+        sg.Frame('', pantalla_dificultad, font='Any 12', title_color='white', size=(350,140))
         ],
         # row 2:
         [
-        sg.Frame('', pantalla_respuestas, font='Any 12', title_color='white', size=(350,400)),
-        sg.Frame('', pantalla_opciones, font='Any 12', title_color='white', size=(350,400))
+        sg.Frame('', pantalla_respuestas, font='Any 12', title_color='white', size=(350,360)),
+        sg.Frame('', pantalla_opciones, font='Any 12', title_color='white', size=(350,360))
         ]
     ]
 
@@ -420,6 +423,12 @@ def crear_pantalla(pantalla_categoria, pantalla_dificultad, pantalla_respuestas,
         header=False,encoding='utf-8')
 
 
-    window = sg.Window("Pantalla de Juego", layout, margins=(90,60))
+    window = sg.Window("Pantalla de Juego", layout)
     return window
 
+# ------------------------------------- [TEMPORIZADOR] -------------------------------------
+
+def actualizar_temporizador(tiempo_total, tiempo_inicial):
+    tiempo_transcurrido = int(time.time() - tiempo_inicial)
+    tiempo_restante = (tiempo_total- tiempo_transcurrido)
+    return int(tiempo_restante)
