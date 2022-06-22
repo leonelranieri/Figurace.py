@@ -267,6 +267,7 @@ def crear_layout_dificultad(dificultad, nivel):
         [sg.Text('Dificultad: '+ dificultad.upper())],
         [sg.Text('Cantidad de Rondas: '+ str(nivel['rondas']))],
         [sg.Text('', key = '-COUNTDOWN-')],
+        [sg.Button('COMENZAR', key = '-START-')]
     ]
     return dif_frame_layout
 
@@ -318,22 +319,16 @@ def crear_layout_opciones(opciones, filas_dataset, lista_seleccionada, caracteri
     """
     botones = asignar_valores_botones(opciones)
 
-    boton1 = botones[0]
-    boton2 = botones[1]
-    boton3 = botones[2]
-    boton4 = botones[3]
-    boton5 = botones[4]
-
     opciones_frame_layout = [
         [sg.Text('características: '.upper())], 
         [sg.Text(mostrar_caracteristicas(filas_dataset, lista_seleccionada, cant_caracteristicas), 
-                key='-OPTIONS-')],
+                visible=False, key='-OPTIONS-')],
         [sg.Text('Característica a Adivinar: '  + caracteristica_a_adivinar)],
-        [sg.Button(boton1, key='-INPUT1-')],
-        [sg.Button(boton2, key='-INPUT2-')],
-        [sg.Button(boton3, key='-INPUT3-')],
-        [sg.Button(boton4, key='-INPUT4-')],
-        [sg.Button(boton5, key='-INPUT5-')],
+        [sg.Button(botones[0],visible=False, key='-INPUT1-')],
+        [sg.Button(botones[1],visible=False, key='-INPUT2-')],
+        [sg.Button(botones[2],visible=False, key='-INPUT3-')],
+        [sg.Button(botones[3],visible=False, key='-INPUT4-')],
+        [sg.Button(botones[4],visible=False, key='-INPUT5-')],
         [sg.Button('OK'), sg.Button('PASAR >'), sg.Button('AYUDA', key="-AYUDA-")]#agrego ayuda
     ]
     return opciones_frame_layout
@@ -358,23 +353,17 @@ def crear_layout_opciones_sin_ayuda(opciones, filas_dataset, lista_seleccionada,
         :returns: List
     """
     botones = asignar_valores_botones(opciones)
-    
-    boton1 = botones[0]
-    boton2 = botones[1]
-    boton3 = botones[2]
-    boton4 = botones[3]
-    boton5 = botones[4]
 
     opciones_frame_layout = [
         [sg.Text('características: '.upper())], 
         [sg.Text(mostrar_caracteristicas(filas_dataset, lista_seleccionada, cant_caracteristicas), 
-                key='-OPTIONS-')],
+                visible=False, key='-OPTIONS-')],
         [sg.Text('Característica a Adivinar: '  + caracteristica_a_adivinar)],
-        [sg.Button(boton1, key='-INPUT1-')],
-        [sg.Button(boton2, key='-INPUT2-')],
-        [sg.Button(boton3, key='-INPUT3-')],
-        [sg.Button(boton4, key='-INPUT4-')],
-        [sg.Button(boton5, key='-INPUT5-')],
+        [sg.Button(botones[0],visible=False, key='-INPUT1-')],
+        [sg.Button(botones[1],visible=False, key='-INPUT2-')],
+        [sg.Button(botones[2],visible=False, key='-INPUT3-')],
+        [sg.Button(botones[3],visible=False, key='-INPUT4-')],
+        [sg.Button(botones[4],visible=False, key='-INPUT5-')],
         [sg.Button('OK'), sg.Button('PASAR >')]#agrego ayuda
         ]
     return opciones_frame_layout
@@ -413,6 +402,7 @@ def crear_pantalla(pantalla_categoria, pantalla_dificultad, pantalla_respuestas,
         sg.Frame('', pantalla_respuestas, font='Any 12', title_color='white', size=(350,360)),
         sg.Frame('', pantalla_opciones, font='Any 12', title_color='white', size=(350,360))
         ]
+
     ]
 
     def generar_datos_partida(partida_actual):
@@ -430,5 +420,5 @@ def crear_pantalla(pantalla_categoria, pantalla_dificultad, pantalla_respuestas,
 
 def actualizar_temporizador(tiempo_total, tiempo_inicial):
     tiempo_transcurrido = int(time.time() - tiempo_inicial)
-    tiempo_restante = (int(tiempo_total)- tiempo_transcurrido)
+    tiempo_restante = (tiempo_total- tiempo_transcurrido)
     return int(tiempo_restante)

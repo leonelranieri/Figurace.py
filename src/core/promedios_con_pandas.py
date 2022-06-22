@@ -25,15 +25,7 @@ def control_archivos():
     return tabla_promedios, data_frame
 
 def generar_tabla_de_promedios():
-    """
-    Genera una tabla con todos los promedios.
-
-    Además de retornar una tabla con los promedios,
-    genera un archivo csv donde persisten los datos.
-    """
     tabla_promedios, data_frame = control_archivos()
-    #promedios = pd.DataFrame()
-
     if not data_frame.empty:
         promedios = data_frame.copy()
 
@@ -60,10 +52,7 @@ def generar_tabla_de_promedios():
     return promedios
 
 def promedio_por_dificultad(dificultad):
-    """
-    Retorna una tabla (DataFrame) con todos los promedios de una determinada dificultad
-    recibida como parámetro.
-    """    
+    
     tabla_promedios = generar_tabla_de_promedios()
 
     if not tabla_promedios.empty:
@@ -76,9 +65,7 @@ def promedio_por_dificultad(dificultad):
         return tabla_promedios
 
 def promedio_por_usuario(usuario='señor x'):
-    """
-    Retorna una tabla (DataFrame) con todos los promedios de una determinado usuario.
-    """    
+    
     tabla_promedios = generar_tabla_de_promedios()
 
     if not tabla_promedios.empty:
@@ -91,9 +78,6 @@ def promedio_por_usuario(usuario='señor x'):
         return tabla_promedios
 
 def generar_lista(dificultad):
-    """
-    Retorna una lista con datos de promedios y usuarios de una 
-    dificultad recibida como parámetro."""
     tabla_promedios = promedio_por_dificultad(dificultad)
     usuarios =  tabla_promedios.usuario.tolist()
     promedios =  tabla_promedios.promedio.tolist()
@@ -103,25 +87,18 @@ def generar_lista(dificultad):
 
 
 def ordenar_datos(dificultad='facil'):
-    """Ordena los datos de forma tal que coincidan con el 
-    formato de las estructuras de la ventana."""
     datos = generar_lista(dificultad)
-    #datos = sorted(datos, key=lambda x:x[1], reverse=True)
+    datos = sorted(datos, key=lambda x:x[1], reverse=True)
 
     datos_ordenados = []
-    for elem in datos:
-        datos_ordenados.append(elem)
-        datos_ordenados = sorted(datos_ordenados, key=lambda x:x[1], reverse=True)
-
-    for i, elem in enumerate(datos_ordenados, start=1):
+    for i, elem in enumerate(datos, start=1):
         indice = [i]
         elem = list(elem)
         elem = indice + elem
         datos_ordenados.append(elem)
+        datos_ordenados = sorted(datos_ordenados, key=lambda x:x[1], reverse=True)
     
     if len(datos_ordenados) > 20:
         datos_ordenados = datos_ordenados[0:19]
 
     return datos_ordenados
-
-print(ordenar_datos())
