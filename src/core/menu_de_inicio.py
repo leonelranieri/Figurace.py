@@ -4,6 +4,7 @@ import configuracion as config
 import jugadores
 import puntajes as tabla_puntajes
 import pantalla_de_juego as pj
+import os
 
 def preparar_menu(nombres, dificultad):
     """
@@ -19,7 +20,8 @@ def preparar_menu(nombres, dificultad):
                         [sg.Button("Perfil", key=("-PERFIL-"))],
                         [sg.Button("Salir", key=("-SALIR-"))],
                         [sg.Combo(nombres, default_value=nombres, s=(13,1), key=("-USERS-")), 
-                            sg.Combo(dificultad, default_value=dificultad, s=(13,1), key=("-DIFI-"))]
+                            sg.Combo(dificultad, default_value=dificultad, s=(13,1), key=("-DIFI-"))],
+                        [sg.Check("Jugar con ayuda", key=("-AYUDA-"))]    
 ]
 
     layout = [[sg.Frame("FIGURACE", frame_layout, font="Any 25", title_color="DarkBlue")]]
@@ -51,6 +53,7 @@ def ventana_de_inicio(perfiles, nivel):
 
     while True:       
         event, values = window.read()
+        ayuda = values["-AYUDA-"] 
         
         if (event == sg.WIN_CLOSE_ATTEMPTED_EVENT or event == "-SALIR-") and sg.popup_yes_no("¿Realmente desea salir?", no_titlebar=True, keep_on_top=True) == "Yes":
             break
@@ -60,7 +63,11 @@ def ventana_de_inicio(perfiles, nivel):
             elif values["-USERS-"][0] == "{" or values["-USERS-"] == "elija el usuario":
                 sg.popup("seleccione un usuario")
             else:
-                pj.main(values, values["-USERS-"])
+                #función para mostrar ventana con ayuda
+                try:
+                    pj.main(values, values["-USERS-"], ayuda)
+                except UnboundLocalError:
+                    pj.main(values, values["-USERS-"])
         elif event == "-CONFIGURACION-":
             config.main()
             nivel = config.carga_config()
@@ -70,7 +77,7 @@ def ventana_de_inicio(perfiles, nivel):
             hubo_registro, perfiles = perfil.usuario(perfiles)
             if hubo_registro:
                 nombres, dificultad = datos()
-                window["-USERS-"].update(value=nombres, values=nombres)
+                window["-USERS-"].update(value=nombres, values=nombres)       
 
     window.close()
 #--------------------------------------------------------------------------------

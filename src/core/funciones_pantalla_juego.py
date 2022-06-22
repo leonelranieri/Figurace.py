@@ -1,17 +1,24 @@
 import os
 import random
+import time
 import PySimpleGUI as sg
 import pandas as pd
 
-def acumular_puntos(diccionario, ayuda, dificultad):
+def acumular_puntos(diccionario, ayuda, dificultad, con_ayuda):
     total = 0
-    if dificultad == "normal":
-        ayuda = ayuda + 1
-    elif dificultad == "dificil":
-        ayuda = ayuda + 2
-    for elem in diccionario.values():
+    if con_ayuda:
+        if dificultad == "normal":
+            ayuda = ayuda + 1
+        elif dificultad == "dificil":
+            ayuda = ayuda + 2
+        for elem in diccionario.values():
             total = total + elem
-    return total - ayuda
+        total = total -ayuda
+    else:
+        for elem in diccionario.values():
+            total = total + elem
+    
+    return total
 
 def mostrar_caracteristicas(filas_de_dataset, lista_seleccionada, cant_caracteristicas):
     """ 
@@ -250,14 +257,16 @@ def crear_layout_dificultad(dificultad, nivel):
        :returns: list
     """
     t = int(nivel['tiempo'])
+
+    """
     mins = t // 60
     secs = t % 60
     timer = '{:02d}:{:02d}'.format(mins, secs) # {:02d} sintaxis de formato para 00 minutos : 00 segundos
-
+    """ 
     dif_frame_layout = [
         [sg.Text('Dificultad: '+ dificultad.upper())],
         [sg.Text('Cantidad de Rondas: '+ str(nivel['rondas']))],
-        [sg.Text('Tiempo Restante: '+ timer, key = '-TIMER-')],
+        [sg.Text('', key = '-COUNTDOWN-')],
     ]
     return dif_frame_layout
 
@@ -281,7 +290,7 @@ def crear_layout_respuestas(nombre_usuario, respuestas):
     """
     respuestas_frame_layout = [
         [sg.Text('usuario: '+ nombre_usuario.upper())],
-        [sg.Multiline(respuestas, size=(80,20), disabled = True, background_color = "#65778d",
+        [sg.Multiline(respuestas, size=(80,18), disabled = True, background_color = "#65778d",
         text_color = 'white', key = '-ANSWERS OUTPUT-' )],
         [sg.Button('ABANDONAR JUEGO', key = '-ABANDONAR-')]
     ] 
@@ -329,6 +338,46 @@ def crear_layout_opciones(opciones, filas_dataset, lista_seleccionada, caracteri
     ]
     return opciones_frame_layout
 
+def crear_layout_opciones_sin_ayuda(opciones, filas_dataset, lista_seleccionada, caracteristica_a_adivinar, cant_caracteristicas):
+    """
+        crea el frame donde frame donde aparecerán las caracteristicas que servirán como pista para el usuario
+        y las opciones disponibes en los botones.
+
+        :param filas_de_dataset: Listas de cada lista (Fila) del Dataset
+        :type filas_de_dataset: List
+
+        :param lista_seleccionada: Listas Elegida del Dataset
+        :type filas_de_dataset: List
+
+        :param caracteristica_a_adivinar: string a adivinar por el usuario
+        :type caracteristica_a_adivinar: string
+
+        :param cant_caracteristicas: Cantidad de carateristicas a mostrar.
+        :type cant_caracteristicas: int
+
+        :returns: List
+    """
+    botones = asignar_valores_botones(opciones)
+    
+    boton1 = botones[0]
+    boton2 = botones[1]
+    boton3 = botones[2]
+    boton4 = botones[3]
+    boton5 = botones[4]
+
+    opciones_frame_layout = [
+        [sg.Text('características: '.upper())], 
+        [sg.Text(mostrar_caracteristicas(filas_dataset, lista_seleccionada, cant_caracteristicas), 
+                key='-OPTIONS-')],
+        [sg.Text('Característica a Adivinar: '  + caracteristica_a_adivinar)],
+        [sg.Button(boton1, key='-INPUT1-')],
+        [sg.Button(boton2, key='-INPUT2-')],
+        [sg.Button(boton3, key='-INPUT3-')],
+        [sg.Button(boton4, key='-INPUT4-')],
+        [sg.Button(boton5, key='-INPUT5-')],
+        [sg.Button('OK'), sg.Button('PASAR >')]#agrego ayuda
+        ]
+    return opciones_frame_layout
 # ------------------------------------- [VENTANA PRINCIPAL DEL JUEGO] -------------------------------------
 
 def crear_pantalla(pantalla_categoria, pantalla_dificultad, pantalla_respuestas, pantalla_opciones):
@@ -356,13 +405,13 @@ def crear_pantalla(pantalla_categoria, pantalla_dificultad, pantalla_respuestas,
     layout = [
         # row 1:
         [
-        sg.Frame('', pantalla_categoria, font='Any 12', title_color='white', size=(350,150)), 
-        sg.Frame('', pantalla_dificultad, font='Any 12', title_color='white', size=(350,150))
+        sg.Frame('', pantalla_categoria, font='Any 12', title_color='white', size=(350,140)), 
+        sg.Frame('', pantalla_dificultad, font='Any 12', title_color='white', size=(350,140))
         ],
         # row 2:
         [
-        sg.Frame('', pantalla_respuestas, font='Any 12', title_color='white', size=(350,400)),
-        sg.Frame('', pantalla_opciones, font='Any 12', title_color='white', size=(350,400))
+        sg.Frame('', pantalla_respuestas, font='Any 12', title_color='white', size=(350,360)),
+        sg.Frame('', pantalla_opciones, font='Any 12', title_color='white', size=(350,360))
         ]
     ]
 
@@ -374,6 +423,12 @@ def crear_pantalla(pantalla_categoria, pantalla_dificultad, pantalla_respuestas,
         header=False,encoding='utf-8')
 
 
-    window = sg.Window("Pantalla de Juego", layout, margins=(90,60))
+    window = sg.Window("Pantalla de Juego", layout)
     return window
 
+# ------------------------------------- [TEMPORIZADOR] -------------------------------------
+
+def actualizar_temporizador(tiempo_total, tiempo_inicial):
+    tiempo_transcurrido = int(time.time() - tiempo_inicial)
+    tiempo_restante = (int(tiempo_total)- tiempo_transcurrido)
+    return int(tiempo_restante)
