@@ -1,4 +1,4 @@
-import csv, os
+import os
 import PySimpleGUI as sg
 from promedios_con_pandas import ordenar_datos as ordenar
 import pandas as pd

@@ -33,4 +33,13 @@ def carga_de_datos(perfiles):
         json.dump(usuarios, salida)
     salida.close()
 
-#apertura_de_archivo()
+def carga_analisy():
+    archivo = os.path.join(os.getcwd(), "data", "jugadores.json")
+
+    try:
+        with open(archivo, "r", encoding="utf-8") as entrada:
+            usuarios = json.load(entrada)
+    except FileNotFoundError:
+        usuarios = {}
+
+    return usuarios

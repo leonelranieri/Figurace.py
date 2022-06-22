@@ -87,7 +87,7 @@ def ventana_principal():
     dificultad = config.carga_config()   
     ventana_de_inicio(perfiles, dificultad)
 
-#ventana_principal()
+
 
 
 

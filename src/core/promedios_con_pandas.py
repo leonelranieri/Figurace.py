@@ -1,4 +1,3 @@
-from operator import ge
 import pandas as pd
 import os
 
@@ -35,11 +34,10 @@ def generar_tabla_de_promedios():
     #promedios = pd.DataFrame()
 
     if not data_frame.empty:
-        promedios = data_frame.copy()
 
         #pasar a lista
-        partidas_jugadas = promedios.groupby(["usuario", "dificultad"])["puntaje"].count()
-        puntos_por_jugador = promedios.groupby(["usuario", "dificultad"])["puntaje"].sum()
+        partidas_jugadas = data_frame.groupby(["usuario", "dificultad"])["puntaje"].count()
+        puntos_por_jugador = data_frame.groupby(["usuario", "dificultad"])["puntaje"].sum()
 
         #puntajes_gral = pd.merge(partidas_jugadas, puntos_por_jugador,  on=('usuario', 'dificultad'))
         usuarios = [elemento[0] for elemento in list(partidas_jugadas.index)]
@@ -70,12 +68,12 @@ def promedio_por_dificultad(dificultad):
         tabla_promedios =  tabla_promedios.drop(['partidas jugadas'], axis=1)
         tabla_promedios =  tabla_promedios.drop(['puntos acumulados'], axis=1)
 
-        tabla_promedios = tabla_promedios[tabla_promedios['dificultad'] == dificultad]
+        tabla_promedios = tabla_promedios.loc[tabla_promedios['dificultad'] == dificultad]
 
         #print(tabla_promedios)
         return tabla_promedios
 
-def promedio_por_usuario(usuario='señor x'):
+def promedio_por_usuario(usuario):
     """
     Retorna una tabla (DataFrame) con todos los promedios de una determinado usuario.
     """    
@@ -85,7 +83,7 @@ def promedio_por_usuario(usuario='señor x'):
         tabla_promedios =  tabla_promedios.drop(['partidas jugadas'], axis=1)
         tabla_promedios =  tabla_promedios.drop(['puntos acumulados'], axis=1)
 
-        tabla_promedios = tabla_promedios[tabla_promedios['usuario'] == usuario]
+        tabla_promedios = tabla_promedios.loc[tabla_promedios['usuario'] == usuario]
 
         #print(tabla_promedios)
         return tabla_promedios
@@ -102,9 +100,10 @@ def generar_lista(dificultad):
     return union 
 
 
-def ordenar_datos(dificultad='facil'):
+def ordenar_datos(dificultad):
     """Ordena los datos de forma tal que coincidan con el 
     formato de las estructuras de la ventana."""
+
     datos = generar_lista(dificultad)
     #datos = sorted(datos, key=lambda x:x[1], reverse=True)
 
@@ -112,16 +111,15 @@ def ordenar_datos(dificultad='facil'):
     for elem in datos:
         datos_ordenados.append(elem)
         datos_ordenados = sorted(datos_ordenados, key=lambda x:x[1], reverse=True)
-
+    
+    nueva = []
     for i, elem in enumerate(datos_ordenados, start=1):
         indice = [i]
-        elem = list(elem)
-        elem = indice + elem
-        datos_ordenados.append(elem)
+        indice.extend(elem)
+        nueva.append(indice)
     
-    if len(datos_ordenados) > 20:
-        datos_ordenados = datos_ordenados[0:19]
+    if len(nueva) > 20:
+        nueva = nueva[0:19]
 
-    return datos_ordenados
+    return nueva
 
-print(ordenar_datos())
