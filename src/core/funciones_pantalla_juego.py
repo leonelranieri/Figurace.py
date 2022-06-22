@@ -430,5 +430,5 @@ def crear_pantalla(pantalla_categoria, pantalla_dificultad, pantalla_respuestas,
 
 def actualizar_temporizador(tiempo_total, tiempo_inicial):
     tiempo_transcurrido = int(time.time() - tiempo_inicial)
-    tiempo_restante = (tiempo_total- tiempo_transcurrido)
+    tiempo_restante = (int(tiempo_total)- tiempo_transcurrido)
     return int(tiempo_restante)

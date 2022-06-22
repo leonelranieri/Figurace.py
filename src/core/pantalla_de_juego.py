@@ -231,6 +231,9 @@ def main(dificultad, nombre_usuario, con_ayuda):
                             sg.PopupQuickMessage("SE QUEDO SIN AYUDAS")
                 except ValueError:     
                     pass
+            tiempo_jugado = tiempo_jugado + tiempo_transcurrido
+            tiempo_inicial = time.time()
+            main_window['-COUNTDOWN-'].update(F'Quedan: {fp.actualizar_temporizador(tiempo_por_ronda, tiempo_inicial)} segundos')
         # -------------[ OK ]-------------
 
         elif event == 'OK':
