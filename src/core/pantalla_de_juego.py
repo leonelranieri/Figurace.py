@@ -67,6 +67,7 @@ def main(dificultad, nombre_usuario, con_ayuda):
     else:
         frame_opciones = fp.crear_layout_opciones_sin_ayuda(opciones, filas_de_dataset,
                 lista_seleccionada,caracteristica_a_adivinar, cant_caracteristicas)
+
 # ------------------------------------- [PANTALLA PRINCIPAL] -------------------------------------
     main_window = fp.crear_pantalla(frame_categoria,frame_dificultad,frame_respuestas,frame_opciones)
 # ------------------------------------- [EVENT LOOP] -------------------------------------
@@ -74,123 +75,158 @@ def main(dificultad, nombre_usuario, con_ayuda):
     respuesta_seleccionada = ''
     i = 0
     ayuda = 0
-    tiempo_inicial = time.time()
-    tiempo_por_ronda = nivel_de_dificultad['tiempo']
-    tiempo_transcurrido = int(time.time() - tiempo_inicial)
-    tiempo_restante = (int(nivel_de_dificultad['tiempo'])- tiempo_transcurrido)
-    tiempo_jugado = 0
 
     while True:
-        event,value = main_window.read(timeout=100)
-    
+        event,value = main_window.read()
+
         if event == sg.WIN_CLOSED or event == "ABANDONAR EL JUEGO":
             break
-
-        # -------------[ SELECTOR DE COLOR DE INPUT ]-------------
         
-        elif event == '-INPUT1-':
-            respuesta_seleccionada = frame_opciones[3][0].GetText()
-            main_window['-INPUT1-'].update(button_color=('black','light blue'))
-            main_window['-INPUT2-'].update(button_color=('black', color_original))
-            main_window['-INPUT3-'].update(button_color=('black', color_original))
-            main_window['-INPUT4-'].update(button_color=('black', color_original))
-            main_window['-INPUT5-'].update(button_color=('black', color_original))
-        
-        elif event == '-INPUT2-':
-            respuesta_seleccionada = frame_opciones[4][0].GetText()
-            main_window['-INPUT1-'].update(button_color=('black', color_original))
-            main_window['-INPUT2-'].update(button_color=('black','light blue'))
-            main_window['-INPUT3-'].update(button_color=('black', color_original))
-            main_window['-INPUT4-'].update(button_color=('black', color_original))
-            main_window['-INPUT5-'].update(button_color=('black', color_original))
-
-        elif event == '-INPUT3-':
-            respuesta_seleccionada = frame_opciones[5][0].GetText()
-            main_window['-INPUT1-'].update(button_color=('black', color_original))
-            main_window['-INPUT2-'].update(button_color=('black', color_original))
-            main_window['-INPUT3-'].update(button_color=('black','light blue'))
-            main_window['-INPUT4-'].update(button_color=('black', color_original))
-            main_window['-INPUT5-'].update(button_color=('black', color_original))
-
-        elif event == '-INPUT4-':
-            respuesta_seleccionada = frame_opciones[6][0].GetText()
-            main_window['-INPUT1-'].update(button_color=('black', color_original))
-            main_window['-INPUT2-'].update(button_color=('black', color_original))
-            main_window['-INPUT3-'].update(button_color=('black', color_original))
-            main_window['-INPUT4-'].update(button_color=('black','light blue'))
-            main_window['-INPUT5-'].update(button_color=('black', color_original))
-
-        elif event == '-INPUT5-':
-            respuesta_seleccionada = frame_opciones[7][0].GetText()
-            main_window['-INPUT1-'].update(button_color=('black', color_original))
-            main_window['-INPUT2-'].update(button_color=('black', color_original))
-            main_window['-INPUT3-'].update(button_color=('black', color_original))
-            main_window['-INPUT4-'].update(button_color=('black', color_original))
-            main_window['-INPUT5-'].update(button_color=('black','light blue'))
-
-        # -------------[ PASAR ]-------------
-
-        elif event == 'PASAR >':
-            total_respuestas[i] = int(restar_puntos) * -1
-            i += 1 
-            linea = (f"PREGUNTA {i} : - {restar_puntos} puntos (Pasó)"+"\n") 
-            respuestas = (f"{respuestas} {linea}""\n")
-            main_window['-ANSWERS OUTPUT-'].update(respuestas)
-
-            lista = random.choice(filas_de_dataset)
-            respuesta_correcta = (lista[5])
-            # Actualizo lista de opciones:
-            opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta)
-            ayudas = opciones.copy()
-            # Fin de ronda
-            #print(con_ayuda)
-            if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
-                agregar_alatabla(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda),
-                                    nombre_usuario[1], dificultad["-DIFI-"])
-                sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '
-                        + str(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda)),
-                        custom_text = ('Volver a Jugar', 'Salir del Juego')
-                            , keep_on_top=True)
-                if event == 'Salir del Juego':
-                    break 
-                break
-            
-            # Actualiza Tarjeta: 
-            main_window['-OPTIONS-'].update(fp.mostrar_caracteristicas(filas_de_dataset, lista, cant_caracteristicas))
-            # Actualizo Botones:
-            lista_botones = fp.asignar_valores_botones(opciones)
-            # Actualizo ventana botones:  
-            main_window['-INPUT1-'].update(lista_botones[0]) 
-            main_window['-INPUT2-'].update(lista_botones[1])
-            main_window['-INPUT3-'].update(lista_botones[2])
-            main_window['-INPUT4-'].update(lista_botones[3])
-            main_window['-INPUT5-'].update(lista_botones[4])
-            #main_window['-AYUDA-'].update(lista_botones)
-            ayudas = lista_botones.copy()
-            #actualiza Temporizador
-            tiempo_jugado = tiempo_jugado + tiempo_transcurrido
+        if event == '-START-':
             tiempo_inicial = time.time()
-            main_window['-COUNTDOWN-'].update(F'Quedan: {fp.actualizar_temporizador(tiempo_por_ronda, tiempo_inicial)} segundos')
+            tiempo_por_ronda = nivel_de_dificultad['tiempo']
+            tiempo_transcurrido = float(time.time() - tiempo_inicial)
+            tiempo_restante = (int(nivel_de_dificultad['tiempo'])- tiempo_transcurrido)
+            tiempo_jugado = 0
+            #Mostrar caracteristicas y opciones
+            main_window['-OPTIONS-'].update(visible=True)
+            main_window['-INPUT1-'].update(visible=True)
+            main_window['-INPUT2-'].update(visible=True)
+            main_window['-INPUT3-'].update(visible=True)
+            main_window['-INPUT4-'].update(visible=True)
+            main_window['-INPUT5-'].update(visible=True)
 
-        # -------------[ AYUDA ]------------
-        if event == "-AYUDA-":  #agrego ayuda
-            layout = [   
-                [sg.Button("Seguir", key="-SEGUIR-")], 
-                [sg.Button("Salir", key="-SALIR-")]
-            ]
-            ventana = sg.Window("ventana de ayuda", layout, margins=(30,30))
+            while True:
+                event,value = main_window.read(timeout=100)
+
+                if event == sg.WIN_CLOSED or event == "ABANDONAR EL JUEGO":
+                    break
+            # -------------[ SELECTOR DE COLOR DE INPUT ]-------------
             
-            if not ayuda:
-                sg.Popup("SOLO PUEDE SOLICITAR DOS AYUDAS POR PARTIDA.\n"
-                " RECUERDE QUE SE LE DESCONTARA 1 PUNTO POR CADA AYUDA.\n"
-                " SI LA DIFICULTAD ELEGIDA ES 'NORMAL' SE LE DESCUENTA\n" 
-                " 1 PUNTO MÁS Y SI ES 'DÍFICIL' 2 PUNTOS MÁS.") 
-            #if ayuda == 0:   
-                while True:
-                    event, values = ventana.read()
-                    if event == "-SALIR-" or event == sg.WIN_CLOSED:
+                if event == '-INPUT1-':
+                    respuesta_seleccionada = frame_opciones[3][0].GetText()
+                    main_window['-INPUT1-'].update(button_color=('black','light blue'))
+                    main_window['-INPUT2-'].update(button_color=('black', color_original))
+                    main_window['-INPUT3-'].update(button_color=('black', color_original))
+                    main_window['-INPUT4-'].update(button_color=('black', color_original))
+                    main_window['-INPUT5-'].update(button_color=('black', color_original))
+                
+                elif event == '-INPUT2-':
+                    respuesta_seleccionada = frame_opciones[4][0].GetText()
+                    main_window['-INPUT1-'].update(button_color=('black', color_original))
+                    main_window['-INPUT2-'].update(button_color=('black','light blue'))
+                    main_window['-INPUT3-'].update(button_color=('black', color_original))
+                    main_window['-INPUT4-'].update(button_color=('black', color_original))
+                    main_window['-INPUT5-'].update(button_color=('black', color_original))
+
+                elif event == '-INPUT3-':
+                    respuesta_seleccionada = frame_opciones[5][0].GetText()
+                    main_window['-INPUT1-'].update(button_color=('black', color_original))
+                    main_window['-INPUT2-'].update(button_color=('black', color_original))
+                    main_window['-INPUT3-'].update(button_color=('black','light blue'))
+                    main_window['-INPUT4-'].update(button_color=('black', color_original))
+                    main_window['-INPUT5-'].update(button_color=('black', color_original))
+
+                elif event == '-INPUT4-':
+                    respuesta_seleccionada = frame_opciones[6][0].GetText()
+                    main_window['-INPUT1-'].update(button_color=('black', color_original))
+                    main_window['-INPUT2-'].update(button_color=('black', color_original))
+                    main_window['-INPUT3-'].update(button_color=('black', color_original))
+                    main_window['-INPUT4-'].update(button_color=('black','light blue'))
+                    main_window['-INPUT5-'].update(button_color=('black', color_original))
+
+                elif event == '-INPUT5-':
+                    respuesta_seleccionada = frame_opciones[7][0].GetText()
+                    main_window['-INPUT1-'].update(button_color=('black', color_original))
+                    main_window['-INPUT2-'].update(button_color=('black', color_original))
+                    main_window['-INPUT3-'].update(button_color=('black', color_original))
+                    main_window['-INPUT4-'].update(button_color=('black', color_original))
+                    main_window['-INPUT5-'].update(button_color=('black','light blue'))
+
+                # -------------[ PASAR ]-------------
+
+                elif event == 'PASAR >':
+                    total_respuestas[i] = int(restar_puntos) * -1
+                    i += 1 
+                    linea = (f"PREGUNTA {i} : - {restar_puntos} puntos (Pasó)"+"\n") 
+                    respuestas = (f"{respuestas} {linea}""\n")
+                    main_window['-ANSWERS OUTPUT-'].update(respuestas)
+
+                    lista = random.choice(filas_de_dataset)
+                    respuesta_correcta = (lista[5])
+                    # Actualizo lista de opciones:
+                    opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta)
+                    ayudas = opciones.copy()
+                    # Fin de ronda
+                    #print(con_ayuda)
+                    if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
+                        agregar_alatabla(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda),
+                                            nombre_usuario[1], dificultad["-DIFI-"])
+                        sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '
+                                + str(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda)),
+                                custom_text = ('Volver a Jugar', 'Salir del Juego')
+                                    , keep_on_top=True)
+                        if event == 'Salir del Juego':
+                            break 
                         break
-                    elif event == "-SEGUIR-":
+                    
+                    # Actualiza Tarjeta: 
+                    main_window['-OPTIONS-'].update(fp.mostrar_caracteristicas(filas_de_dataset, lista, cant_caracteristicas))
+                    # Actualizo Botones:
+                    lista_botones = fp.asignar_valores_botones(opciones)
+                    # Actualizo ventana botones:  
+                    main_window['-INPUT1-'].update(lista_botones[0]) 
+                    main_window['-INPUT2-'].update(lista_botones[1])
+                    main_window['-INPUT3-'].update(lista_botones[2])
+                    main_window['-INPUT4-'].update(lista_botones[3])
+                    main_window['-INPUT5-'].update(lista_botones[4])
+                    #main_window['-AYUDA-'].update(lista_botones)
+                    ayudas = lista_botones.copy()
+                    #actualiza Temporizador
+                    tiempo_jugado = tiempo_jugado + tiempo_transcurrido
+                    tiempo_inicial = time.time()
+                    main_window['-COUNTDOWN-'].update(F'Quedan: {fp.actualizar_temporizador(tiempo_por_ronda, tiempo_inicial)} segundos')
+
+                # -------------[ AYUDA ]------------
+                if event == "-AYUDA-":  #agrego ayuda
+                    layout = [   
+                        [sg.Button("Seguir", key="-SEGUIR-")], 
+                        [sg.Button("Salir", key="-SALIR-")]
+                    ]
+                    ventana = sg.Window("ventana de ayuda", layout, margins=(30,30))
+                    
+                    if not ayuda:
+                        sg.Popup("SOLO PUEDE SOLICITAR DOS AYUDAS POR PARTIDA.\n"
+                        " RECUERDE QUE SE LE DESCONTARA 1 PUNTO POR CADA AYUDA.\n"
+                        " SI LA DIFICULTAD ELEGIDA ES 'NORMAL' SE LE DESCUENTA\n" 
+                        " 1 PUNTO MÁS Y SI ES 'DÍFICIL' 2 PUNTOS MÁS.") 
+                    #if ayuda == 0:   
+                        while True:
+                            event, values = ventana.read()
+                            if event == "-SALIR-" or event == sg.WIN_CLOSED:
+                                break
+                            elif event == "-SEGUIR-":
+                                try:
+                                    opcion = random.randrange(5)
+                                    if respuesta_correcta in ayudas:
+                                        indice_correcta = ayudas.index(respuesta_correcta)
+                                        ayudas.pop(indice_correcta)
+                                        if ayuda < 2:
+                                            try:
+                                                ayuda = ayuda + 1 
+                                                sg.PopupQuickMessage("SE MOSTRARA UNA DE LAS\n" 
+                                                    " OPCIONES INCORRECTAS", ayudas[opcion],
+                                                    "SE LE DESCONTARA", ayuda, "PUNTO.\n",
+                                                    "MAS EL ADICIONAL POR DIFICULTAD.")
+                                            except IndexError:
+                                                pass
+                                        else:
+                                            sg.PopupQuickMessage("SE QUEDO SIN AYUDAS")
+                                except ValueError:     
+                                    pass   
+                            break
+                        ventana.close()
+                    else:
                         try:
                             opcion = random.randrange(5)
                             if respuesta_correcta in ayudas:
@@ -198,135 +234,111 @@ def main(dificultad, nombre_usuario, con_ayuda):
                                 ayudas.pop(indice_correcta)
                                 if ayuda < 2:
                                     try:
-                                        ayuda = ayuda + 1 
+                                        ayuda = ayuda + 1
                                         sg.PopupQuickMessage("SE MOSTRARA UNA DE LAS\n" 
                                             " OPCIONES INCORRECTAS", ayudas[opcion],
-                                            "SE LE DESCONTARA", ayuda, "PUNTO.\n",
+                                            "SE LE DESCONTARÁN", ayuda, "PUNTOS.\n",
                                             "MAS EL ADICIONAL POR DIFICULTAD.")
+                                        #ayuda = ayuda + 1
                                     except IndexError:
                                         pass
                                 else:
                                     sg.PopupQuickMessage("SE QUEDO SIN AYUDAS")
                         except ValueError:     
-                            pass   
-                    break
-                ventana.close()
-            else:
-                try:
-                    opcion = random.randrange(5)
-                    if respuesta_correcta in ayudas:
-                        indice_correcta = ayudas.index(respuesta_correcta)
-                        ayudas.pop(indice_correcta)
-                        if ayuda < 2:
-                            try:
-                                ayuda = ayuda + 1
-                                sg.PopupQuickMessage("SE MOSTRARA UNA DE LAS\n" 
-                                    " OPCIONES INCORRECTAS", ayudas[opcion],
-                                    "SE LE DESCONTARÁN", ayuda, "PUNTOS.\n",
-                                    "MAS EL ADICIONAL POR DIFICULTAD.")
-                                #ayuda = ayuda + 1
-                            except IndexError:
-                                pass
-                        else:
-                            sg.PopupQuickMessage("SE QUEDO SIN AYUDAS")
-                except ValueError:     
-                    pass
-            tiempo_jugado = tiempo_jugado + tiempo_transcurrido
-            tiempo_inicial = time.time()
-            main_window['-COUNTDOWN-'].update(F'Quedan: {fp.actualizar_temporizador(tiempo_por_ronda, tiempo_inicial)} segundos')
-        # -------------[ OK ]-------------
+                            pass
+                # -------------[ OK ]-------------
 
-        elif event == 'OK':
-            if respuesta_seleccionada == respuesta_correcta:
-                total_respuestas[i] = int(sumar_puntos)
-                i += 1
-                linea = (f"PREGUNTA {i}: CORRECTO!: +{sumar_puntos} puntos"+"\n")
-                respuestas = (f"{respuestas} {linea}""\n")
-                main_window['-ANSWERS OUTPUT-'].update(respuestas)
+                elif event == 'OK':
+                    if respuesta_seleccionada == respuesta_correcta:
+                        total_respuestas[i] = int(sumar_puntos)
+                        i += 1
+                        linea = (f"PREGUNTA {i}: CORRECTO!: +{sumar_puntos} puntos"+"\n")
+                        respuestas = (f"{respuestas} {linea}""\n")
+                        main_window['-ANSWERS OUTPUT-'].update(respuestas)
 
-            else:
-                total_respuestas[i] = int(restar_puntos) * -1
-                i += 1
-                linea = (f"PREGUNTA {i}: INCORRECTO! respuesta correcta:"+"\n"+f"{respuesta_correcta} : -{restar_puntos} puntos"+"\n")
-                respuestas = (f"{respuestas} {linea}""\n")
-                main_window['-ANSWERS OUTPUT-'].update(respuestas)
-                
-            lista = random.choice(filas_de_dataset)
-            respuesta_correcta = (lista[5])
-            opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta)
-            ayudas = opciones.copy()
+                    else:
+                        total_respuestas[i] = int(restar_puntos) * -1
+                        i += 1
+                        linea = (f"PREGUNTA {i}: INCORRECTO! respuesta correcta:"+"\n"+f"{respuesta_correcta} : -{restar_puntos} puntos"+"\n")
+                        respuestas = (f"{respuestas} {linea}""\n")
+                        main_window['-ANSWERS OUTPUT-'].update(respuestas)
+                        
+                    lista = random.choice(filas_de_dataset)
+                    respuesta_correcta = (lista[5])
+                    opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta)
+                    ayudas = opciones.copy()
 
-            # Fin de Ronda
-            if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
-                agregar_alatabla(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda),#agrego ayuda
-                                    nombre_usuario[1], dificultad["-DIFI-"])
-                sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '+str(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda)),
-                        custom_text = ('Volver a Jugar', 'Salir del Juego'), keep_on_top=True)
-                if event == 'Salir del Juego':
-                    break 
-                break
+                    # Fin de Ronda
+                    if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
+                        agregar_alatabla(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda),#agrego ayuda
+                                            nombre_usuario[1], dificultad["-DIFI-"])
+                        sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '+str(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda)),
+                                custom_text = ('Volver a Jugar', 'Salir del Juego'), keep_on_top=True)
+                        if event == 'Salir del Juego':
+                            break 
+                        break
+                    
+                    # Actualiza Tarjeta: 
+                    main_window['-OPTIONS-'].update(fp.mostrar_caracteristicas(filas_de_dataset, lista, cant_caracteristicas)) 
+                    # Actualizo Botones:
+                    lista_botones = fp.asignar_valores_botones(opciones)
+                    # Actualizo ventana botones:  
+                    main_window['-INPUT1-'].update(lista_botones[0]) 
+                    main_window['-INPUT2-'].update(lista_botones[1])
+                    main_window['-INPUT3-'].update(lista_botones[2])
+                    main_window['-INPUT4-'].update(lista_botones[3])
+                    main_window['-INPUT5-'].update(lista_botones[4])
+                    ayudas = lista_botones.copy()
+                    #actualiza Temporizador
+                    tiempo_jugado = tiempo_jugado + tiempo_transcurrido
+                    tiempo_inicial = time.time()
+                    main_window['-COUNTDOWN-'].update(F'Quedan: {fp.actualizar_temporizador(tiempo_por_ronda, tiempo_inicial)} segundos')
+
+                # -------------[ ABANDONAR JUEGO ]-------------
+                if (event == '-ABANDONAR-') and sg.Popup('¿Desea Abandonar el Juego?', 
+                                            custom_text = ('Abandonar', 'Continuar Jugando'), 
+                                                keep_on_top=True) == 'Abandonar':
+                    main_window.close()
+                    #agregar_alatabla(fp.acumular_puntos(total_respuestas),
+                    #                nombre_usuario[1], dificultad["-DIFI-"])
+                # --------------------------------------------[ TIEMPO AGOTADO ]--------------------------------------
+
+                if (tiempo_restante == 0) and len(total_respuestas) != int(nivel_de_dificultad['rondas']):
+                    total_respuestas[i] = int(restar_puntos)
+                    i += 1 
+                    linea = (f"PREGUNTA {i} : - {restar_puntos} puntos (Pasó)"+"\n")
+                    respuestas = (f"{respuestas} {linea}""\n")
+                    main_window['-ANSWERS OUTPUT-'].update(respuestas)
+
+                    lista = random.choice(filas_de_dataset)
+                    respuesta_correcta = (lista[5])
+                    # Actualizo lista de opciones:
+                    opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta)
+
+                    tiempo_inicial = time.time()
+                    lista = random.choice(filas_de_dataset)
+                    respuesta_correcta = (lista[5])
+                    opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta)
+
+                    main_window['-OPTIONS-'].update(fp.mostrar_caracteristicas(filas_de_dataset, lista, cant_caracteristicas))
+                    
+                    # Actualizo Botones:
+                    lista_botones = fp.asignar_valores_botones(opciones)
+                    # Actualizo ventana botones:  
+                    main_window['-INPUT1-'].update(lista_botones[0]) 
+                    main_window['-INPUT2-'].update(lista_botones[1])
+                    main_window['-INPUT3-'].update(lista_botones[2])
+                    main_window['-INPUT4-'].update(lista_botones[3])
+                    main_window['-INPUT5-'].update(lista_botones[4])
+                    #Actualizo el Countdown:
+                    tiempo_jugado = tiempo_jugado + tiempo_transcurrido
+                    main_window['-COUNTDOWN-'].update(F'Quedan: {fp.actualizar_temporizador(tiempo_por_ronda, tiempo_inicial)} segundos')
             
-            # Actualiza Tarjeta: 
-            main_window['-OPTIONS-'].update(fp.mostrar_caracteristicas(filas_de_dataset, lista, cant_caracteristicas)) 
-            # Actualizo Botones:
-            lista_botones = fp.asignar_valores_botones(opciones)
-            # Actualizo ventana botones:  
-            main_window['-INPUT1-'].update(lista_botones[0]) 
-            main_window['-INPUT2-'].update(lista_botones[1])
-            main_window['-INPUT3-'].update(lista_botones[2])
-            main_window['-INPUT4-'].update(lista_botones[3])
-            main_window['-INPUT5-'].update(lista_botones[4])
-            ayudas = lista_botones.copy()
-            #actualiza Temporizador
-            tiempo_jugado = tiempo_jugado + tiempo_transcurrido
-            tiempo_inicial = time.time()
-            main_window['-COUNTDOWN-'].update(F'Quedan: {fp.actualizar_temporizador(tiempo_por_ronda, tiempo_inicial)} segundos')
-
-        # -------------[ ABANDONAR JUEGO ]-------------
-        if (event == '-ABANDONAR-') and sg.Popup('¿Desea Abandonar el Juego?', 
-                                    custom_text = ('Abandonar', 'Continuar Jugando'), 
-                                        keep_on_top=True) == 'Abandonar':
+                # -----------------------------------------[ ACTUALIZAR TIEMPO ]----------------------------------------
+                tiempo_transcurrido = int(time.time() - tiempo_inicial)
+                tiempo_restante = (int(nivel_de_dificultad['tiempo'])- tiempo_transcurrido)
+                main_window['-COUNTDOWN-'].update(F'Quedan: {tiempo_restante} segundos')         
             main_window.close()
-            #agregar_alatabla(fp.acumular_puntos(total_respuestas),
-            #                nombre_usuario[1], dificultad["-DIFI-"])
-         # --------------------------------------------[ TIEMPO AGOTADO ]--------------------------------------
-
-        if (tiempo_restante == 0) and len(total_respuestas) != int(nivel_de_dificultad['rondas']):
-            total_respuestas[i] = int(restar_puntos)
-            i += 1 
-            linea = (f"PREGUNTA {i} : - {restar_puntos} puntos (Pasó)"+"\n")
-            respuestas = (f"{respuestas} {linea}""\n")
-            main_window['-ANSWERS OUTPUT-'].update(respuestas)
-
-            lista = random.choice(filas_de_dataset)
-            respuesta_correcta = (lista[5])
-            # Actualizo lista de opciones:
-            opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta)
-
-            tiempo_inicial = time.time()
-            lista = random.choice(filas_de_dataset)
-            respuesta_correcta = (lista[5])
-            opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta)
-
-            main_window['-OPTIONS-'].update(fp.mostrar_caracteristicas(filas_de_dataset, lista, cant_caracteristicas))
-            
-            # Actualizo Botones:
-            lista_botones = fp.asignar_valores_botones(opciones)
-            # Actualizo ventana botones:  
-            main_window['-INPUT1-'].update(lista_botones[0]) 
-            main_window['-INPUT2-'].update(lista_botones[1])
-            main_window['-INPUT3-'].update(lista_botones[2])
-            main_window['-INPUT4-'].update(lista_botones[3])
-            main_window['-INPUT5-'].update(lista_botones[4])
-            #Actualizo el Countdown:
-            tiempo_jugado = tiempo_jugado + tiempo_transcurrido
-            main_window['-COUNTDOWN-'].update(F'Quedan: {fp.actualizar_temporizador(tiempo_por_ronda, tiempo_inicial)} segundos')
-    
-        # -----------------------------------------[ ACTUALIZAR TIEMPO ]----------------------------------------
-        tiempo_transcurrido = int(time.time() - tiempo_inicial)
-        tiempo_restante = (int(nivel_de_dificultad['tiempo'])- tiempo_transcurrido)
-        main_window['-COUNTDOWN-'].update(F'Quedan: {tiempo_restante} segundos')         
-    main_window.close()
 
 #---------------------------------------------------------
 

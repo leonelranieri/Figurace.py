@@ -9,12 +9,12 @@ puntaje,usuario,dificultad
 218,señor x,normal
 217,señor x,normal
 216,señor x,normal
-215,señor x,facil
-215,señor x,facil
-215,señor x,facil
 215,señor x,normal
 215,señor x,normal
 215,señor x,normal
+215,señor x,facil
+215,señor x,facil
+215,señor x,facil
 214,señor x,normal
 213,señor x,normal
 212,señor x,normal
@@ -24,8 +24,8 @@ puntaje,usuario,dificultad
 208,señor x,normal
 207,señor x,normal
 206,señor x,normal
-205,señor x,facil
 205,señor x,normal
+205,señor x,facil
 202,señor x,normal
 150,juanchi,facil
 150,señor x,facil
@@ -53,8 +53,6 @@ puntaje,usuario,dificultad
 7,firulais,facil
 6,firulais,facil
 4,corbatita,facil
-4,pupi,normal
-3,leo,dificil
-2,corbatita,facil
-2,leo,normal
-0,juan,dificil
+3,corbatita,facil
+2,corbatita,normal
+0,corbatita,normal
