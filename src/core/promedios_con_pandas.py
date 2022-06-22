@@ -94,9 +94,7 @@ def ordenar_datos(dificultad):
     datos = sorted(datos, key=lambda x:x[1], reverse=True)
 
     datos_ordenados = []
-    for elem in datos:
-        datos_ordenados.append(elem)
-        datos_ordenados = sorted(datos_ordenados, key=lambda x:x[1], reverse=True)
+    datos_ordenados = sorted(datos, key=lambda x:x[0], reverse=True)
     
     nueva = []
     for i, elem in enumerate(datos_ordenados, start=1):
