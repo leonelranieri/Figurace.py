@@ -405,14 +405,6 @@ def crear_pantalla(pantalla_categoria, pantalla_dificultad, pantalla_respuestas,
 
     ]
 
-    def generar_datos_partida(partida_actual):
-        """Genera el log de la partidas actuales y proximas para el analisis de los datos"""
-        field_names = ['timestamp','id','evento','user','texto_ingresado','respuesta','puntaje','nivel']
-        df_partida = pd.DataFrame(partida_actual,columns=field_names)
-        df_partida.to_csv(os.path.join(os.getcwd(),"folder_csv",'log_de_partidas'),index=False,mode="a",
-        header=False,encoding='utf-8')
-
-
     window = sg.Window("Pantalla de Juego", layout)
     return window
 
@@ -422,3 +414,12 @@ def actualizar_temporizador(tiempo_total, tiempo_inicial):
     tiempo_transcurrido = int(time.time() - tiempo_inicial)
     tiempo_restante = (tiempo_total- tiempo_transcurrido)
     return int(tiempo_restante)
+
+# ------------------------------------- [DATOS DE PARTIDA] -------------------------------------
+
+def generar_datos_partida(partida_actual):
+        """Genera el log de la partidas actuales y proximas para el analisis de los datos"""
+        field_names = ['timestamp','id','evento','user','texto_ingresado','respuesta','puntaje','nivel']
+        df_partida = pd.DataFrame(partida_actual,columns=field_names)
+        df_partida.to_csv(os.path.join(os.getcwd(),"data",'log_de_partidas'),index=False,mode="a",
+        header=False,encoding='utf-8')    
