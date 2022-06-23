@@ -30,7 +30,8 @@ DEFAULT_CONFIG = {
                                 "suma" : 1, 
                                 "resta" : 3, 
                                 "cara" : 3, 
-                    }
+                    },
+                    "last_guardada" : "normal"
 }
 # Esto es para pivotear las keys
 KEY_CONFIG = {
@@ -63,6 +64,7 @@ def guarda_config(configuracion, values):
     if values:
         for key in KEY_CONFIG:
             configuracion[values["-DIFI-"][0]][key] = values[KEY_CONFIG[key]]
+        configuracion["last_guardada"] = values["-DIFI-"][0]
     
     with open(ARCHIVO_CONFIG, "w", encoding="utf-8") as salida:
         jsondump(configuracion, salida)
@@ -77,7 +79,8 @@ def crear_ventana(configuracion):
     layout = [
         [sg.Text("Configuracion", font="Any 25", pad=((10, 0), 30))],
         [sg.Text("seleccionar dificultad"),
-                sg.Listbox(choices, size=(15, len(choices)),
+                sg.Listbox(choices, default_values=configuracion["last_guardada"],
+                            size=(15, len(choices)),
                 key=("-DIFI-"), 
                 enable_events=True)
         ],
@@ -124,6 +127,11 @@ def main():
     """
     configuracion = carga_config()
     window = crear_ventana(configuracion)
+
+    for key in KEY_CONFIG:
+        window[KEY_CONFIG[key]].update(
+                configuracion[configuracion["last_guardada"]][key])
+
     while True:
         event, values = window.read()
 

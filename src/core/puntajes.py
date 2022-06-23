@@ -1,4 +1,5 @@
 import os
+from pickle import TRUE
 import PySimpleGUI as sg
 from promedios_con_pandas import ordenar_datos as ordenar
 import pandas as pd
@@ -15,7 +16,9 @@ def cargar_tabla():
     try:
         data_frame = pd.read_csv(archivo_tabla, encoding='utf-8')
     except FileNotFoundError:
-        data_frame = pd.DataFrame(columns=("puntaje", "usuario", "dificultad"))
+        data_frame = pd.DataFrame(columns=
+                    ("puntaje", "usuario", "dificultad")
+                )
         guardar_tabla(data_frame)
 
     return data_frame
@@ -37,10 +40,13 @@ def agregar_alatabla(puntos, usuario, dificultad):
         lo agrega a la tabla y luego limpia para que queden 20 en su dificultad
     """
     listabla = cargar_tabla()
-    nueva_data = pd.DataFrame(data=[[puntos, usuario, dificultad]], columns=["puntaje", "usuario", "dificultad"])
+    nueva_data = pd.DataFrame(data=[[puntos, usuario, dificultad]],
+                        columns=["puntaje", "usuario", "dificultad"]
+                    )
     listabla = pd.concat([listabla, nueva_data], ignore_index=True)
     listabla = listabla.convert_dtypes()
-    listabla.sort_values(by=["dificultad", "puntaje"], ascending=False, inplace=True)
+    listabla.sort_values(by=["dificultad", "puntaje"],
+                            ascending=False, inplace=True)
 
     guardar_tabla(listabla)
 
@@ -50,7 +56,8 @@ def cargar_data(dificultad):
         pasa los datos limpios para mostrar en pantalla.
     """
     df = cargar_tabla()
-    datos_crudos = df.loc[df["dificultad"] == dificultad, ["puntaje", "usuario"]].head(20)
+    datos_crudos = df.loc[df["dificultad"] == dificultad,
+                                ["puntaje", "usuario"]].head(20)
     datos_crudos = datos_crudos.values.tolist()
     mostrante = []
     for i, elem in enumerate(datos_crudos, start=1):
@@ -71,7 +78,9 @@ def mostrar_tabla():
     cabezal_promedio = ("Pos", "Promedio", "Usuario")
     data = []
     layout = [
-            [sg.Table(values=data,headings=cabezal_puntaje,key="-TABLA-PUNTAJE-"), sg.Table(values=data,
+            [sg.Text("Dificultad mostrante: "), sg.Text(key=("-TRUCHO-"))],
+            [sg.Table(values=data,headings=cabezal_puntaje,key="-TABLA-PUNTAJE-")
+                , sg.Table(values=data,
                     headings=cabezal_promedio, key="-TABLA-PROMEDIO-")],
             [sg.Button("Salir"),
                 sg.Button("facil"),
@@ -80,8 +89,11 @@ def mostrar_tabla():
             ]
     ]
 
-    window = sg.Window("tabla", layout,
-                        font="Any 18", margins=(100, 50))
+    window = sg.Window("Tabla", layout,
+                        font="Any 18", margins=(100, 50),finalize=TRUE)
+    window["-TABLA-PUNTAJE-"].update(cargar_data("facil"))
+    window["-TABLA-PROMEDIO-"].update(ordenar('facil'))
+    window["-TRUCHO-"].update("Facil")
 
     while True:
         event, values = window.read()
@@ -91,11 +103,13 @@ def mostrar_tabla():
         elif event == "facil":
             window["-TABLA-PUNTAJE-"].update(cargar_data("facil"))
             window["-TABLA-PROMEDIO-"].update(ordenar('facil'))
+            window["-TRUCHO-"].update("Facil")
         elif event == "normal":
             window["-TABLA-PUNTAJE-"].update(cargar_data("normal"))
             window["-TABLA-PROMEDIO-"].update(ordenar('normal'))
+            window["-TRUCHO-"].update("Normal")
         elif event == "dificil":
             window["-TABLA-PUNTAJE-"].update(cargar_data("dificil"))
             window["-TABLA-PROMEDIO-"].update(ordenar('dificil'))
-
+            window["-TRUCHO-"].update("Dificil")
     window.close()
