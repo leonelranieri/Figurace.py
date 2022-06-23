@@ -1,6 +1,7 @@
 import os
 import csv
 import random
+import uuid
 
 import time
 import PySimpleGUI as sg
@@ -25,6 +26,7 @@ def main(dificultad, nombre_usuario, con_ayuda):
 
     # Nombre de Usuario:
     nombre = nombre_usuario[1]
+    my_uuid = uuid.uuid4()
 
     # ------------------------------------- [RUTAS] -------------------------------------
 
@@ -56,6 +58,9 @@ def main(dificultad, nombre_usuario, con_ayuda):
 
     respuestas = '' 
     total_respuestas = {} # Guarda las respuestas del usuario y los correspondientes puntos de la ronda.
+
+    #Lista de datos de la partida actual:
+    partida_actual = []
 
     # ------------------------------------- [VARIABLES PARA LAYOUT VENTANA PRINCIPAL] -------------------------------------
     frame_categoria = fp.crear_layout_categoria(nombre_categoria,ruta_imagen)
@@ -337,7 +342,9 @@ def main(dificultad, nombre_usuario, con_ayuda):
                 # -----------------------------------------[ ACTUALIZAR TIEMPO ]----------------------------------------
                 tiempo_transcurrido = int(time.time() - tiempo_inicial)
                 tiempo_restante = (int(nivel_de_dificultad['tiempo'])- tiempo_transcurrido)
-                main_window['-COUNTDOWN-'].update(F'Quedan: {tiempo_restante} segundos')         
+                main_window['-COUNTDOWN-'].update(F'Quedan: {tiempo_restante} segundos')  
+                partida_actual.append({'timestamp' : tiempo_inicial, 'id' : my_uuid, 'evento' : event, 'user' : nombre,'texto_ingresado' : respuesta_seleccionada,'respuesta' : respuesta_correcta,'puntaje' : i,'nivel' : nivel_de_dificultad })
+            fp.generar_datos_partida(partida_actual)      
             main_window.close()
 
 #---------------------------------------------------------

@@ -66,7 +66,7 @@ def mostrar_tabla():
         y luego se muestran los susodichos
         al menos eso entendi del enunciado
     """
-    
+
     cabezal_puntaje = ("Pos", "Puntaje", "Usuario")
     cabezal_promedio = ("Pos", "Promedio", "Usuario")
     data = []
