@@ -89,7 +89,7 @@ def main(dificultad, nombre_usuario, con_ayuda):
         
         if event == '-START-':
             tiempo_inicial = time.time()
-            tiempo_por_ronda = nivel_de_dificultad['tiempo']
+            tiempo_por_ronda = int(nivel_de_dificultad['tiempo'])
             tiempo_transcurrido = float(time.time() - tiempo_inicial)
             tiempo_restante = (int(nivel_de_dificultad['tiempo'])- tiempo_transcurrido)
             tiempo_jugado = 0
