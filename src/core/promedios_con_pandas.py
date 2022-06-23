@@ -79,31 +79,36 @@ def promedio_por_usuario(usuario):
 
 def generar_lista(dificultad):
     tabla_promedios = promedio_por_dificultad(dificultad)
-    usuarios =  tabla_promedios.usuario.tolist()
-    promedios =  tabla_promedios.promedio.tolist()
-    union = list(zip(promedios, usuarios))
+    if not tabla_promedios.empty:
+        usuarios =  tabla_promedios.usuario.tolist()
+        promedios =  tabla_promedios.promedio.tolist()
+        union = list(zip(promedios, usuarios))
 
-    return union 
-
+        return union 
+    else:
+        return None
 
 def ordenar_datos(dificultad):
     """Ordena los datos de forma tal que coincidan con el 
     formato de las estructuras de la ventana."""
 
     datos = generar_lista(dificultad)
-    datos = sorted(datos, key=lambda x:x[1], reverse=True)
+    if datos:
+        datos = sorted(datos, key=lambda x:x[1], reverse=True)
 
-    datos_ordenados = []
-    datos_ordenados = sorted(datos, key=lambda x:x[0], reverse=True)
+        datos_ordenados = []
+        datos_ordenados = sorted(datos, key=lambda x:x[0], reverse=True)
     
-    nueva = []
-    for i, elem in enumerate(datos_ordenados, start=1):
-        indice = [i]
-        indice.extend(elem)
-        nueva.append(indice)
+        nueva = []
+        for i, elem in enumerate(datos_ordenados, start=1):
+            indice = [i]
+            indice.extend(elem)
+            nueva.append(indice)
     
-    if len(nueva) > 20:
-        nueva = nueva[0:19]
+        if len(nueva) > 20:
+            nueva = nueva[0:19]
+    else:
+        nueva = []
 
     return nueva
 

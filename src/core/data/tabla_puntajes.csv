@@ -1,10 +1,4 @@
 puntaje,usuario,dificultad
-2015,señor x,dificil
-600,firulais,facil
-555,juan,facil
-444,juan,facil
-333,juan,facil
-222,juan,facil
 219,señor x,normal
 218,señor x,normal
 217,señor x,normal
@@ -12,9 +6,6 @@ puntaje,usuario,dificultad
 215,señor x,normal
 215,señor x,normal
 215,señor x,normal
-215,señor x,facil
-215,señor x,facil
-215,señor x,facil
 214,señor x,normal
 213,señor x,normal
 212,señor x,normal
@@ -25,26 +16,25 @@ puntaje,usuario,dificultad
 207,señor x,normal
 206,señor x,normal
 205,señor x,normal
-205,señor x,facil
 202,señor x,normal
+2,corbatita,normal
+0,corbatita,normal
+600,firulais,facil
+600,firulais,facil
+600,firulais,facil
+600,firulais,facil
+600,firulais,facil
+600,firulais,facil
+555,juan,facil
+444,juan,facil
+333,juan,facil
+222,juan,facil
+215,señor x,facil
+215,señor x,facil
+215,señor x,facil
+205,señor x,facil
 150,juanchi,facil
 150,señor x,facil
-77,señor x,dificil
-77,señor x,dificil
-66,señor x,dificil
-66,señor x,dificil
-66,señor x,dificil
-66,señor x,dificil
-66,señor x,dificil
-66,señor x,dificil
-55,señor x,dificil
-55,señor x,dificil
-55,señor x,dificil
-55,señor x,dificil
-44,señor x,dificil
-44,señor x,dificil
-44,señor x,dificil
-44,señor x,dificil
 15,firulais,facil
 10,firulais,facil
 10,corbatita,facil
@@ -54,5 +44,28 @@ puntaje,usuario,dificultad
 6,firulais,facil
 4,corbatita,facil
 3,corbatita,facil
-2,corbatita,normal
-0,corbatita,normal
+2015,señor x,dificil
+77,señor x,dificil
+77,señor x,dificil
+75,corbatita,dificil
+66,señor x,dificil
+66,señor x,dificil
+66,señor x,dificil
+66,señor x,dificil
+66,señor x,dificil
+66,señor x,dificil
+57,corbatita,dificil
+57,corbatita,dificil
+57,corbatita,dificil
+57,corbatita,dificil
+57,corbatita,dificil
+57,corbatita,dificil
+57,corbatita,dificil
+55,señor x,dificil
+55,señor x,dificil
+55,señor x,dificil
+55,señor x,dificil
+44,señor x,dificil
+44,señor x,dificil
+44,señor x,dificil
+44,señor x,dificil

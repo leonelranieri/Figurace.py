@@ -15,8 +15,8 @@ def cargar_tabla():
     try:
         data_frame = pd.read_csv(archivo_tabla, encoding='utf-8')
     except FileNotFoundError:
-        guardar_tabla(None)
         data_frame = pd.DataFrame(columns=("puntaje", "usuario", "dificultad"))
+        guardar_tabla(data_frame)
 
     return data_frame
 
@@ -25,7 +25,7 @@ def guardar_tabla(valores):
         crea una tabla con los headers.
         guarda la lista con los puntajes ordenada por mayor puntuacion.
     """
-    if valores:
+    if not valores.empty:
         valores.to_csv(archivo_tabla, index=False)
     else:
         data_frame = pd.DataFrame(columns=("puntaje", "usuario", "dificultad"))
@@ -37,9 +37,11 @@ def agregar_alatabla(puntos, usuario, dificultad):
         lo agrega a la tabla y luego limpia para que queden 20 en su dificultad
     """
     listabla = cargar_tabla()
-    nueva_data = pd.DataFrame([puntos, usuario, dificultad], columns=("puntaje", "usuario", "dificultad"))
-    listabla.append(nueva_data)
-    listabla.sort_values(by=["dificultad", "puntaje"], ascending=False)
+    nueva_data = pd.DataFrame(data=[[puntos, usuario, dificultad]], columns=["puntaje", "usuario", "dificultad"])
+    listabla = pd.concat([listabla, nueva_data], ignore_index=True)
+    listabla = listabla.convert_dtypes()
+    listabla.sort_values(by=["dificultad", "puntaje"], ascending=False, inplace=True)
+
     guardar_tabla(listabla)
 
 def cargar_data(dificultad):
@@ -64,7 +66,7 @@ def mostrar_tabla():
         y luego se muestran los susodichos
         al menos eso entendi del enunciado
     """
-
+    
     cabezal_puntaje = ("Pos", "Puntaje", "Usuario")
     cabezal_promedio = ("Pos", "Promedio", "Usuario")
     data = []
