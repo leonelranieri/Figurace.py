@@ -25,11 +25,13 @@ def guardar_tabla(valores):
         crea una tabla con los headers.
         guarda la lista con los puntajes ordenada por mayor puntuacion.
     """
-    if valores:
+    if not valores.empty:
         valores.to_csv(archivo_tabla, index=False)
     else:
         data_frame = pd.DataFrame(columns=("puntaje", "usuario", "dificultad"))
         data_frame.to_csv(archivo_tabla, index=False)
+        #valores = pd.DataFrame(columns=("puntaje", "usuario", "dificultad"))
+        #valores.to_csv(archivo_tabla, index=False)
 
 def agregar_alatabla(puntos, usuario, dificultad):
     """
@@ -37,7 +39,7 @@ def agregar_alatabla(puntos, usuario, dificultad):
         lo agrega a la tabla y luego limpia para que queden 20 en su dificultad
     """
     listabla = cargar_tabla()
-    nueva_data = pd.DataFrame([puntos, usuario, dificultad], columns=("puntaje", "usuario", "dificultad"))
+    nueva_data = pd.DataFrame([(puntos, usuario, dificultad)], columns=("puntaje", "usuario", "dificultad"))
     listabla.append(nueva_data)
     listabla.sort_values(by=["dificultad", "puntaje"], ascending=False)
     guardar_tabla(listabla)
