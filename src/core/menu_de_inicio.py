@@ -84,7 +84,8 @@ def ventana_de_inicio(perfiles, nivel):
     
 def ventana_principal():
     perfiles = jugadores.apertura_de_archivo()
-    dificultad = config.carga_config()   
+    dificultad = config.carga_config()
+    del dificultad["last_guardada"] 
     ventana_de_inicio(perfiles, dificultad)
 
 
