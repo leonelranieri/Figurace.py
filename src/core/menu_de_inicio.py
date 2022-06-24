@@ -50,7 +50,6 @@ def ventana_de_inicio(perfiles, nivel):
     nombres, dificultad = datos()
     window = preparar_menu(nombres, dificultad)
 
-
     while True:       
         event, values = window.read()
         ayuda = values["-AYUDA-"] 
@@ -62,12 +61,18 @@ def ventana_de_inicio(perfiles, nivel):
                 sg.popup("seleccione una dificultad")
             elif values["-USERS-"][0] == "{" or values["-USERS-"] == "elija el usuario":
                 sg.popup("seleccione un usuario")
-            else:
+            elif ayuda:
+                sg.PopupOK("   -----MENSAJE DE AVISO-----\n"
+                        "SOLO PUEDE SOLICITAR DOS AYUDAS POR PARTIDA.\n"
+                        " RECUERDE QUE SE LE DESCONTARA 1 PUNTO POR CADA AYUDA.\n"
+                        " SI LA DIFICULTAD ELEGIDA ES 'NORMAL' SE LE DESCUENTA\n" 
+                        " 1 PUNTO MÁS Y SI ES 'DÍFICIL' 2 PUNTOS MÁS.")            
+            #else:
                 #función para mostrar ventana con ayuda
-                try:
-                    pj.main(values, values["-USERS-"], ayuda)
-                except UnboundLocalError:
-                    pj.main(values, values["-USERS-"])
+            try:
+                pj.main(values, values["-USERS-"], ayuda)
+            except UnboundLocalError:
+                pj.main(values, values["-USERS-"])
         elif event == "-CONFIGURACION-":
             config.main()
             nivel = config.carga_config()
@@ -77,7 +82,7 @@ def ventana_de_inicio(perfiles, nivel):
             hubo_registro, perfiles = perfil.usuario(perfiles)
             if hubo_registro:
                 nombres, dificultad = datos()
-                window["-USERS-"].update(value=nombres, values=nombres)       
+                window["-USERS-"].update(value=nombres, values=nombres)  
 
     window.close()
 #--------------------------------------------------------------------------------
@@ -87,7 +92,6 @@ def ventana_principal():
     dificultad = config.carga_config()
     del dificultad["last_guardada"] 
     ventana_de_inicio(perfiles, dificultad)
-
 
 
 

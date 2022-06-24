@@ -3,27 +3,6 @@ import string
 import jugadores
 import os
 
-# COMENTARIO
-"""def tratamiento_de_excepciones(nick, edad, genero):
-    digitos = string.digits
-    cant = 0
-    es_numero = 0
-    try:
-        for caracter in edad:
-            if caracter in digitos:
-                cant += 1
-        for char in genero:
-            if char in digitos:
-                es_numero += 1
-            if cant != len(edad) or es_numero:
-                raise ValueError
-            if edad == "" or genero == "":
-                raise ValueError           
-    except ValueError:
-        sg.popup_error("has ingresado datos incorrectos, volve a ingresarlos")
-    else:
-        perfiles.update({nick: [edad, genero]})  """  
-
 def usuario_registrado(nick, perfiles, generos):
     """
     Muestra los datos de un usuario registrado.
@@ -276,6 +255,7 @@ def nuevo_usuario(nick, perfiles, generos):
             else:
                 #perfiles.update({nick: [edad, genero]})
                 jugadores.carga_de_datos(perfiles)
+                sg.PopupQuickMessage(f"el usuario", nick, "se registro con éxito")
                 break 
     window.close()
 #-------------------------------------------------------------------------------------------------
