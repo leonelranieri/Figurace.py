@@ -4,16 +4,16 @@ import time
 import PySimpleGUI as sg
 import pandas as pd
 
-def acumular_puntos(diccionario, ayuda, dificultad, con_ayuda):
+def acumular_puntos(diccionario, restar, dificultad, con_ayuda):
     total = 0
     if con_ayuda:
-        if dificultad == "normal":
+        """if dificultad == "normal":
             ayuda = ayuda + 1
         elif dificultad == "dificil":
-            ayuda = ayuda + 2
+            ayuda = ayuda + 2"""
         for elem in diccionario.values():
             total = total + elem
-        total = total -ayuda
+        total = total - restar
     else:
         for elem in diccionario.values():
             total = total + elem

@@ -80,6 +80,7 @@ def main(dificultad, nombre_usuario, con_ayuda):
     respuesta_seleccionada = ''
     i = 0
     ayuda = 0
+    penalidad = 1
     partida_actual.append({'timestamp' : time.time(), 'id' : my_uuid, 'evento' : "inicio_partida", 'usuarie' : nombre, 'estado' : " ", 'texto_ingresado' : " ", 'respuesta' : " ", 'nivel' : dificultad['-DIFI-']})
     correcta = False
     correcta_anterior = ""
@@ -174,12 +175,12 @@ def main(dificultad, nombre_usuario, con_ayuda):
                     # Fin de ronda
                     #print(con_ayuda)
                     if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
-                        agregar_alatabla(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda),
+                        agregar_alatabla(fp.acumular_puntos(total_respuestas, total, dificultad["-DIFI-"], con_ayuda),
                                             nombre_usuario[1], dificultad["-DIFI-"]) 
                         partida_actual.append(fp.lamascara(my_uuid,event,nombre,correcta,respuesta_seleccionada,correcta_anterior,dificultad["-DIFI-"]))
                         partida_actual.append(fp.lamascara(my_uuid,"Salir del juego",nombre,correcta,respuesta_seleccionada,correcta_anterior,dificultad["-DIFI-"]))
                         sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '
-                                + str(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda)),
+                                + str(fp.acumular_puntos(total_respuestas, total, dificultad["-DIFI-"], con_ayuda)),
                                 custom_text = ('Volver a Jugar', 'Salir del Juego')
                                     , keep_on_top=True)
                         if event == 'Salir del Juego':
@@ -215,15 +216,21 @@ def main(dificultad, nombre_usuario, con_ayuda):
                     while True:
                         if ayuda == 2:
                             sg.PopupQuickMessage("SE QUEDO SIN AYUDAS")
-                            break 
+                            break
+                        if  dificultad["-DIFI-"] == "facil":
+                            penalidad = 1
+                        elif dificultad["-DIFI-"] == "normal":
+                            penalidad = 2
+                        elif dificultad["-DIFI-"] == "dificil":
+                            penalidad = 3
                         event, values = ventana.read()
                         
                         if event == "-NO-" or event == sg.WIN_CLOSED:
                             break
                         elif event == "-SI-":
-                            if ayuda == 2:
+                            """if ayuda == 2:
                                 sg.PopupQuickMessage("SE QUEDO SIN AYUDAS")
-                                break                                
+                                break"""                                
                             try:
                                 opcion = random.randrange(5)
                                 if respuesta_correcta in ayudas:
@@ -232,9 +239,9 @@ def main(dificultad, nombre_usuario, con_ayuda):
                                     if ayuda < 2:
                                         try:
                                             ayuda = ayuda + 1 
-                                            sg.PopupOK("SE MUESTRA UNA DE LAS OPCIONES INCORRECTAS", 
-                                                            ayudas[opcion],
-                                                            "SE LE DESCONTARÁ", ayuda, "+ PUNTOS POR DIFICULTAD.")
+                                            total = ayuda + penalidad
+                                            sg.PopupOK("SE MUESTRA UNA DE LAS OPCIONES INCORRECTAS:", ayudas[opcion],
+                                                    "SE LE DESCONTARÁN: ", total, "PUNTOS.")
                                         except IndexError:
                                             pass
                             except ValueError:     
@@ -268,7 +275,7 @@ def main(dificultad, nombre_usuario, con_ayuda):
 
                     # Fin de Ronda
                     if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
-                        agregar_alatabla(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda),#agrego ayuda
+                        agregar_alatabla(fp.acumular_puntos(total_respuestas, total, dificultad["-DIFI-"], con_ayuda),#agrego ayuda
                                             nombre_usuario[1], dificultad["-DIFI-"])
                         partida_actual.append(fp.lamascara(my_uuid,event,nombre,correcta,respuesta_seleccionada,correcta_anterior,dificultad["-DIFI-"]))
                         partida_actual.append(fp.lamascara(my_uuid,"Salir del juego",nombre,correcta,respuesta_seleccionada,correcta_anterior,dificultad["-DIFI-"]))
