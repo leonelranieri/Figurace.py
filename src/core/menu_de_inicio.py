@@ -61,14 +61,12 @@ def ventana_de_inicio(perfiles, nivel):
                 sg.popup("seleccione una dificultad")
             elif values["-USERS-"][0] == "{" or values["-USERS-"] == "elija el usuario":
                 sg.popup("seleccione un usuario")
-            elif ayuda:
-                sg.PopupOK("   -----MENSAJE DE AVISO-----\n"
-                        "SOLO PUEDE SOLICITAR DOS AYUDAS POR PARTIDA.\n"
-                        " RECUERDE QUE SE LE DESCONTARA 1 PUNTO POR CADA AYUDA.\n"
-                        " SI LA DIFICULTAD ELEGIDA ES 'NORMAL' SE LE DESCUENTA\n" 
-                        " 1 PUNTO MÁS Y SI ES 'DÍFICIL' 2 PUNTOS MÁS.")            
-            #else:
-                #función para mostrar ventana con ayuda
+            #"""elif ayuda:
+            #   sg.PopupOK(" CUANDO JUEGA CON AYUDAS : \n"
+            #           " - TIENE DOS POSIBILIDADES POR PARTIDA.\n"
+            #            " - SE LE DESCONTARA 1 PUNTO POR CADA POSIBILIDAD.\n"
+            #            " - SI LA DIFICULTAD ELEGIDA ES 'NORMAL' SE LE DESCUENTA\n" 
+            #            "   1 PUNTO MÁS Y SI ES 'DÍFICIL' 2 PUNTOS MÁS.")"""        
             try:
                 pj.main(values, values["-USERS-"], ayuda)
             except UnboundLocalError:
