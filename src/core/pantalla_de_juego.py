@@ -80,7 +80,7 @@ def main(dificultad, nombre_usuario, con_ayuda):
     respuesta_seleccionada = ''
     i = 0
     ayuda = 0
-    partida_actual.append({'timestamp' : time.time(), 'id' : my_uuid, 'evento' : "inicio_partida", 'user' : nombre, 'estado' : " ", 'texto_ingresado' : " ", 'respuesta' : " ", 'nivel' : dificultad['-DIFI-']})
+    partida_actual.append({'timestamp' : time.time(), 'id' : my_uuid, 'evento' : "inicio_partida", 'usuarie' : nombre, 'estado' : " ", 'texto_ingresado' : " ", 'respuesta' : " ", 'nivel' : dificultad['-DIFI-']})
     correcta = False
     correcta_anterior = ""
 

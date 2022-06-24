@@ -440,12 +440,15 @@ def lamascara(id, event, usuarie, ok_error, respuesta_seleccionada, respuesta_co
         respuesta_seleccionada = ""
     tiempo = time.time()
 
-    return {'timestamp' : tiempo, 'id' : id, 'evento' : evento, 'user' : usuarie, 'estado' : estado, 'texto_ingresado' : respuesta_seleccionada, 'respuesta' : respuesta_correcta, 'nivel' : dificultad}
-
+    return {'timestamp' : tiempo, 'id' : id, 'evento' : evento, 'usuarie' : usuarie, 'estado' : estado, 'texto_ingresado' : respuesta_seleccionada, 'respuesta' : respuesta_correcta, 'nivel' : dificultad}
 
 def generar_datos_partida(partida_actual):
         """Genera el log de la partidas actuales y proximas para el analisis de los datos"""
-        field_names = ['timestamp','id','evento','user', 'estado', 'texto_ingresado','respuesta','nivel']
+        ruta_archivo = os.path.join(os.getcwd(),"src", "core", "data",'log_de_partidas.csv')
+        field_names = ['timestamp','id','evento','usuarie', 'estado', 'texto_ingresado','respuesta','nivel']
         df_partida = pd.DataFrame(partida_actual,columns=field_names)
-        df_partida.to_csv(os.path.join(os.getcwd(),"src", "core", "data",'log_de_partidas'),index=False,mode="a",
-        header=False,encoding='utf-8')    
+        if not os.path.exists(ruta_archivo):
+            df_partida.to_csv(ruta_archivo,index=False,encoding='utf-8')
+        else:
+            df_partida.to_csv(ruta_archivo,index=False,mode="a",
+            header=False,encoding='utf-8')    

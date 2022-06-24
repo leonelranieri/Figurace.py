@@ -19,6 +19,7 @@ puntaje,usuario,dificultad
 202,señor x,normal
 2,corbatita,normal
 0,corbatita,normal
+-6,valen,normal
 600,firulais,facil
 600,firulais,facil
 600,firulais,facil
@@ -48,6 +49,7 @@ puntaje,usuario,dificultad
 3,corbatita,facil
 3,corbatita,facil
 3,corbatita,facil
+1,corbatita,facil
 -1,corbatita,facil
 -1,corbatita,facil
 -1,juan,facil
@@ -56,6 +58,9 @@ puntaje,usuario,dificultad
 -1,leo,facil
 -1,leo,facil
 -1,leo,facil
+-1,leo,facil
+-1,pupi,facil
+-1,señor x,facil
 -1,leo,facil
 -3,juan,facil
 -5,corbatita,facil
@@ -111,4 +116,5 @@ puntaje,usuario,dificultad
 44,señor x,dificil
 44,señor x,dificil
 44,señor x,dificil
+-15,orco,dificil
 -59,corbatita,dificil

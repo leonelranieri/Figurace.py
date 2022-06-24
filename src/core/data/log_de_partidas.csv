@@ -1,0 +1,35 @@
+timestamp,id,evento,usuarie,estado,texto_ingresado,respuesta,nivel
+1656099268.4238634,ba4d018b-442f-4442-931f-81ee0b0da32d,inicio_partida,orco, , , ,dificil
+1656099270.6002982,ba4d018b-442f-4442-931f-81ee0b0da32d,intento,orco,error,Lago Cholila,Lago Mascardi,dificil
+1656099271.3063478,ba4d018b-442f-4442-931f-81ee0b0da32d,intento,orco,error,Lago Posadas,Nombre,dificil
+1656099272.1380374,ba4d018b-442f-4442-931f-81ee0b0da32d,intento,orco,error,Lago Falkner,Lago Strobel,dificil
+1656099273.7879722,ba4d018b-442f-4442-931f-81ee0b0da32d,intento,orco,error,Lago Cholila,Lago Correntoso,dificil
+1656099274.9687872,ba4d018b-442f-4442-931f-81ee0b0da32d,intento,orco,error,Lago Quillén,Lago Pueyrredón,dificil
+1656099274.9688075,ba4d018b-442f-4442-931f-81ee0b0da32d,fin,orco,finalizada,,,dificil
+1656099282.6750407,19c76fd6-dccc-4fd0-a5ca-4c6f57e7e476,inicio_partida,valen, , , ,normal
+1656099285.4987695,19c76fd6-dccc-4fd0-a5ca-4c6f57e7e476,intento,valen,error,Two Brothers,Bears,normal
+1656099287.0685544,19c76fd6-dccc-4fd0-a5ca-4c6f57e7e476,intento,valen,error,The Perfect Date,Stalked by My Neighbor,normal
+1656099287.8865962,19c76fd6-dccc-4fd0-a5ca-4c6f57e7e476,intento,valen,error,Last Knights,The Chronicles of Narnia: Prince Caspian,normal
+1656099288.8623974,19c76fd6-dccc-4fd0-a5ca-4c6f57e7e476,intento,valen,ok,Baby Boom,Baby Boom,normal
+1656099290.9339683,19c76fd6-dccc-4fd0-a5ca-4c6f57e7e476,intento,valen,error,The Cabinet of Dr. Caligari,Ms .45,normal
+1656099290.9339972,19c76fd6-dccc-4fd0-a5ca-4c6f57e7e476,fin,valen,finalizada,,,normal
+1656099301.065626,afcf23ae-c36f-4376-8919-af6eba203c42,inicio_partida,corbatita, , , ,facil
+1656099312.5022526,afcf23ae-c36f-4376-8919-af6eba203c42,intento,corbatita,timeout,,Dragon Ball Z: The Return of Cooler,facil
+1656099315.8293247,afcf23ae-c36f-4376-8919-af6eba203c42,intento,corbatita,error,Cheaper by the Dozen,The Unholy,facil
+1656099316.933415,afcf23ae-c36f-4376-8919-af6eba203c42,intento,corbatita,error,Rob the Mob,Haikyuu!! Movie 4: Battle of Concepts,facil
+1656099318.0232432,afcf23ae-c36f-4376-8919-af6eba203c42,intento,corbatita,pasa,Scary Movie 5,Amazing Love,facil
+1656099318.9406023,afcf23ae-c36f-4376-8919-af6eba203c42,intento,corbatita,ok,Summer Days with Coo,Summer Days with Coo,facil
+1656099318.9406338,afcf23ae-c36f-4376-8919-af6eba203c42,fin,corbatita,finalizada,,,facil
+1656099322.2334492,b99f8dce-4337-4b6f-8a0d-3da02ec1e48a,inicio_partida,corbatita, , , ,facil
+1656099324.7444122,b99f8dce-4337-4b6f-8a0d-3da02ec1e48a,intento,corbatita,ok,Zedd,Zedd,facil
+1656099326.3926613,b99f8dce-4337-4b6f-8a0d-3da02ec1e48a,fin,corbatita,abandonada,,,facil
+1656099328.2319949,e8afbf67-cfe9-4e09-8d2d-0ef575ae08c1,inicio_partida,corbatita, , , ,facil
+1656099330.6379652,e8afbf67-cfe9-4e09-8d2d-0ef575ae08c1,intento,corbatita,error,The Killing,Hope,facil
+1656099331.9359398,e8afbf67-cfe9-4e09-8d2d-0ef575ae08c1,intento,corbatita,error,The Librarian: Return to King Solomon's Mines,Messengers 2: The Scarecrow,facil
+1656106693.9394364,fcedddba-8e38-4cee-a1af-517a3bbb25b1,inicio_partida,leo, , , ,facil
+1656106696.5303147,fcedddba-8e38-4cee-a1af-517a3bbb25b1,intento,leo,ok,Bruno Mars,Bruno Mars,facil
+1656106696.708016,fcedddba-8e38-4cee-a1af-517a3bbb25b1,intento,leo,error,Bruno Mars,benny blanco,facil
+1656106696.8982017,fcedddba-8e38-4cee-a1af-517a3bbb25b1,intento,leo,error,Bruno Mars,Jason Derulo,facil
+1656106697.0581255,fcedddba-8e38-4cee-a1af-517a3bbb25b1,intento,leo,error,Bruno Mars,Cardi B,facil
+1656106697.3134837,fcedddba-8e38-4cee-a1af-517a3bbb25b1,intento,leo,error,Bruno Mars,Hozier,facil
+1656106697.3135045,fcedddba-8e38-4cee-a1af-517a3bbb25b1,fin,leo,finalizada,,,facil
