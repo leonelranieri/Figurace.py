@@ -82,6 +82,7 @@ def main(dificultad, nombre_usuario, con_ayuda):
     ayuda = 0
     partida_actual.append({'timestamp' : time.time(), 'id' : my_uuid, 'evento' : "inicio_partida", 'user' : nombre, 'estado' : " ", 'texto_ingresado' : " ", 'respuesta' : " ", 'nivel' : dificultad['-DIFI-']})
     correcta = False
+    correcta_anterior = ""
 
     while True:
         event,value = main_window.read()
@@ -158,6 +159,7 @@ def main(dificultad, nombre_usuario, con_ayuda):
                     linea = (f"PREGUNTA {i} : - {restar_puntos} puntos (Pasó)"+"\n") 
                     respuestas = (f"{respuestas} {linea}""\n")
                     main_window['-ANSWERS OUTPUT-'].update(respuestas)
+                    correcta_anterior = respuesta_correcta
 
                     lista = random.choice(filas_de_dataset)
                     respuesta_correcta = (lista[5])
@@ -168,13 +170,15 @@ def main(dificultad, nombre_usuario, con_ayuda):
                     #print(con_ayuda)
                     if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
                         agregar_alatabla(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda),
-                                            nombre_usuario[1], dificultad["-DIFI-"])
+                                            nombre_usuario[1], dificultad["-DIFI-"]) 
+                        partida_actual.append(fp.lamascara(my_uuid,event,nombre,correcta,respuesta_seleccionada,correcta_anterior,dificultad["-DIFI-"]))
+                        partida_actual.append(fp.lamascara(my_uuid,"Salir del juego",nombre,correcta,respuesta_seleccionada,correcta_anterior,dificultad["-DIFI-"]))
                         sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '
                                 + str(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda)),
                                 custom_text = ('Volver a Jugar', 'Salir del Juego')
                                     , keep_on_top=True)
                         if event == 'Salir del Juego':
-                            break 
+                            break
                         break
                     
                     # Actualiza Tarjeta: 
@@ -246,7 +250,8 @@ def main(dificultad, nombre_usuario, con_ayuda):
                         respuestas = (f"{respuestas} {linea}""\n")
                         main_window['-ANSWERS OUTPUT-'].update(respuestas)
                         correcta = False
-                        
+
+                    correcta_anterior = respuesta_correcta    
                     lista = random.choice(filas_de_dataset)
                     respuesta_correcta = (lista[5])
                     opciones = fp.lista_opciones(filas_de_dataset, respuesta_correcta)
@@ -256,8 +261,8 @@ def main(dificultad, nombre_usuario, con_ayuda):
                     if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
                         agregar_alatabla(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda),#agrego ayuda
                                             nombre_usuario[1], dificultad["-DIFI-"])
-                        evento, estado = fp.generador_estado(event, correcta)  
-                        partida_actual.append({'timestamp' : tiempo_inicial, 'id' : my_uuid, 'evento' : evento, 'user' : nombre, 'estado' : estado, 'texto_ingresado' : respuesta_seleccionada, 'respuesta' : respuesta_correcta, 'nivel' : dificultad['-DIFI-']})
+                        partida_actual.append(fp.lamascara(my_uuid,event,nombre,correcta,respuesta_seleccionada,correcta_anterior,dificultad["-DIFI-"]))
+                        partida_actual.append(fp.lamascara(my_uuid,"Salir del juego",nombre,correcta,respuesta_seleccionada,correcta_anterior,dificultad["-DIFI-"]))
                         sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '+str(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda)),
                                 custom_text = ('Volver a Jugar', 'Salir del Juego'), keep_on_top=True)
                         if event == 'Salir del Juego':
@@ -294,6 +299,7 @@ def main(dificultad, nombre_usuario, con_ayuda):
                     respuestas = (f"{respuestas} {linea}""\n")
                     main_window['-ANSWERS OUTPUT-'].update(respuestas)
 
+                    correcta_anterior = respuesta_correcta
                     lista = random.choice(filas_de_dataset)
                     respuesta_correcta = (lista[5])
                     # Actualizo lista de opciones:
@@ -317,6 +323,7 @@ def main(dificultad, nombre_usuario, con_ayuda):
                     #Actualizo el Countdown:
                     tiempo_jugado = tiempo_jugado + tiempo_transcurrido
                     main_window['-COUNTDOWN-'].update(F'Quedan: {fp.actualizar_temporizador(tiempo_por_ronda, tiempo_inicial)} segundos')
+                    partida_actual.append(fp.lamascara(my_uuid,event,nombre,correcta,respuesta_seleccionada,correcta_anterior,dificultad["-DIFI-"]))
             
                 # -----------------------------------------[ ACTUALIZAR TIEMPO ]----------------------------------------
                 tiempo_transcurrido = int(time.time() - tiempo_inicial)
@@ -324,8 +331,7 @@ def main(dificultad, nombre_usuario, con_ayuda):
                 main_window['-COUNTDOWN-'].update(F'Quedan: {tiempo_restante} segundos')
                 if event != "__TIMEOUT__":
                     if not event in ["-INPUT1-", "-INPUT2-", "-INPUT3-", "-INPUT4-", "-INPUT5-"]:
-                        evento, estado = fp.generador_estado(event, correcta)  
-                        partida_actual.append({'timestamp' : tiempo_inicial, 'id' : my_uuid, 'evento' : evento, 'user' : nombre, 'estado' : estado, 'texto_ingresado' : respuesta_seleccionada, 'respuesta' : respuesta_correcta, 'nivel' : dificultad['-DIFI-']})
+                        partida_actual.append(fp.lamascara(my_uuid,event,nombre,correcta,respuesta_seleccionada,correcta_anterior,dificultad["-DIFI-"]))
             
             fp.generar_datos_partida(partida_actual)      
             main_window.close()

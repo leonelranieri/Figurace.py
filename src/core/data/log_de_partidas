@@ -1,0 +1,51 @@
+1656096019.415259,d44d1b80-32ec-430b-9a86-fb9878a9a726,inicio_partida,orco, , , ,facil
+1656096021.6227212,d44d1b80-32ec-430b-9a86-fb9878a9a726,intento,orco,error,Lago Nahuel Huapi,Lago Posadas,facil
+1656096021.7985373,d44d1b80-32ec-430b-9a86-fb9878a9a726,intento,orco,error,Lago Nahuel Huapi,Lago Fontana,facil
+1656096021.9745612,d44d1b80-32ec-430b-9a86-fb9878a9a726,intento,orco,error,Lago Nahuel Huapi,Lago Viedma,facil
+1656096022.1345596,d44d1b80-32ec-430b-9a86-fb9878a9a726,intento,orco,error,Lago Nahuel Huapi,Lago Río Chico,facil
+1656096022.1345596,d44d1b80-32ec-430b-9a86-fb9878a9a726,intento,orco,error,Lago Nahuel Huapi,Lago Lácar,facil
+1656096022.3537881,d44d1b80-32ec-430b-9a86-fb9878a9a726,fin,orco,finalizada, , ,facil
+1656096027.2496488,77b7363f-6d58-4ff5-85ab-0f2c983d5ba2,inicio_partida,orco, , , ,facil
+1656096029.7382846,77b7363f-6d58-4ff5-85ab-0f2c983d5ba2,intento,orco,error,Lago Asador o Guitarra,Lago Pueyrredón,facil
+1656096029.91454,77b7363f-6d58-4ff5-85ab-0f2c983d5ba2,intento,orco,error,Lago Asador o Guitarra,Lago Epecuén,facil
+1656096030.0902987,77b7363f-6d58-4ff5-85ab-0f2c983d5ba2,intento,orco,error,Lago Asador o Guitarra,Lago Cardiel,facil
+1656096030.2682676,77b7363f-6d58-4ff5-85ab-0f2c983d5ba2,intento,orco,error,Lago Asador o Guitarra,Lago Lácar,facil
+1656096030.2682676,77b7363f-6d58-4ff5-85ab-0f2c983d5ba2,intento,orco,error,Lago Asador o Guitarra,Nombre,facil
+1656096030.433196,77b7363f-6d58-4ff5-85ab-0f2c983d5ba2,fin,orco,finalizada, , ,facil
+1656096585.1036685,66ae1ce8-3ad7-4485-aaf0-185863407264,inicio_partida,leo, , , ,facil
+1656096588.0911546,66ae1ce8-3ad7-4485-aaf0-185863407264,intento,leo,error,DJ Snake,Taylor Swift,facil
+1656096589.210388,66ae1ce8-3ad7-4485-aaf0-185863407264,intento,leo,error,The Weeknd,Jason Derulo,facil
+1656096590.1243703,66ae1ce8-3ad7-4485-aaf0-185863407264,intento,leo,ok,Migos,Migos,facil
+1656096591.893331,66ae1ce8-3ad7-4485-aaf0-185863407264,intento,leo,error,Ariana Grande,Meek Mill,facil
+1656096593.3319216,66ae1ce8-3ad7-4485-aaf0-185863407264,intento,leo,error,Olivia Holt,Coldplay,facil
+1656096593.3319376,66ae1ce8-3ad7-4485-aaf0-185863407264,fin,leo,timeout,,,facil
+1656096646.9488077,d00f5607-bfb0-493b-ad04-e1be9fe55a67,inicio_partida,pupi, , , ,facil
+1656096649.750588,d00f5607-bfb0-493b-ad04-e1be9fe55a67,intento,pupi,error,Lago Meliquina,Nombre,facil
+1656096650.1103203,d00f5607-bfb0-493b-ad04-e1be9fe55a67,intento,pupi,error,Lago Meliquina,Lago Fontana,facil
+1656096650.39848,d00f5607-bfb0-493b-ad04-e1be9fe55a67,intento,pupi,error,Lago Meliquina,Lago Blanco,facil
+1656096650.6222725,d00f5607-bfb0-493b-ad04-e1be9fe55a67,intento,pupi,error,Lago Meliquina,Lago Menéndez,facil
+1656096650.888243,d00f5607-bfb0-493b-ad04-e1be9fe55a67,intento,pupi,error,Lago Meliquina,Lago Cholila,facil
+1656096650.8882627,d00f5607-bfb0-493b-ad04-e1be9fe55a67,fin,pupi,finalizada,,,facil
+1656096662.1274936,82e95764-1b8d-4bef-88b7-7f439d567263,inicio_partida,pupi, , , ,facil
+1656096664.634193,82e95764-1b8d-4bef-88b7-7f439d567263,intento,pupi,error,Avengers Grimm: Time Wars,Room on the Broom,facil
+1656096666.1095142,82e95764-1b8d-4bef-88b7-7f439d567263,fin,pupi,abandonada,,,facil
+1656096670.147479,980ffae7-4273-4f13-ba47-b03f107ed590,inicio_partida,pupi, , , ,facil
+1656096671.940372,980ffae7-4273-4f13-ba47-b03f107ed590,intento,pupi,pasa,,Lago General Vintter,facil
+1656096672.1160545,980ffae7-4273-4f13-ba47-b03f107ed590,intento,pupi,pasa,,Lago Nansen,facil
+1656096672.2761912,980ffae7-4273-4f13-ba47-b03f107ed590,intento,pupi,pasa,,Lago Quiroga,facil
+1656096672.4361672,980ffae7-4273-4f13-ba47-b03f107ed590,intento,pupi,pasa,,Lago Menéndez,facil
+1656096672.631556,980ffae7-4273-4f13-ba47-b03f107ed590,intento,pupi,pasa,,Lago Quiroga Chico,facil
+1656096672.6315746,980ffae7-4273-4f13-ba47-b03f107ed590,fin,pupi,finalizada,,,facil
+1656096734.676903,fe12c191-e69f-4ce8-95c9-6936762dd260,inicio_partida,tipolino, , , ,facil
+1656096769.5781524,fe12c191-e69f-4ce8-95c9-6936762dd260,fin,tipolino,abandonada,,,facil
+1656096863.985901,a5558746-d49e-4a43-9248-a86e659b6c09,inicio_partida,juan, , , ,facil
+1656096877.3707798,a5558746-d49e-4a43-9248-a86e659b6c09,fin,juan,timeout,,,facil
+1656096887.537259,a5558746-d49e-4a43-9248-a86e659b6c09,fin,juan,timeout,,,facil
+1656096890.1071708,a5558746-d49e-4a43-9248-a86e659b6c09,fin,juan,abandonada,,,facil
+1656097228.3131456,962fae28-d7c0-4abd-a6ce-dc49a06742b9,inicio_partida,juan, , , ,facil
+1656097239.673061,962fae28-d7c0-4abd-a6ce-dc49a06742b9,intento,juan,timeout,,Eminem,facil
+1656097243.869853,962fae28-d7c0-4abd-a6ce-dc49a06742b9,intento,juan,error,Billie Eilish,Sia,facil
+1656097244.7500677,962fae28-d7c0-4abd-a6ce-dc49a06742b9,intento,juan,error,Rihanna,Rudimental,facil
+1656097245.4228683,962fae28-d7c0-4abd-a6ce-dc49a06742b9,intento,juan,error,LMFAO,Lorde,facil
+1656097246.1642525,962fae28-d7c0-4abd-a6ce-dc49a06742b9,intento,juan,error,One Direction,Lilly Wood and The Prick,facil
+1656097246.164262,962fae28-d7c0-4abd-a6ce-dc49a06742b9,fin,juan,finalizada,,,facil

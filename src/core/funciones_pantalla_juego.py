@@ -418,16 +418,29 @@ def actualizar_temporizador(tiempo_total, tiempo_inicial):
 # ------------------------------------- [DATOS DE PARTIDA] -------------------------------------
 def generador_estado(event, correcta):
     print(event)
-    if event == sg.WIN_CLOSED or event == "ABANDONAR EL JUEGO":
+    if event == sg.WIN_CLOSED or event == '-ABANDONAR-':
         return ("fin", "abandonada")
     elif event == 'PASAR >':
         return ("intento", "pasa")
     elif event == 'OK':
         return ("intento", "ok" if correcta else "error")
-    elif event == 'Salir del Juego' or event == "Volver a jugar":
+    elif event == 'Salir del juego':
         return ("fin", "finalizada")
+    elif event == "__TIMEOUT__":
+        return ("intento", "timeout")
     else:
         return ("fin", "timeout")
+
+def lamascara(id, event, usuarie, ok_error, respuesta_seleccionada, respuesta_correcta, dificultad):
+    evento, estado = generador_estado(event, ok_error)
+    if evento == "fin":
+        respuesta_correcta = ""
+        respuesta_seleccionada = ""
+    elif estado == "timeout":
+        respuesta_seleccionada = ""
+    tiempo = time.time()
+
+    return {'timestamp' : tiempo, 'id' : id, 'evento' : evento, 'user' : usuarie, 'estado' : estado, 'texto_ingresado' : respuesta_seleccionada, 'respuesta' : respuesta_correcta, 'nivel' : dificultad}
 
 
 def generar_datos_partida(partida_actual):
