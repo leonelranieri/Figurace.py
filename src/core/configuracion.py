@@ -13,21 +13,21 @@ DEFAULT_CONFIG = {
                     "facil" : {
                                 "tiempo" : 30, 
                                 "rondas" : 5, 
-                                "suma" : 3, 
+                                "suma" : 4, 
                                 "resta" : 1, 
                                 "cara" : 5, 
                     },
                     "normal" : {
                                 "tiempo" : 15, 
                                 "rondas" : 10, 
-                                "suma" : 2, 
+                                "suma" : 3, 
                                 "resta" : 2, 
                                 "cara" : 4, 
                     },
                     "dificil" : {
                                 "tiempo" : 10, 
                                 "rondas" : 25, 
-                                "suma" : 1, 
+                                "suma" : 2, 
                                 "resta" : 3, 
                                 "cara" : 3, 
                     },
@@ -97,7 +97,7 @@ def crear_ventana(configuracion):
         ],
         [sg.Text("puntaje sumado por respuesta correcta", 
                     pad=((10, 5), 20)), 
-                    sg.OptionMenu(values=("1", "2", "3"), 
+                    sg.OptionMenu(values=("2", "3", "4"), 
                     size=(3, 1), 
                     key=("-SUMA-"))
         ],

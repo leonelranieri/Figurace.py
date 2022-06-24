@@ -6,7 +6,7 @@ INTEGRANTES DEL PROYECTO:
   Ricardo Federico Colantonio Von Saldern leg:13613/6
   Lucas Guerendiain leg: 17546/1
   Joaquin Bruno Mateos leg: 16118/8
-  Leonel Alejandro Ranieri
+  Leonel Alejandro Ranieri leg: 17634/9
 
 ===========================================================
 

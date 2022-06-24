@@ -205,42 +205,25 @@ def main(dificultad, nombre_usuario, con_ayuda):
 
                 # -------------[ AYUDA ]------------
                 if event == "-AYUDA-":  #agrego ayuda
-                    layout = [
-                        [sg.T("¿DESEA CONTINUAR?")],   
-                        [sg.Button("Si", key="-SI-")], 
-                        [sg.Button("No", key="-NO-")]
-                    ]
-                    ventana = sg.Window("ventana de ayuda", layout, margins=(60,60))
-                    
-                    while True:
-                        if ayuda == 2:
-                            sg.PopupQuickMessage("SE QUEDO SIN AYUDAS")
-                            break 
-                        event, values = ventana.read()
-                        
-                        if event == "-NO-" or event == sg.WIN_CLOSED:
-                            break
-                        elif event == "-SI-":
-                            if ayuda == 2:
-                                sg.PopupQuickMessage("SE QUEDO SIN AYUDAS")
-                                break                                
-                            try:
-                                opcion = random.randrange(5)
-                                if respuesta_correcta in ayudas:
-                                    indice_correcta = ayudas.index(respuesta_correcta)
-                                    ayudas.pop(indice_correcta)
-                                    if ayuda < 2:
-                                        try:
-                                            ayuda = ayuda + 1 
-                                            sg.PopupOK("SE MUESTRA UNA DE LAS OPCIONES INCORRECTAS", 
+                    if ayuda == 2:
+                        sg.PopupQuickMessage("SE QUEDO SIN AYUDAS")
+                    else:                            
+                        try:
+                            opcion = random.randrange(5)
+                            if respuesta_correcta in ayudas:
+                                indice_correcta = ayudas.index(respuesta_correcta)
+                                ayudas.pop(indice_correcta)
+                                if ayuda < 2:
+                                    try:
+                                        ayuda = ayuda + 1 
+                                        sg.PopupOK("SE MUESTRA UNA DE LAS OPCIONES INCORRECTAS", 
                                                             ayudas[opcion],
                                                             "SE LE DESCONTARÁ", ayuda, "+ PUNTOS POR DIFICULTAD.")
-                                        except IndexError:
-                                            pass
-                            except ValueError:     
-                                pass    
-                        break
-                    ventana.close()
+                                    except IndexError:
+                                        pass
+                        except ValueError:     
+                            pass    
+                            break
                 # -------------[ OK ]-------------
 
                 elif event == 'OK':

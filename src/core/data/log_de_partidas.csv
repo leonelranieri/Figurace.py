@@ -33,3 +33,82 @@ timestamp,id,evento,usuarie,estado,texto_ingresado,respuesta,nivel
 1656106697.0581255,fcedddba-8e38-4cee-a1af-517a3bbb25b1,intento,leo,error,Bruno Mars,Cardi B,facil
 1656106697.3134837,fcedddba-8e38-4cee-a1af-517a3bbb25b1,intento,leo,error,Bruno Mars,Hozier,facil
 1656106697.3135045,fcedddba-8e38-4cee-a1af-517a3bbb25b1,fin,leo,finalizada,,,facil
+1656110092.8626478,5ef811da-ab74-4173-9632-c90d567949e1,inicio_partida,corbatita, , , ,facil
+1656110100.9461882,5ef811da-ab74-4173-9632-c90d567949e1,fin,corbatita,timeout,,,facil
+1656110104.2904868,5ef811da-ab74-4173-9632-c90d567949e1,intento,corbatita,ok,Full Speed,Full Speed,facil
+1656110114.0120707,5ef811da-ab74-4173-9632-c90d567949e1,fin,corbatita,timeout,,,facil
+1656110114.418494,5ef811da-ab74-4173-9632-c90d567949e1,intento,corbatita,timeout,,Jackie Brown,facil
+1656110116.6084616,5ef811da-ab74-4173-9632-c90d567949e1,fin,corbatita,timeout,,,facil
+1656110120.22717,5ef811da-ab74-4173-9632-c90d567949e1,fin,corbatita,abandonada,,,facil
+1656110404.6504173,5624f165-bd99-476c-bc55-ce50adb9453a,inicio_partida,juan, , , ,facil
+1656110407.6532223,5624f165-bd99-476c-bc55-ce50adb9453a,intento,juan,error,Walking Tall,American Pie Presents: Band Camp,facil
+1656110445.7648835,dea8e193-d641-4bc6-a543-7e81f1f5729c,inicio_partida,corbatita, , , ,facil
+1656110448.8852932,dea8e193-d641-4bc6-a543-7e81f1f5729c,intento,corbatita,error,Resident Evil: Apocalypse,Wolfwalkers,facil
+1656110451.984183,dea8e193-d641-4bc6-a543-7e81f1f5729c,fin,corbatita,timeout,,,facil
+1656110454.5725634,dea8e193-d641-4bc6-a543-7e81f1f5729c,fin,corbatita,timeout,,,facil
+1656110455.5819821,dea8e193-d641-4bc6-a543-7e81f1f5729c,fin,corbatita,timeout,,,facil
+1656110458.5051515,dea8e193-d641-4bc6-a543-7e81f1f5729c,intento,corbatita,error,Friday the 13th Part III,Battle for Sevastopol,facil
+1656110464.6124535,dea8e193-d641-4bc6-a543-7e81f1f5729c,fin,corbatita,timeout,,,facil
+1656110465.918904,dea8e193-d641-4bc6-a543-7e81f1f5729c,intento,corbatita,error,Friday the 13th Part III,Blind Fury,facil
+1656110493.8637557,c15ee554-4640-4c1a-bae6-7db72f6f09a4,inicio_partida,juan, , , ,facil
+1656110497.0603015,c15ee554-4640-4c1a-bae6-7db72f6f09a4,intento,juan,error,Justin Timberlake,Eminem,facil
+1656110499.1995084,c15ee554-4640-4c1a-bae6-7db72f6f09a4,fin,juan,timeout,,,facil
+1656110500.5035315,c15ee554-4640-4c1a-bae6-7db72f6f09a4,fin,juan,timeout,,,facil
+1656110501.7060735,c15ee554-4640-4c1a-bae6-7db72f6f09a4,intento,juan,error,David Guetta,John Mayer,facil
+1656110509.0801594,c15ee554-4640-4c1a-bae6-7db72f6f09a4,fin,juan,timeout,,,facil
+1656110511.8686454,c15ee554-4640-4c1a-bae6-7db72f6f09a4,intento,juan,timeout,,Shawn Mendes,facil
+1656110515.6202002,c15ee554-4640-4c1a-bae6-7db72f6f09a4,fin,juan,timeout,,,facil
+1656110519.463712,c15ee554-4640-4c1a-bae6-7db72f6f09a4,intento,juan,error,Alessia Cara,Justin Bieber,facil
+1656110521.7355497,c15ee554-4640-4c1a-bae6-7db72f6f09a4,fin,juan,timeout,,,facil
+1656110523.0548134,c15ee554-4640-4c1a-bae6-7db72f6f09a4,intento,juan,error,Alessia Cara,The Chainsmokers,facil
+1656110523.0548232,c15ee554-4640-4c1a-bae6-7db72f6f09a4,fin,juan,finalizada,,,facil
+1656110883.0883367,4da1eebb-47c0-4fd5-aadd-bc5345c9adff,inicio_partida,corbatita, , , ,dificil
+1656110885.631317,4da1eebb-47c0-4fd5-aadd-bc5345c9adff,intento,corbatita,error,Lago Yehuin,Lago Posadas,dificil
+1656110887.24846,4da1eebb-47c0-4fd5-aadd-bc5345c9adff,fin,corbatita,timeout,,,dificil
+1656110890.0044332,4da1eebb-47c0-4fd5-aadd-bc5345c9adff,fin,corbatita,timeout,,,dificil
+1656110892.1263478,4da1eebb-47c0-4fd5-aadd-bc5345c9adff,fin,corbatita,timeout,,,dificil
+1656110892.8489509,4da1eebb-47c0-4fd5-aadd-bc5345c9adff,intento,corbatita,ok,Lago Burmeister,Lago Burmeister,dificil
+1656110895.74092,4da1eebb-47c0-4fd5-aadd-bc5345c9adff,fin,corbatita,timeout,,,dificil
+1656110897.192371,4da1eebb-47c0-4fd5-aadd-bc5345c9adff,fin,corbatita,timeout,,,dificil
+1656110898.568835,4da1eebb-47c0-4fd5-aadd-bc5345c9adff,intento,corbatita,error,Lago Quiroga Chico,Lago Río Chico,dificil
+1656110900.1226006,4da1eebb-47c0-4fd5-aadd-bc5345c9adff,intento,corbatita,error,Nombre,Lago Chepelmut,dificil
+1656110901.1555338,4da1eebb-47c0-4fd5-aadd-bc5345c9adff,intento,corbatita,error,Lago Río Bueno,Lago Argentino,dificil
+1656110901.155543,4da1eebb-47c0-4fd5-aadd-bc5345c9adff,fin,corbatita,finalizada,,,dificil
+1656111000.4614482,49623d6f-df99-4f67-947a-0718f19597e6,inicio_partida,leo, , , ,dificil
+1656111003.8965335,49623d6f-df99-4f67-947a-0718f19597e6,fin,leo,timeout,,,dificil
+1656111007.4625163,49623d6f-df99-4f67-947a-0718f19597e6,fin,leo,timeout,,,dificil
+1656111008.912389,49623d6f-df99-4f67-947a-0718f19597e6,fin,leo,timeout,,,dificil
+1656111009.3625453,49623d6f-df99-4f67-947a-0718f19597e6,fin,leo,timeout,,,dificil
+1656111010.6284363,49623d6f-df99-4f67-947a-0718f19597e6,intento,leo,error,Cardi B,Jeremih,dificil
+1656111012.0703688,49623d6f-df99-4f67-947a-0718f19597e6,fin,leo,timeout,,,dificil
+1656111014.656681,49623d6f-df99-4f67-947a-0718f19597e6,fin,leo,timeout,,,dificil
+1656111018.0342362,49623d6f-df99-4f67-947a-0718f19597e6,fin,leo,abandonada,,,dificil
+1656111070.325415,1506f937-7d74-4b90-a510-dfca08fec05d,inicio_partida,leo, , , ,facil
+1656111073.0442483,1506f937-7d74-4b90-a510-dfca08fec05d,intento,leo,pasa,,Jessie J,facil
+1656111074.8299584,1506f937-7d74-4b90-a510-dfca08fec05d,intento,leo,error,,Beyoncé,facil
+1656111075.6958497,1506f937-7d74-4b90-a510-dfca08fec05d,intento,leo,pasa,,Lizzo,facil
+1656111076.159953,1506f937-7d74-4b90-a510-dfca08fec05d,intento,leo,error,,Waka Flocka Flame,facil
+1656111077.5638452,1506f937-7d74-4b90-a510-dfca08fec05d,intento,leo,ok,Tim Berg,Tim Berg,facil
+1656111077.563853,1506f937-7d74-4b90-a510-dfca08fec05d,fin,leo,finalizada,,,facil
+1656111082.3891726,f31d4a08-a74d-4be6-a63d-15561cf4af92,inicio_partida,leo, , , ,facil
+1656111086.0450535,f31d4a08-a74d-4be6-a63d-15561cf4af92,fin,leo,timeout,,,facil
+1656111087.911766,f31d4a08-a74d-4be6-a63d-15561cf4af92,intento,leo,error,Lago Quiroga Chico,Lago Perito Moreno,facil
+1656111090.082854,f31d4a08-a74d-4be6-a63d-15561cf4af92,fin,leo,timeout,,,facil
+1656111091.2437468,f31d4a08-a74d-4be6-a63d-15561cf4af92,intento,leo,error,Lago Quiroga Chico,Lago Pueyrredón,facil
+1656111091.4037576,f31d4a08-a74d-4be6-a63d-15561cf4af92,intento,leo,error,Lago Quiroga Chico,Lago Posadas,facil
+1656111091.5637426,f31d4a08-a74d-4be6-a63d-15561cf4af92,intento,leo,error,Lago Quiroga Chico,Lago Pellegrini,facil
+1656111091.7608757,f31d4a08-a74d-4be6-a63d-15561cf4af92,intento,leo,error,Lago Quiroga Chico,Lago Epecuén,facil
+1656111091.7608843,f31d4a08-a74d-4be6-a63d-15561cf4af92,fin,leo,finalizada,,,facil
+1656111098.3249266,266bfe8a-be6e-4e8b-b157-57497093684b,inicio_partida,leo, , , ,dificil
+1656111100.175072,266bfe8a-be6e-4e8b-b157-57497093684b,fin,leo,timeout,,,dificil
+1656111100.9775343,266bfe8a-be6e-4e8b-b157-57497093684b,intento,leo,error,,Avatar Spirits,dificil
+1656111352.711872,ded7ac4e-582e-4cff-b0b4-04d187972807,inicio_partida,juan, , , ,normal
+1656111356.0786517,ded7ac4e-582e-4cff-b0b4-04d187972807,fin,juan,timeout,,,normal
+1656111357.333829,ded7ac4e-582e-4cff-b0b4-04d187972807,intento,juan,error,Housesitter,Fitzcarraldo,normal
+1656111358.9777822,ded7ac4e-582e-4cff-b0b4-04d187972807,fin,juan,timeout,,,normal
+1656111360.2818701,ded7ac4e-582e-4cff-b0b4-04d187972807,intento,juan,ok,My Little Pony: Equestria Girls - Legend of Everfree,My Little Pony: Equestria Girls - Legend of Everfree,normal
+1656111360.880782,ded7ac4e-582e-4cff-b0b4-04d187972807,fin,juan,timeout,,,normal
+1656111362.3817353,ded7ac4e-582e-4cff-b0b4-04d187972807,intento,juan,error,Millonario sin amor,The Twilight Saga: Breaking Dawn - Part 2,normal
+1656111363.053666,ded7ac4e-582e-4cff-b0b4-04d187972807,intento,juan,error,Millonario sin amor,K-ON! The Movie,normal
+1656111363.9410965,ded7ac4e-582e-4cff-b0b4-04d187972807,intento,juan,error,The Lucky One,Scary Movie 2,normal
+1656111363.9411054,ded7ac4e-582e-4cff-b0b4-04d187972807,fin,juan,finalizada,,,normal
