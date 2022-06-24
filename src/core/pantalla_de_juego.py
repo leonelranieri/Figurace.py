@@ -80,6 +80,8 @@ def main(dificultad, nombre_usuario, con_ayuda):
     respuesta_seleccionada = ''
     i = 0
     ayuda = 0
+    partida_actual.append({'timestamp' : time.time(), 'id' : my_uuid, 'evento' : "inicio_partida", 'user' : nombre, 'estado' : " ", 'texto_ingresado' : " ", 'respuesta' : " ", 'nivel' : dificultad['-DIFI-']})
+    correcta = False
 
     while True:
         event,value = main_window.read()
@@ -260,6 +262,7 @@ def main(dificultad, nombre_usuario, con_ayuda):
                         linea = (f"PREGUNTA {i}: CORRECTO!: +{sumar_puntos} puntos"+"\n")
                         respuestas = (f"{respuestas} {linea}""\n")
                         main_window['-ANSWERS OUTPUT-'].update(respuestas)
+                        correcta = True
 
                     else:
                         total_respuestas[i] = int(restar_puntos) * -1
@@ -267,6 +270,7 @@ def main(dificultad, nombre_usuario, con_ayuda):
                         linea = (f"PREGUNTA {i}: INCORRECTO! respuesta correcta:"+"\n"+f"{respuesta_correcta} : -{restar_puntos} puntos"+"\n")
                         respuestas = (f"{respuestas} {linea}""\n")
                         main_window['-ANSWERS OUTPUT-'].update(respuestas)
+                        correcta = False
                         
                     lista = random.choice(filas_de_dataset)
                     respuesta_correcta = (lista[5])
@@ -277,6 +281,8 @@ def main(dificultad, nombre_usuario, con_ayuda):
                     if len(total_respuestas) == int(nivel_de_dificultad['rondas']):
                         agregar_alatabla(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda),#agrego ayuda
                                             nombre_usuario[1], dificultad["-DIFI-"])
+                        evento, estado = fp.generador_estado(event, correcta)  
+                        partida_actual.append({'timestamp' : tiempo_inicial, 'id' : my_uuid, 'evento' : evento, 'user' : nombre, 'estado' : estado, 'texto_ingresado' : respuesta_seleccionada, 'respuesta' : respuesta_correcta, 'nivel' : dificultad['-DIFI-']})
                         sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '+str(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda)),
                                 custom_text = ('Volver a Jugar', 'Salir del Juego'), keep_on_top=True)
                         if event == 'Salir del Juego':
@@ -304,8 +310,6 @@ def main(dificultad, nombre_usuario, con_ayuda):
                                             custom_text = ('Abandonar', 'Continuar Jugando'), 
                                                 keep_on_top=True) == 'Abandonar':
                     main_window.close()
-                    #agregar_alatabla(fp.acumular_puntos(total_respuestas),
-                    #                nombre_usuario[1], dificultad["-DIFI-"])
                 # --------------------------------------------[ TIEMPO AGOTADO ]--------------------------------------
 
                 if (tiempo_restante == 0) and len(total_respuestas) != int(nivel_de_dificultad['rondas']):
@@ -342,8 +346,12 @@ def main(dificultad, nombre_usuario, con_ayuda):
                 # -----------------------------------------[ ACTUALIZAR TIEMPO ]----------------------------------------
                 tiempo_transcurrido = int(time.time() - tiempo_inicial)
                 tiempo_restante = (int(nivel_de_dificultad['tiempo'])- tiempo_transcurrido)
-                main_window['-COUNTDOWN-'].update(F'Quedan: {tiempo_restante} segundos')  
-                partida_actual.append({'timestamp' : tiempo_inicial, 'id' : my_uuid, 'evento' : event, 'user' : nombre,'texto_ingresado' : respuesta_seleccionada,'respuesta' : respuesta_correcta,'puntaje' : i,'nivel' : nivel_de_dificultad })
+                main_window['-COUNTDOWN-'].update(F'Quedan: {tiempo_restante} segundos')
+                if event != "__TIMEOUT__":
+                    if not event in ["-INPUT1-", "-INPUT2-", "-INPUT3-", "-INPUT4-", "-INPUT5-"]:
+                        evento, estado = fp.generador_estado(event, correcta)  
+                        partida_actual.append({'timestamp' : tiempo_inicial, 'id' : my_uuid, 'evento' : evento, 'user' : nombre, 'estado' : estado, 'texto_ingresado' : respuesta_seleccionada, 'respuesta' : respuesta_correcta, 'nivel' : dificultad['-DIFI-']})
+            
             fp.generar_datos_partida(partida_actual)      
             main_window.close()
 

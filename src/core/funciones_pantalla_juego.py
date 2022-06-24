@@ -416,10 +416,23 @@ def actualizar_temporizador(tiempo_total, tiempo_inicial):
     return int(tiempo_restante)
 
 # ------------------------------------- [DATOS DE PARTIDA] -------------------------------------
+def generador_estado(event, correcta):
+    print(event)
+    if event == sg.WIN_CLOSED or event == "ABANDONAR EL JUEGO":
+        return ("fin", "abandonada")
+    elif event == 'PASAR >':
+        return ("intento", "pasa")
+    elif event == 'OK':
+        return ("intento", "ok" if correcta else "error")
+    elif event == 'Salir del Juego' or event == "Volver a jugar":
+        return ("fin", "finalizada")
+    else:
+        return ("fin", "timeout")
+
 
 def generar_datos_partida(partida_actual):
         """Genera el log de la partidas actuales y proximas para el analisis de los datos"""
-        field_names = ['timestamp','id','evento','user','texto_ingresado','respuesta','puntaje','nivel']
+        field_names = ['timestamp','id','evento','user', 'estado', 'texto_ingresado','respuesta','nivel']
         df_partida = pd.DataFrame(partida_actual,columns=field_names)
-        df_partida.to_csv(os.path.join(os.getcwd(),"data",'log_de_partidas'),index=False,mode="a",
+        df_partida.to_csv(os.path.join(os.getcwd(),"src", "core", "data",'log_de_partidas'),index=False,mode="a",
         header=False,encoding='utf-8')    
