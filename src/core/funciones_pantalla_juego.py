@@ -20,6 +20,10 @@ def acumular_puntos(diccionario, ayuda, dificultad, con_ayuda):
     
     return total
 
+def limpiar_cadena(cadena):
+    """ Devuelve una cadena de texto sin guiones bajos """
+    return cadena.replace('_', ' ').lower()
+
 def mostrar_caracteristicas(filas_de_dataset, lista_seleccionada, cant_caracteristicas):
     """ 
         Devuelve una cadena de String con las caracteristicas que debe mostrar en
@@ -41,7 +45,7 @@ def mostrar_caracteristicas(filas_de_dataset, lista_seleccionada, cant_caracteri
         if  i < cant_caracteristicas:
             cadena = cadena + elem + ": "
             cadena = cadena + lista_seleccionada[i] + "\n" 
-
+            cadena = limpiar_cadena(cadena)
     return cadena
 
 def lista_opciones(filas_de_dataset, respuesta_correcta):
@@ -411,6 +415,14 @@ def crear_pantalla(pantalla_categoria, pantalla_dificultad, pantalla_respuestas,
 # ------------------------------------- [TEMPORIZADOR] -------------------------------------
 
 def actualizar_temporizador(tiempo_total, tiempo_inicial):
+    """
+    resetea el temporizador a cero.
+    :param tiempo_total: tiempo total de la ronda
+    :type tiempo_total: int
+
+    :param tiempo_inicial: valor ortorgado por time.time()
+    :type tiempo_inicial: float 
+    """
     tiempo_transcurrido = int(time.time() - tiempo_inicial)
     tiempo_restante = (tiempo_total- tiempo_transcurrido)
     return int(tiempo_restante)
@@ -423,3 +435,19 @@ def generar_datos_partida(partida_actual):
         df_partida = pd.DataFrame(partida_actual,columns=field_names)
         df_partida.to_csv(os.path.join(os.getcwd(),"src", "core",  "data",'log_de_partidas'),index=False,mode="a",
         header=False,encoding='utf-8')    
+
+def confirmar_respuesta(respuesta_seleccionada, respuesta_correcta):
+    """
+    Devuelve un valor booleando dependiendo si los valores de string pasado por parámetro coinciden o no.
+    :param respuesta_seleccionada: variable string almacenada por el evento '-INPUT#-'
+    :type respuesta_seleccionada: string
+
+    :param respuesta_correcta: variable string creada en "pantalla_de_juego.py" donde almacena el contenido
+                                de la posición 5 (donde se encuentra la respuesta a adivinar) de una lista 
+    :type respuesta_correcta: string
+
+    """
+    if respuesta_seleccionada == respuesta_correcta:
+        return True
+    else:
+        return False

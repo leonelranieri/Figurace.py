@@ -87,6 +87,11 @@ def main(dificultad, nombre_usuario, con_ayuda):
         if event == sg.WIN_CLOSED or event == "ABANDONAR EL JUEGO":
             break
         
+        if (event == '-ABANDONAR-') and sg.Popup('¿Desea Abandonar el Juego?', 
+                                            custom_text = ('Abandonar', 'Continuar Jugando'), 
+                                                keep_on_top=True) == 'Abandonar':
+                    main_window.close()
+
         if event == '-START-':
             tiempo_inicial = time.time()
             tiempo_por_ronda = int(nivel_de_dificultad['tiempo'])

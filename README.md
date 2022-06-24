@@ -3,9 +3,9 @@
 GRUPO 11 - FIGURACE -
 
 INTEGRANTES DEL PROYECTO:
-  Ricardo Federico Colantonio Von Saldern
-  Lucas Guerendiain
-  Joaquin Bruno Mateos 
+  Ricardo Federico Colantonio Von Saldern leg:13613/6
+  Lucas Guerendiain leg: 17546/1
+  Joaquin Bruno Mateos leg: 16118/8
   Leonel Alejandro Ranieri
 
 ===========================================================
