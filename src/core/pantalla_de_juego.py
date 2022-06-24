@@ -196,63 +196,38 @@ def main(dificultad, nombre_usuario, con_ayuda):
 
                 # -------------[ AYUDA ]------------
                 if event == "-AYUDA-":  #agrego ayuda
-                    layout = [   
-                        [sg.Button("Seguir", key="-SEGUIR-")], 
-                        [sg.Button("Salir", key="-SALIR-")]
+                    layout = [
+                        [sg.T("¿DESEA CONTINUAR?")],   
+                        [sg.Button("Si", key="-SI-")], 
+                        [sg.Button("No", key="-NO-")]
                     ]
-                    ventana = sg.Window("ventana de ayuda", layout, margins=(30,30))
+                    ventana = sg.Window("ventana de ayuda", layout, margins=(60,60))
                     
-                    if not ayuda:
-                        sg.Popup("SOLO PUEDE SOLICITAR DOS AYUDAS POR PARTIDA.\n"
-                        " RECUERDE QUE SE LE DESCONTARA 1 PUNTO POR CADA AYUDA.\n"
-                        " SI LA DIFICULTAD ELEGIDA ES 'NORMAL' SE LE DESCUENTA\n" 
-                        " 1 PUNTO MÁS Y SI ES 'DÍFICIL' 2 PUNTOS MÁS.") 
-                    #if ayuda == 0:   
-                        while True:
-                            event, values = ventana.read()
-                            if event == "-SALIR-" or event == sg.WIN_CLOSED:
-                                break
-                            elif event == "-SEGUIR-":
-                                try:
-                                    opcion = random.randrange(5)
-                                    if respuesta_correcta in ayudas:
-                                        indice_correcta = ayudas.index(respuesta_correcta)
-                                        ayudas.pop(indice_correcta)
-                                        if ayuda < 2:
-                                            try:
-                                                ayuda = ayuda + 1 
-                                                sg.PopupQuickMessage("SE MOSTRARA UNA DE LAS\n" 
-                                                    " OPCIONES INCORRECTAS", ayudas[opcion],
-                                                    "SE LE DESCONTARA", ayuda, "PUNTO.\n",
-                                                    "MAS EL ADICIONAL POR DIFICULTAD.")
-                                            except IndexError:
-                                                pass
-                                        else:
-                                            sg.PopupQuickMessage("SE QUEDO SIN AYUDAS")
-                                except ValueError:     
-                                    pass   
+                    while True:
+                        event, values = ventana.read()
+                        
+                        if event == "-NO-" or event == sg.WIN_CLOSED:
                             break
-                        ventana.close()
-                    else:
-                        try:
-                            opcion = random.randrange(5)
-                            if respuesta_correcta in ayudas:
-                                indice_correcta = ayudas.index(respuesta_correcta)
-                                ayudas.pop(indice_correcta)
-                                if ayuda < 2:
-                                    try:
-                                        ayuda = ayuda + 1
-                                        sg.PopupQuickMessage("SE MOSTRARA UNA DE LAS\n" 
-                                            " OPCIONES INCORRECTAS", ayudas[opcion],
-                                            "SE LE DESCONTARÁN", ayuda, "PUNTOS.\n",
-                                            "MAS EL ADICIONAL POR DIFICULTAD.")
-                                        #ayuda = ayuda + 1
-                                    except IndexError:
-                                        pass
-                                else:
-                                    sg.PopupQuickMessage("SE QUEDO SIN AYUDAS")
-                        except ValueError:     
-                            pass
+                        elif event == "-SI-":
+                            try:
+                                opcion = random.randrange(5)
+                                if respuesta_correcta in ayudas:
+                                    indice_correcta = ayudas.index(respuesta_correcta)
+                                    ayudas.pop(indice_correcta)
+                                    if ayuda < 2:
+                                        try:
+                                            ayuda = ayuda + 1 
+                                            sg.PopupOK(f"SE MOSTRARA UNA DE LAS\n" 
+                                                    " OPCIONES INCORRECTAS", {ayudas[opcion]},
+                                                    "SE LE DESCONTARA", {ayuda}, "PUNTO MÁS EL ADICIONAL POR DIFICULTAD.")
+                                        except IndexError:
+                                            pass
+                                    else:
+                                        sg.PopupQuickMessage("SE QUEDO SIN AYUDAS")
+                            except ValueError:     
+                                pass   
+                        break
+                    ventana.close()
                 # -------------[ OK ]-------------
 
                 elif event == 'OK':
