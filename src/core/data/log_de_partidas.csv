@@ -112,3 +112,87 @@ timestamp,id,evento,usuarie,estado,texto_ingresado,respuesta,nivel
 1656111363.053666,ded7ac4e-582e-4cff-b0b4-04d187972807,intento,juan,error,Millonario sin amor,K-ON! The Movie,normal
 1656111363.9410965,ded7ac4e-582e-4cff-b0b4-04d187972807,intento,juan,error,The Lucky One,Scary Movie 2,normal
 1656111363.9411054,ded7ac4e-582e-4cff-b0b4-04d187972807,fin,juan,finalizada,,,normal
+1656112430.3465576,bc57fa87-3568-42f3-bcf6-d4ba8699bebe,inicio_partida,orco, , , ,dificil
+1656112433.3124611,bc57fa87-3568-42f3-bcf6-d4ba8699bebe,intento,orco,error,Corpus Christi,The Sword in the Stone,dificil
+1656112470.9622507,df95f163-c0ce-4fba-a0a0-9412f2d27c79,inicio_partida,orco, , , ,facil
+1656112474.5081434,df95f163-c0ce-4fba-a0a0-9412f2d27c79,fin,orco,timeout,,,facil
+1656112475.4592755,df95f163-c0ce-4fba-a0a0-9412f2d27c79,intento,orco,error,Imagine Dragons,Yolanda Be Cool,facil
+1656112476.5653844,df95f163-c0ce-4fba-a0a0-9412f2d27c79,intento,orco,ok,MØ,MØ,facil
+1656112478.481077,df95f163-c0ce-4fba-a0a0-9412f2d27c79,fin,orco,timeout,,,facil
+1656112479.7210968,df95f163-c0ce-4fba-a0a0-9412f2d27c79,intento,orco,ok,Paloma Faith,Paloma Faith,facil
+1656112516.3649867,75317a10-fe12-4f57-93f7-0ffe81729a4e,inicio_partida,orco, , , ,dificil
+1656112518.3695118,75317a10-fe12-4f57-93f7-0ffe81729a4e,intento,orco,error,Vehicle 19,Lakeview Terrace,dificil
+1656112520.603577,75317a10-fe12-4f57-93f7-0ffe81729a4e,fin,orco,timeout,,,dificil
+1656112521.879017,75317a10-fe12-4f57-93f7-0ffe81729a4e,fin,orco,timeout,,,dificil
+1656112523.6094332,75317a10-fe12-4f57-93f7-0ffe81729a4e,intento,orco,ok,Fist of Fury,Fist of Fury,dificil
+1656112524.0889513,75317a10-fe12-4f57-93f7-0ffe81729a4e,fin,orco,timeout,,,dificil
+1656112525.902009,75317a10-fe12-4f57-93f7-0ffe81729a4e,fin,orco,timeout,,,dificil
+1656112527.1494255,75317a10-fe12-4f57-93f7-0ffe81729a4e,intento,orco,error,Fist of Fury,Hotel Rwanda,dificil
+1656112527.6956007,75317a10-fe12-4f57-93f7-0ffe81729a4e,intento,orco,error,Fist of Fury,Monster High: Escape from Skull Shores,dificil
+1656112527.879881,75317a10-fe12-4f57-93f7-0ffe81729a4e,intento,orco,error,Fist of Fury,Shaun the Sheep: The Flight Before Christmas,dificil
+1656112527.8798897,75317a10-fe12-4f57-93f7-0ffe81729a4e,fin,orco,finalizada,,,dificil
+1656112532.4585822,f4df0065-4fae-4d8e-998f-175ec3efce55,inicio_partida,orco, , , ,facil
+1656112535.7142854,f4df0065-4fae-4d8e-998f-175ec3efce55,fin,orco,timeout,,,facil
+1656112537.0676777,f4df0065-4fae-4d8e-998f-175ec3efce55,intento,orco,error,Tyga,Wiz Khalifa,facil
+1656112538.4708192,f4df0065-4fae-4d8e-998f-175ec3efce55,fin,orco,timeout,,,facil
+1656112539.6634927,f4df0065-4fae-4d8e-998f-175ec3efce55,intento,orco,error,Imagine Dragons,Eliza Doolittle,facil
+1656112540.1709971,f4df0065-4fae-4d8e-998f-175ec3efce55,fin,orco,timeout,,,facil
+1656112542.065526,f4df0065-4fae-4d8e-998f-175ec3efce55,intento,orco,error,MGMT,Mark Ronson,facil
+1656112542.4597058,f4df0065-4fae-4d8e-998f-175ec3efce55,intento,orco,error,MGMT,Miguel,facil
+1656112542.8930507,f4df0065-4fae-4d8e-998f-175ec3efce55,intento,orco,error,MGMT,Wiz Khalifa,facil
+1656112542.8930638,f4df0065-4fae-4d8e-998f-175ec3efce55,fin,orco,finalizada,,,facil
+1656112860.8321733,fc86ae09-431f-450b-8a52-8f1ef0806b51,inicio_partida,orco, , , ,facil
+1656112864.3350675,fc86ae09-431f-450b-8a52-8f1ef0806b51,fin,orco,timeout,,,facil
+1656112865.6523314,fc86ae09-431f-450b-8a52-8f1ef0806b51,intento,orco,ok,Selena Gomez,Selena Gomez,facil
+1656112867.702184,fc86ae09-431f-450b-8a52-8f1ef0806b51,fin,orco,timeout,,,facil
+1656112868.7198281,fc86ae09-431f-450b-8a52-8f1ef0806b51,intento,orco,error,Bon Iver,Katy Perry,facil
+1656112870.8341684,fc86ae09-431f-450b-8a52-8f1ef0806b51,intento,orco,error,Blueface,Years & Years,facil
+1656112871.6029701,fc86ae09-431f-450b-8a52-8f1ef0806b51,fin,orco,timeout,,,facil
+1656112872.5480993,fc86ae09-431f-450b-8a52-8f1ef0806b51,intento,orco,error,Blueface,Example,facil
+1656112874.3982315,fc86ae09-431f-450b-8a52-8f1ef0806b51,intento,orco,error,Halsey,Aloe Blacc,facil
+1656112874.3982413,fc86ae09-431f-450b-8a52-8f1ef0806b51,fin,orco,finalizada,,,facil
+1656112878.8850863,41ea9298-b8cb-418d-9bbc-53b671444968,inicio_partida,orco, , , ,dificil
+1656112882.5191011,41ea9298-b8cb-418d-9bbc-53b671444968,fin,orco,timeout,,,dificil
+1656112883.7232327,41ea9298-b8cb-418d-9bbc-53b671444968,intento,orco,error,Cardi B,Foster The People,dificil
+1656112885.302579,41ea9298-b8cb-418d-9bbc-53b671444968,fin,orco,timeout,,,dificil
+1656112886.608007,41ea9298-b8cb-418d-9bbc-53b671444968,intento,orco,error,Sigala,Omarion,dificil
+1656112887.4347298,41ea9298-b8cb-418d-9bbc-53b671444968,fin,orco,timeout,,,dificil
+1656112888.9782643,41ea9298-b8cb-418d-9bbc-53b671444968,intento,orco,ok,David Guetta,David Guetta,dificil
+1656112889.7000165,41ea9298-b8cb-418d-9bbc-53b671444968,intento,orco,ok,Wiley,Wiley,dificil
+1656112891.7610176,41ea9298-b8cb-418d-9bbc-53b671444968,fin,orco,abandonada,,,dificil
+1656112896.425519,41ea9298-b8cb-418d-9bbc-53b671444968,fin,orco,abandonada,,,dificil
+1656112898.3324242,93fcdb92-2ea3-4751-b3db-3f54c1267dcb,inicio_partida,orco, , , ,dificil
+1656112900.9400587,93fcdb92-2ea3-4751-b3db-3f54c1267dcb,intento,orco,error,David Guetta,Maroon 5,dificil
+1656112901.899772,93fcdb92-2ea3-4751-b3db-3f54c1267dcb,intento,orco,ok,Galantis,Galantis,dificil
+1656112903.157932,93fcdb92-2ea3-4751-b3db-3f54c1267dcb,fin,orco,timeout,,,dificil
+1656112903.8881068,93fcdb92-2ea3-4751-b3db-3f54c1267dcb,intento,orco,pasa,Galantis,Macklemore & Ryan Lewis,dificil
+1656112905.1164687,93fcdb92-2ea3-4751-b3db-3f54c1267dcb,fin,orco,timeout,,,dificil
+1656112906.2422059,93fcdb92-2ea3-4751-b3db-3f54c1267dcb,intento,orco,ok,Juice WRLD,Juice WRLD,dificil
+1656112907.143702,93fcdb92-2ea3-4751-b3db-3f54c1267dcb,intento,orco,error,Bruno Mars,Mike Perry,dificil
+1656112907.143711,93fcdb92-2ea3-4751-b3db-3f54c1267dcb,fin,orco,finalizada,,,dificil
+1656112917.8995922,5e6b20b0-b838-4818-adfc-8eaacb92ac98,inicio_partida,orco, , , ,dificil
+1656112919.7883234,5e6b20b0-b838-4818-adfc-8eaacb92ac98,intento,orco,pasa,,Lago Perito Moreno,dificil
+1656112919.948325,5e6b20b0-b838-4818-adfc-8eaacb92ac98,intento,orco,pasa,,Lago Falkner,dificil
+1656112920.0923176,5e6b20b0-b838-4818-adfc-8eaacb92ac98,intento,orco,pasa,,Nombre,dificil
+1656112920.254325,5e6b20b0-b838-4818-adfc-8eaacb92ac98,intento,orco,pasa,,Lago General Vintter,dificil
+1656112920.3857152,5e6b20b0-b838-4818-adfc-8eaacb92ac98,intento,orco,pasa,,Lago Moquehue,dificil
+1656112920.3857234,5e6b20b0-b838-4818-adfc-8eaacb92ac98,fin,orco,finalizada,,,dificil
+1656112924.2755866,5c624ced-10f1-4d93-88b9-b35f4c5b1776,inicio_partida,orco, , , ,dificil
+1656112926.3584948,5c624ced-10f1-4d93-88b9-b35f4c5b1776,intento,orco,error,Lago La Plata,Lago Mascardi,dificil
+1656112926.5183935,5c624ced-10f1-4d93-88b9-b35f4c5b1776,intento,orco,error,Lago La Plata,Lago Pico Nº 1,dificil
+1656112926.6613684,5c624ced-10f1-4d93-88b9-b35f4c5b1776,intento,orco,error,Lago La Plata,Lago Yehuin,dificil
+1656112926.8222737,5c624ced-10f1-4d93-88b9-b35f4c5b1776,intento,orco,error,Lago La Plata,Lago Blanco,dificil
+1656112926.9532416,5c624ced-10f1-4d93-88b9-b35f4c5b1776,intento,orco,error,Lago La Plata,Lago Pueyrredón,dificil
+1656112926.95325,5c624ced-10f1-4d93-88b9-b35f4c5b1776,fin,orco,finalizada,,,dificil
+1656112930.6260774,5e69a54d-65e5-41ba-8131-deab0ecbe16c,inicio_partida,orco, , , ,facil
+1656112933.4143248,5e69a54d-65e5-41ba-8131-deab0ecbe16c,intento,orco,error,Lago Tar,Lago Pueyrredón,facil
+1656112933.5904171,5e69a54d-65e5-41ba-8131-deab0ecbe16c,intento,orco,error,Lago Tar,Lago Río Chico,facil
+1656112933.7504823,5e69a54d-65e5-41ba-8131-deab0ecbe16c,intento,orco,error,Lago Tar,Lago Posadas,facil
+1656112933.9123511,5e69a54d-65e5-41ba-8131-deab0ecbe16c,intento,orco,error,Lago Tar,Lago Correntoso,facil
+1656112934.7156587,5e69a54d-65e5-41ba-8131-deab0ecbe16c,intento,orco,pasa,Lago Cholila,Lago Tar,facil
+1656112934.7156675,5e69a54d-65e5-41ba-8131-deab0ecbe16c,fin,orco,finalizada,,,facil
+1656112938.1306007,6a5deb64-84c3-4689-bfcb-6c56a3158ca1,inicio_partida,orco, , , ,normal
+1656112942.0663974,6a5deb64-84c3-4689-bfcb-6c56a3158ca1,intento,orco,error,A Goofy Movie,Happy Feet,normal
+1656112942.9483078,6a5deb64-84c3-4689-bfcb-6c56a3158ca1,intento,orco,error,The General's Daughter,Rise: Blood Hunter,normal
+1656112943.2363935,6a5deb64-84c3-4689-bfcb-6c56a3158ca1,intento,orco,pasa,The General's Daughter,How to Train Your Dragon: Homecoming,normal
+1656112944.9861908,6a5deb64-84c3-4689-bfcb-6c56a3158ca1,fin,orco,abandonada,,,normal

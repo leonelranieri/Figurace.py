@@ -4,16 +4,16 @@ import time
 import PySimpleGUI as sg
 import pandas as pd
 
-def acumular_puntos(diccionario, ayuda, dificultad, con_ayuda):
+def acumular_puntos(diccionario, restar, dificultad, con_ayuda):
     total = 0
     if con_ayuda:
-        if dificultad == "normal":
+        """if dificultad == "normal":
             ayuda = ayuda + 1
         elif dificultad == "dificil":
-            ayuda = ayuda + 2
+            ayuda = ayuda + 2"""
         for elem in diccionario.values():
             total = total + elem
-        total = total -ayuda
+        total = total - restar
     else:
         for elem in diccionario.values():
             total = total + elem
@@ -429,6 +429,10 @@ def actualizar_temporizador(tiempo_total, tiempo_inicial):
 
 # ------------------------------------- [DATOS DE PARTIDA] -------------------------------------
 def generador_estado(event, correcta):
+    """
+       genera evento y estado adecuados para el registro
+       correcta es un bool que es true cuando el usuarie respondio bien
+    """
     if event == sg.WIN_CLOSED or event == '-ABANDONAR-':
         return ("fin", "abandonada")
     elif event == 'PASAR >':
@@ -442,7 +446,19 @@ def generador_estado(event, correcta):
     else:
         return ("fin", "timeout")
 
-def lamascara(id, event, usuarie, ok_error, respuesta_seleccionada, respuesta_correcta, dificultad):
+def lamascara(
+            id,
+            event, 
+            usuarie, 
+            ok_error, 
+            respuesta_seleccionada, 
+            respuesta_correcta, 
+            dificultad
+        ):
+    """
+        esta para evitar tanta repeticion de codigo no muy lindo
+        adapta los valores de respuesta para que no aparezcan donde no debieran
+    """
     evento, estado = generador_estado(event, ok_error)
     if evento == "fin":
         respuesta_correcta = ""
@@ -451,12 +467,18 @@ def lamascara(id, event, usuarie, ok_error, respuesta_seleccionada, respuesta_co
         respuesta_seleccionada = ""
     tiempo = time.time()
 
-    return {'timestamp' : tiempo, 'id' : id, 'evento' : evento, 'usuarie' : usuarie, 'estado' : estado, 'texto_ingresado' : respuesta_seleccionada, 'respuesta' : respuesta_correcta, 'nivel' : dificultad}
+    return {'timestamp' : tiempo, 'id' : id, 'evento' : evento,
+            'usuarie' : usuarie, 'estado' : estado,
+            'texto_ingresado' : respuesta_seleccionada,
+            'respuesta' : respuesta_correcta, 'nivel' : dificultad}
 
 def generar_datos_partida(partida_actual):
         """Genera el log de la partidas actuales y proximas para el analisis de los datos"""
-        ruta_archivo = os.path.join(os.getcwd(),"src", "core", "data",'log_de_partidas.csv')
-        field_names = ['timestamp','id','evento','usuarie', 'estado', 'texto_ingresado','respuesta','nivel']
+        ruta_archivo = os.path.join(os.getcwd(),
+                                "src", "core", "data",'log_de_partidas.csv')
+        
+        field_names = ['timestamp','id','evento','usuarie', 
+                        'estado', 'texto_ingresado','respuesta','nivel']
         df_partida = pd.DataFrame(partida_actual,columns=field_names)
         if not os.path.exists(ruta_archivo):
             df_partida.to_csv(ruta_archivo,index=False,encoding='utf-8')
