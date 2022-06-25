@@ -261,7 +261,7 @@ def main(dificultad, nombre_usuario, con_ayuda=False):
                                             nombre_usuario[1], dificultad["-DIFI-"])
                         partida_actual.append(fp.lamascara(my_uuid,event,nombre,correcta,respuesta_seleccionada,correcta_anterior,dificultad["-DIFI-"]))
                         partida_actual.append(fp.lamascara(my_uuid,"Salir del juego",nombre,correcta,respuesta_seleccionada,correcta_anterior,dificultad["-DIFI-"]))
-                        sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '+str(fp.acumular_puntos(total_respuestas, ayuda, dificultad["-DIFI-"], con_ayuda)),
+                        sg.Popup('Fin de ronda de preguntas. Puntos acumulados en ésta ronda: '+str(fp.acumular_puntos(total_respuestas, total, dificultad["-DIFI-"], con_ayuda)),
                                 custom_text = ('Volver a Jugar', 'Salir del Juego'), keep_on_top=True)
                         if event == 'Salir del Juego':
                             break 
