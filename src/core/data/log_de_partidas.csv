@@ -196,3 +196,10 @@ timestamp,id,evento,usuarie,estado,texto_ingresado,respuesta,nivel
 1656112942.9483078,6a5deb64-84c3-4689-bfcb-6c56a3158ca1,intento,orco,error,The General's Daughter,Rise: Blood Hunter,normal
 1656112943.2363935,6a5deb64-84c3-4689-bfcb-6c56a3158ca1,intento,orco,pasa,The General's Daughter,How to Train Your Dragon: Homecoming,normal
 1656112944.9861908,6a5deb64-84c3-4689-bfcb-6c56a3158ca1,fin,orco,abandonada,,,normal
+1656113134.8952703,c1c00c6d-cf60-4b02-abea-d0300d7533ab,inicio_partida,orco, , , ,facil
+1656113137.8573332,c1c00c6d-cf60-4b02-abea-d0300d7533ab,intento,orco,ok,Lago San Martín,Lago San Martín,facil
+1656113140.3071504,c1c00c6d-cf60-4b02-abea-d0300d7533ab,intento,orco,error,Lago Espejo,Lago La Plata,facil
+1656113145.8451853,c1c00c6d-cf60-4b02-abea-d0300d7533ab,intento,orco,pasa,Lago Cardiel,Lago Cardiel,facil
+1656113147.9690614,c1c00c6d-cf60-4b02-abea-d0300d7533ab,intento,orco,error,Lago Perito Moreno,Lago Falkner,facil
+1656113149.9182143,c1c00c6d-cf60-4b02-abea-d0300d7533ab,intento,orco,error,Lago San Martín,Lago Quiroga Chico,facil
+1656113149.9182174,c1c00c6d-cf60-4b02-abea-d0300d7533ab,fin,orco,finalizada,,,facil
