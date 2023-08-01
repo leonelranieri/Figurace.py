@@ -203,3 +203,56 @@ timestamp,id,evento,usuarie,estado,texto_ingresado,respuesta,nivel
 1656113147.9690614,c1c00c6d-cf60-4b02-abea-d0300d7533ab,intento,orco,error,Lago Perito Moreno,Lago Falkner,facil
 1656113149.9182143,c1c00c6d-cf60-4b02-abea-d0300d7533ab,intento,orco,error,Lago San Martín,Lago Quiroga Chico,facil
 1656113149.9182174,c1c00c6d-cf60-4b02-abea-d0300d7533ab,fin,orco,finalizada,,,facil
+1675025911.4850173,181feb33-ddf2-4509-a7d4-409d403fb7d1,inicio_partida,corbatita, , , ,facil
+1675025923.7864177,181feb33-ddf2-4509-a7d4-409d403fb7d1,intento,corbatita,timeout,,Kodak Black,facil
+1675025924.2664547,181feb33-ddf2-4509-a7d4-409d403fb7d1,intento,corbatita,error,Kodaline,Birdy,facil
+1675025931.1244574,181feb33-ddf2-4509-a7d4-409d403fb7d1,intento,corbatita,error,Kodaline,Young Money,facil
+1675025937.3569098,181feb33-ddf2-4509-a7d4-409d403fb7d1,intento,corbatita,error,Piso 21,Cardi B,facil
+1675025940.4186358,181feb33-ddf2-4509-a7d4-409d403fb7d1,intento,corbatita,error,Alesso,Bastille,facil
+1675025940.4186358,181feb33-ddf2-4509-a7d4-409d403fb7d1,fin,corbatita,finalizada,,,facil
+1675025949.5703037,e2dcb30a-6115-42ee-8ed2-9ceef20e43ca,inicio_partida,corbatita, , , ,facil
+1675025957.7234013,e2dcb30a-6115-42ee-8ed2-9ceef20e43ca,intento,corbatita,error,Lago Cholila,Lago Quiroga,facil
+1675025962.9672868,e2dcb30a-6115-42ee-8ed2-9ceef20e43ca,intento,corbatita,error,Lago Rosario,Lago Musters,facil
+1675025971.3499124,e2dcb30a-6115-42ee-8ed2-9ceef20e43ca,fin,corbatita,timeout,,,facil
+1675025973.1030421,e2dcb30a-6115-42ee-8ed2-9ceef20e43ca,intento,corbatita,timeout,,Lago Pueyrredón,facil
+1675025973.4720685,e2dcb30a-6115-42ee-8ed2-9ceef20e43ca,intento,corbatita,error,Lago Pueyrredón,Lago Tromen,facil
+1675025978.8004553,e2dcb30a-6115-42ee-8ed2-9ceef20e43ca,intento,corbatita,error,Lago Nansen,Lago Tromen,facil
+1675025978.8004553,e2dcb30a-6115-42ee-8ed2-9ceef20e43ca,fin,corbatita,finalizada,,,facil
+1675026126.0232592,3fc3a5ec-e4a6-47df-b53c-31f7b9244737,inicio_partida,corbatita, , , ,facil
+1675026133.7668228,3fc3a5ec-e4a6-47df-b53c-31f7b9244737,intento,corbatita,ok,Nancy Drew and the Hidden Staircase,Nancy Drew and the Hidden Staircase,facil
+1675026139.3037338,3fc3a5ec-e4a6-47df-b53c-31f7b9244737,intento,corbatita,error,The Handmaiden,The Dressmaker,facil
+1675026143.2900229,3fc3a5ec-e4a6-47df-b53c-31f7b9244737,intento,corbatita,error,The Protector,The Matrix Revolutions,facil
+1675026146.3562565,3fc3a5ec-e4a6-47df-b53c-31f7b9244737,fin,corbatita,timeout,,,facil
+1675026149.1909654,3fc3a5ec-e4a6-47df-b53c-31f7b9244737,intento,corbatita,error,Pirates of the Caribbean: At World's End,Snow White and the Huntsman,facil
+1675026152.537212,3fc3a5ec-e4a6-47df-b53c-31f7b9244737,fin,corbatita,timeout,,,facil
+1675026156.5995052,3fc3a5ec-e4a6-47df-b53c-31f7b9244737,intento,corbatita,error,Barbie and the Magic of Pegasus 3-D,Gigli,facil
+1675026156.5995052,3fc3a5ec-e4a6-47df-b53c-31f7b9244737,fin,corbatita,finalizada,,,facil
+1675026168.0578523,7bfbb158-75af-48ef-b85b-a46bd1ec9c6f,inicio_partida,corbatita, , , ,facil
+1675026176.5849774,7bfbb158-75af-48ef-b85b-a46bd1ec9c6f,intento,corbatita,error,Our Little Sister,Bushwhacked,facil
+1675026184.498059,7bfbb158-75af-48ef-b85b-a46bd1ec9c6f,intento,corbatita,error,Oscar and the Lady in Pink,Free Guy,facil
+1675026191.1765451,7bfbb158-75af-48ef-b85b-a46bd1ec9c6f,intento,corbatita,error,Oscar and the Lady in Pink,X-Men: The Mutant Watch,facil
+1675026197.0384748,7bfbb158-75af-48ef-b85b-a46bd1ec9c6f,intento,corbatita,error,Oscar and the Lady in Pink,Ultimate Avengers 2,facil
+1675026205.860118,7bfbb158-75af-48ef-b85b-a46bd1ec9c6f,intento,corbatita,error,Lord of Illusions,Con Air,facil
+1675026205.860118,7bfbb158-75af-48ef-b85b-a46bd1ec9c6f,fin,corbatita,finalizada,,,facil
+1675026209.30187,814cf200-5c55-426a-8784-2dbb395f5756,inicio_partida,corbatita, , , ,facil
+1675026218.8720725,814cf200-5c55-426a-8784-2dbb395f5756,intento,corbatita,error,Who Said Detox?,Hostiles,facil
+1675026225.3915472,814cf200-5c55-426a-8784-2dbb395f5756,intento,corbatita,ok,Husk,Husk,facil
+1675026231.5965042,814cf200-5c55-426a-8784-2dbb395f5756,intento,corbatita,error,Term Life,Damage,facil
+1675026239.089048,814cf200-5c55-426a-8784-2dbb395f5756,intento,corbatita,ok,Spy Cat,Spy Cat,facil
+1675026245.058986,814cf200-5c55-426a-8784-2dbb395f5756,fin,corbatita,timeout,,,facil
+1675026247.6036763,814cf200-5c55-426a-8784-2dbb395f5756,intento,corbatita,error,Atlantis: Milo's Return,Making The Witcher,facil
+1675026247.6036763,814cf200-5c55-426a-8784-2dbb395f5756,fin,corbatita,finalizada,,,facil
+1675026278.0794082,9eff651e-84b0-468b-bcbf-cb0a381781c5,inicio_partida,corbatita, , , ,facil
+1675026282.2132149,9eff651e-84b0-468b-bcbf-cb0a381781c5,intento,corbatita,error,Flowers in the Attic,Let Me Eat Your Pancreas,facil
+1675026287.2885864,9eff651e-84b0-468b-bcbf-cb0a381781c5,intento,corbatita,ok,Monster High: Why Do Ghouls Fall in Love?,Monster High: Why Do Ghouls Fall in Love?,facil
+1675026293.9595764,9eff651e-84b0-468b-bcbf-cb0a381781c5,intento,corbatita,error,My Big Fat Greek Wedding,Black Knight,facil
+1675026300.4020448,9eff651e-84b0-468b-bcbf-cb0a381781c5,intento,corbatita,error,Extinction,The Body,facil
+1675026306.6149998,9eff651e-84b0-468b-bcbf-cb0a381781c5,intento,corbatita,error,American Wedding,RRRrrrr!!!,facil
+1675026306.6149998,9eff651e-84b0-468b-bcbf-cb0a381781c5,fin,corbatita,finalizada,,,facil
+1675026319.8344767,ccdecfae-f605-47dc-b168-ba865d011700,inicio_partida,corbatita, , , ,facil
+1675026325.8099182,ccdecfae-f605-47dc-b168-ba865d011700,intento,corbatita,error,Lago Quillén,Lago Tar,facil
+1675026329.676703,ccdecfae-f605-47dc-b168-ba865d011700,intento,corbatita,error,Lago Traful,Lago Nahuel Huapi,facil
+1675026334.4350498,ccdecfae-f605-47dc-b168-ba865d011700,intento,corbatita,error,Lago Cardiel,Lago Quiroga Chico,facil
+1675026337.8292978,ccdecfae-f605-47dc-b168-ba865d011700,intento,corbatita,error,Lago Paimún,Lago Lácar,facil
+1675026341.357561,ccdecfae-f605-47dc-b168-ba865d011700,intento,corbatita,error,Lago Quiroga,Lago Belgrano,facil
+1675026341.357561,ccdecfae-f605-47dc-b168-ba865d011700,fin,corbatita,finalizada,,,facil

@@ -50,8 +50,10 @@ puntaje,usuario,dificultad
 3,corbatita,facil
 3,corbatita,facil
 3,corbatita,facil
+3,corbatita,facil
 1,corbatita,facil
 0,orco,facil
+0,corbatita,facil
 -1,corbatita,facil
 -1,corbatita,facil
 -1,juan,facil
@@ -67,6 +69,8 @@ puntaje,usuario,dificultad
 -1,leo,facil
 -3,juan,facil
 -3,orco,facil
+-3,corbatita,facil
+-3,corbatita,facil
 -5,corbatita,facil
 -5,leo,facil
 -5,corbatita,facil
@@ -97,6 +101,9 @@ puntaje,usuario,dificultad
 -5,pupi,facil
 -5,juan,facil
 -5,orco,facil
+-5,corbatita,facil
+-5,corbatita,facil
+-5,corbatita,facil
 -7,leo,facil
 -8,orco,facil
 2015,señor x,dificil
